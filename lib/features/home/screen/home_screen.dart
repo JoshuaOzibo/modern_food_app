@@ -3,6 +3,7 @@ import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/circular_button.dart';
 import 'package:modern_food_app/features/home/component/select_food_type.dart';
 import 'package:modern_food_app/features/home/component/showcase_order_history/order_history.dart';
+import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -134,8 +135,9 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 50),
           SelectFoodType(),
-          // SizedBox(height: 10),
           OrderHistory(),
+          SizedBox(height: 20,),
+          TopRatedFoodSection(),
         ],
       ),
     );

@@ -14,7 +14,7 @@ class OrderHistory extends StatelessWidget {
       children: [
         TitleText(leftText: 'Order Again', rightText: 'View all'),
         SizedBox(
-          height: 130,
+          height: 120,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: appStaticData.orderHistory.length,

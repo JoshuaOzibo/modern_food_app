@@ -18,8 +18,8 @@ class OrderHistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      height: 100,
-      width: 400,
+      height: 80,
+      width: 330,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.black),
         borderRadius: BorderRadius.circular(10),
@@ -41,8 +41,8 @@ class OrderHistoryCard extends StatelessWidget {
                     child: Image.asset(
                       image,
                       fit: BoxFit.cover,
-                      height: 60,
-                      width: 60,
+                      height: 50,
+                      width: 50,
                     ),
                   ),
 
@@ -71,7 +71,7 @@ class OrderHistoryCard extends StatelessWidget {
               ),
 
               Text(
-                price,
+                '\$$price',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 13,
