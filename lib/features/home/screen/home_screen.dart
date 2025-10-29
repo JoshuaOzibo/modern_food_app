@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/circular_button.dart';
+import 'package:modern_food_app/features/home/component/select_food_type.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,121 +8,127 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(25),
-              bottomRight: Radius.circular(25),
-            ),
-            child: Image.asset(
-              'assets/images/chilli-9202873_1280.jpg',
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.cover,
-            ),
-          ),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+                child: Image.asset(
+                  'assets/images/chilli-9202873_1280.jpg',
+                  width: double.infinity,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
+              ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SafeArea(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: SafeArea(
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ClipRRect(
-                        clipBehavior: Clip.hardEdge,
-                        borderRadius: BorderRadiusGeometry.circular(100),
-                        child: Image.asset(
-                          fit: BoxFit.cover,
-                          height: 50,
-                          width: 50,
-                          'assets/images/squirrel-619968_1280.jpg',
-                        ),
-                      ),
-
-                      Column(
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Joshua Firm'),
-                          Text('Dubai-unlimited Firm'),
+                          ClipRRect(
+                            clipBehavior: Clip.hardEdge,
+                            borderRadius: BorderRadiusGeometry.circular(100),
+                            child: Image.asset(
+                              fit: BoxFit.cover,
+                              height: 50,
+                              width: 50,
+                              'assets/images/squirrel-619968_1280.jpg',
+                            ),
+                          ),
+
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Joshua Firm'),
+                              Text('Dubai-unlimited Firm'),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      Row(
+                        spacing: 10,
+                        children: [
+                          CircularButton(
+                            handleCircularButtonTap: () {
+                              print('Hello');
+                            },
+                            height: 40,
+                            width: 40,
+                            color: Colors.white,
+                            widget: Icon(Icons.notification_add),
+                          ),
+                          CircularButton(
+                            handleCircularButtonTap: () {
+                              print('Hello');
+                            },
+                            height: 40,
+                            width: 40,
+                            color: Colors.white,
+                            widget: Icon(Icons.notification_add),
+                          ),
                         ],
                       ),
                     ],
                   ),
+                ),
+              ),
 
-                  Row(
-                    spacing: 10,
-                    children: [
-                      CircularButton(
-                        handleCircularButtonTap: () {
-                          print('Hello');
-                        },
-                        height: 40,
-                        width: 40,
-                        color: Colors.white,
-                        widget: Icon(Icons.notification_add),
-                      ),
-                      CircularButton(
-                        handleCircularButtonTap: () {
-                          print('Hello');
-                        },
-                        height: 40,
-                        width: 40,
-                        color: Colors.white,
-                        widget: Icon(Icons.notification_add),
+              Positioned(
+                top: 170,
+                left: 20,
+                right: 20,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0, 4),
+                        blurRadius: 8,
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 170,
-            left: 20,
-            right: 20,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    offset: Offset(0, 4),
-                    blurRadius: 8,
-                  ),
-                ],
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search Dishes, restaurants',
-                  hintStyle: const TextStyle(color: Colors.black87),
-                  border: InputBorder.none,
-                  prefixIcon: const Icon(Icons.search, color: Colors.black),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Row(
-                      spacing: 8,
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.mic, color: Colors.black),
-                        Icon(Icons.graphic_eq_rounded, color: Colors.black),
-                      ],
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search Dishes, restaurants',
+                      hintStyle: const TextStyle(color: Colors.black87),
+                      border: InputBorder.none,
+                      prefixIcon: const Icon(Icons.search, color: Colors.black),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Row(
+                          spacing: 8,
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(Icons.mic, color: Colors.black),
+                            Icon(Icons.graphic_eq_rounded, color: Colors.black),
+                          ],
+                        ),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 12,
+                      ),
                     ),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 12,
                   ),
                 ),
               ),
-            ),
+            ],
           ),
+          SizedBox(height: 50,),
+          SelectFoodType(),
         ],
       ),
     );
