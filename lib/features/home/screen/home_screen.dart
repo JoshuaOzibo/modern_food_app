@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/circular_button.dart';
 import 'package:modern_food_app/features/home/component/select_food_type.dart';
+import 'package:modern_food_app/features/home/component/showcase_order_history/order_history.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -92,6 +94,9 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
+                    border: Border(
+                      bottom: BorderSide(width: 3, color: Colors.black),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black26,
@@ -127,8 +132,10 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 50,),
+          SizedBox(height: 50),
           SelectFoodType(),
+          SizedBox(height: 50),
+          OrderHistory(),
         ],
       ),
     );
