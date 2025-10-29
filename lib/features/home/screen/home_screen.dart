@@ -85,27 +85,39 @@ class HomeScreen extends StatelessWidget {
             top: 170,
             left: 20,
             right: 20,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search Dishes, restaurants',
-                filled: true,
-                fillColor: Colors.white,
-                prefix: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.mic_off_sharp, color: Colors.grey),
-                    SizedBox(width: 4),
-                    Icon(Icons.graphic_eq_rounded, color: Colors.grey),
-                  ],
-                ),
-                suffixIcon: const Icon(Icons.search, color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 4),
+                    blurRadius: 8,
+                  ),
+                ],
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search Dishes, restaurants',
+                  hintStyle: const TextStyle(color: Colors.black87),
+                  border: InputBorder.none,
+                  prefixIcon: const Icon(Icons.search, color: Colors.black),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Row(
+                      spacing: 8,
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(Icons.mic, color: Colors.black),
+                        Icon(Icons.graphic_eq_rounded, color: Colors.black),
+                      ],
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 12,
+                  ),
                 ),
               ),
             ),
