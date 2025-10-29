@@ -9,9 +9,20 @@ class TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(leftText),
-        Row(children: [Text(rightText), Icon(Icons.arrow_forward_ios)]),
+        Text(
+          leftText,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 15,
+          ),
+        ),
+        Row(
+          spacing: 5,
+          children: [Text(rightText), Icon(Icons.arrow_forward_ios, size: 15)],
+        ),
       ],
     );
   }

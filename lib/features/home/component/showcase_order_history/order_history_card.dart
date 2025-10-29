@@ -17,31 +17,74 @@ class OrderHistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 500,
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      height: 100,
+      width: 400,
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: Colors.black),
-        borderRadius: BorderRadius.circular(20),
+        border: Border.all(width: 1, color: Colors.black),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
+        spacing: 20,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                spacing: 20,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 10,
                 children: [
-                  Image.asset(image, fit: BoxFit.cover),
+                  ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(10),
+                    child: Image.asset(
+                      image,
+                      fit: BoxFit.cover,
+                      height: 60,
+                      width: 60,
+                    ),
+                  ),
 
-                  Column(children: [Text(title), Text(subTitle)]),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        subTitle,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
 
-              Text(price),
+              Text(
+                price,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
 
-          Text('See Details'),
+          Text(
+            'See Details',
+            style: TextStyle(color: Colors.black, fontSize: 15),
+          ),
         ],
       ),
     );

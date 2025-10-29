@@ -134,7 +134,7 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 50),
           SelectFoodType(),
-          SizedBox(height: 50),
+          // SizedBox(height: 10),
           OrderHistory(),
         ],
       ),

@@ -9,13 +9,13 @@ class SelectFoodType extends StatelessWidget {
     final AppStaticData appStaticData = AppStaticData();
 
     return SizedBox(
-      height: 150,
+      height: 110,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: appStaticData.selectItemList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.only(right: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
