@@ -81,4 +81,26 @@ class AppStaticData {
       "distance" : "11-25min",
     },
    ];
+
+
+    List<Map<String, dynamic>> restaurantsNearMe = [
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "name" : "shawama shop 2",
+        "location" : "2, emotobi street",
+        "distance" : "11-25min"
+      },
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "name" : "shawama shop 2",
+        "location" : "2, emotobi street",
+        "distance" : "11-25min"
+      },
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "name" : "shawama shop 2",
+        "location" : "2, emotobi street",
+        "distance" : "11-25min"
+      },
+    ];
 }
