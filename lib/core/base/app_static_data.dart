@@ -88,19 +88,19 @@ class AppStaticData {
         "image" : "assets/images/squirrel-619968_1280.jpg",
         "name" : "shawama shop 2",
         "location" : "2, emotobi street",
-        "distance" : "11-25min"
+        "distance" : "11H"
       },
       {
         "image" : "assets/images/squirrel-619968_1280.jpg",
         "name" : "shawama shop 2",
         "location" : "2, emotobi street",
-        "distance" : "11-25min"
+        "distance" : "11H"
       },
       {
         "image" : "assets/images/squirrel-619968_1280.jpg",
         "name" : "shawama shop 2",
         "location" : "2, emotobi street",
-        "distance" : "11-25min"
+        "distance" : "11H"
       },
     ];
 }
