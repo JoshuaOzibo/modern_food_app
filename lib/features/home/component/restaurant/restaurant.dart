@@ -23,8 +23,8 @@ class Restaurant extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 15),
                 child: RestaurantCard(
                   image: appStaticData.restaurantsNearMe[index]['image'], 
-                  location: appStaticData.restaurantsNearMe[index]['image'], 
-                  name: appStaticData.restaurantsNearMe[index]['image'],
+                  location: appStaticData.restaurantsNearMe[index]['location'], 
+                  name: appStaticData.restaurantsNearMe[index]['name'],
                   distance: appStaticData.restaurantsNearMe[index]['distance'],
                   ),
               );

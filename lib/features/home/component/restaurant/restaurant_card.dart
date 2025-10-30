@@ -17,10 +17,19 @@ class RestaurantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Stack(
           children: [
-            Image.asset(image),
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(15),
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+                width: 210,
+                height: 150,
+                ),
+            ),
             Row(
               children: [
                 Text(distance),

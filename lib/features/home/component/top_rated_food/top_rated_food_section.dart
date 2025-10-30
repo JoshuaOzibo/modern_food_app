@@ -14,7 +14,7 @@ class TopRatedFoodSection extends StatelessWidget {
       children: [
         TitleText(leftText: 'Top Rated Food', rightText: 'View all'),
         SizedBox(
-          height: 200,
+          height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: appStaticData.topRatedFoodData.length,
