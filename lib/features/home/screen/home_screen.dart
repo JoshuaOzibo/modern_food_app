@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 5),
+            padding: const EdgeInsets.only(bottom: 30),
             child: Stack(
               clipBehavior: Clip.none,
               children: [
@@ -140,12 +140,10 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // SizedBox(height: 50),
                       SelectFoodType(),
                       OrderHistory(),
                       SizedBox(height: 20),
                       TopRatedFoodSection(),
-                      // SizedBox(height: 20),
                       Restaurant(),
                     ],
                   ),
