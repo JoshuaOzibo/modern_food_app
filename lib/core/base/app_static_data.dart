@@ -103,4 +103,28 @@ class AppStaticData {
         "distance" : "11H"
       },
     ];
+
+    List<Map<String, dynamic>> cartData = [
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "title" : "Egusi Soup",
+        "subTitle" : "Egusi soup good for you and family",
+        "price" : "200",
+        "quantity" : 1
+      },
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "title" : "Egusi Soup",
+        "subTitle" : "Egusi soup good for you and family",
+        "price" : "200",
+        "quantity" : 1
+      },
+      {
+        "image" : "assets/images/squirrel-619968_1280.jpg",
+        "title" : "Egusi Soup",
+        "subTitle" : "Egusi soup good for you and family",
+        "price" : "200",
+        "quantity" : 1
+      },
+    ];
 }

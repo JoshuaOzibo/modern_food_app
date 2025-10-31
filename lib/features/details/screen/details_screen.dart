@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/core/component/title_text_without_icon.dart';
+import 'package:modern_food_app/features/details/screen/component/details_card.dart';
 import 'package:modern_food_app/features/details/screen/component/select_option.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -8,6 +10,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppStaticData appStaticData = AppStaticData();
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.arrow_back_ios),
@@ -48,7 +51,7 @@ class DetailsScreen extends StatelessWidget {
 
                     MaterialButton(
                       onPressed: () {},
-                      shape: Border.all(width: 1, color: Colors.orange,),
+                      shape: Border.all(width: 1, color: Colors.orange),
                       child: Text(
                         'Change',
                         style: TextStyle(color: Colors.orange),
@@ -60,7 +63,7 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 20,),
+          SizedBox(height: 20),
 
           TitleTextWithoutIcon(
             leftText: 'Ordered Menu',
@@ -68,7 +71,33 @@ class DetailsScreen extends StatelessWidget {
             rightText: '',
             hasBox: true,
           ),
+
+          SizedBox(height: 10,),
           // order card
+          Container(
+            color: Colors.grey.shade300,
+            width: double.infinity,
+            child: SizedBox(
+              height: 230,
+              child: ListView.builder(
+                itemCount: appStaticData.cartData.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 10
+                    ),
+                    child: DetailsCard(
+                      image: appStaticData.cartData[index]['image'],
+                      title: appStaticData.cartData[index]['title'],
+                      subTitle: appStaticData.cartData[index]['subTitle'],
+                      price: appStaticData.cartData[index]['price'],
+                      quantity: appStaticData.cartData[index]['quantity'],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
