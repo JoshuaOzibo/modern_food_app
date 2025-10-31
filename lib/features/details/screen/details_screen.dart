@@ -1,13 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/title_text.dart';
+import 'package:modern_food_app/core/component/title_text_without_icon.dart';
+import 'package:modern_food_app/features/details/screen/component/select_option.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Details Page'),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.arrow_back_ios),
+        title: Text('Payout Details'),
+      ),
+      body: Column(
+        children: [
+          SelectOption(),
+          SizedBox(height: 10),
+          TitleTextWithoutIcon(
+            leftText: 'Address Details',
+            rightText: '',
+            hasBox: false,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            width: double.infinity,
+            height: 150,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.black),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Placeholder(fallbackHeight: 50, fallbackWidth: double.infinity),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Address to:'),
+                        Text('Umm Hurair, Dubai, United Arab Emirates'),
+                      ],
+                    ),
+
+                    MaterialButton(
+                      onPressed: () {},
+                      shape: Border.all(width: 1, color: Colors.orange,),
+                      child: Text(
+                        'Change',
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20,),
+
+          TitleTextWithoutIcon(
+            leftText: 'Ordered Menu',
+            itemLength: '15',
+            rightText: '',
+            hasBox: true,
+          ),
+          // order card
+        ],
       ),
     );
   }
