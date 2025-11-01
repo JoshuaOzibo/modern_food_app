@@ -6,6 +6,7 @@ import 'package:modern_food_app/features/home/component/select_food_type.dart';
 import 'package:modern_food_app/features/home/component/showcase_order_history/order_history.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_section.dart';
 import 'package:modern_food_app/features/home/repository/fetch_product_repository.dart';
+import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,12 +16,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final fetchFunc = FetchProductRepository();
+  final vn = HomeViewModel();
 
   @override
   void initState() {
     super.initState();
-    fetchFunc.fetchProduct();
+    vn.initProvider();
   }
 
   @override

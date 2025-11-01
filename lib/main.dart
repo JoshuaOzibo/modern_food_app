@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
 import 'package:modern_food_app/models/product_db_model/product_db_model.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Index());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => HomeViewModel()),
+    ], child: const Index()));
   }
 }

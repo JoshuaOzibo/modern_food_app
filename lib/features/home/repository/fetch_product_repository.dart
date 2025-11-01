@@ -8,7 +8,7 @@ class FetchProductRepository {
         'api/json/v1/1/search.php?f=a',
       );
       if (response != null && response.data['meals'] != null) {
-        print('repository response $response');
+        print('repository response ${response.data}');
         return response.data;
       } else {
         print('No data found');
