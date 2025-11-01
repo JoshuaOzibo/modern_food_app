@@ -5,9 +5,23 @@ import 'package:modern_food_app/features/home/component/restaurant/restaurant.da
 import 'package:modern_food_app/features/home/component/select_food_type.dart';
 import 'package:modern_food_app/features/home/component/showcase_order_history/order_history.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_section.dart';
+import 'package:modern_food_app/features/home/repository/fetch_product_repository.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final fetchFunc = FetchProductRepository();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFunc.fetchProduct();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,11 +128,14 @@ class HomeScreen extends StatelessWidget {
                             children: const [
                               Icon(Icons.mic, color: Colors.black),
                               SizedBox(width: 8),
-                              Icon(Icons.graphic_eq_rounded, color: Colors.black),
+                              Icon(
+                                Icons.graphic_eq_rounded,
+                                color: Colors.black,
+                              ),
                               SizedBox(width: 8),
                             ],
                           ),
-                    
+
                           contentPadding: EdgeInsets.symmetric(
                             vertical: 14,
                             horizontal: 12,
