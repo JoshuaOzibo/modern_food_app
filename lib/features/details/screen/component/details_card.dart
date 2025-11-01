@@ -27,9 +27,40 @@ class DetailsCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.asset(image, height: 80, width: 80, fit: BoxFit.cover),
+          Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.grey.shade300,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset(
+                    image,
+                    height: 65,
+                    width: 65,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 5,
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    'x10',
+                    style: TextStyle(fontSize: 10, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
           ),
 
           SizedBox(width: 10),
@@ -48,14 +79,35 @@ class DetailsCard extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Row(
-                children: [
-                  Icon(Icons.remove),
-                  SizedBox(width: 5),
-                  Text(quantity.toString()),
-                  SizedBox(width: 5),
-                  Icon(Icons.add),
-                ],
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.grey.shade400,
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+                      child: Icon(Icons.remove, size: 16),
+                    ),
+                    SizedBox(width: 5),
+                    Text(quantity.toString()),
+                    SizedBox(width: 5),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white,
+                      ),
+                      child: Icon(Icons.add, size: 16),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
