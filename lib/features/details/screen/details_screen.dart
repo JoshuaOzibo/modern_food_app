@@ -88,7 +88,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
             
                 SizedBox(height: 10,),
                 Container(
-                  color: Colors.grey.shade300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.grey.shade300,
+                  ),
                   width: double.infinity,
                   child: SizedBox(
                     height: 230,
