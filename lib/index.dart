@@ -12,8 +12,8 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
   int currentIndex = 0;
   List<Widget> pages = [
-    DetailsScreen(),
     HomeScreen(),
+    DetailsScreen(),
     HomeScreen(),
     DetailsScreen(),
     HomeScreen(),

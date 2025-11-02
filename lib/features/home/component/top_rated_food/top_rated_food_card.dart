@@ -16,7 +16,7 @@ class TopRatedFoodCard extends StatelessWidget {
   final String foodType;
   final String title;
   final double rating;
-  final int price;
+  final double price;
   final String reviews;
   final String distance;
 
