@@ -17,22 +17,24 @@ class TopRatedFoodSection extends StatelessWidget {
       spacing: 10,
       children: [
         TitleText(leftText: 'Top Rated Food', rightText: 'View all'),
+        if (vm.topRatedFood.isEmpty) Center(child: CircularProgressIndicator()),
         SizedBox(
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: vm.topRatedFood.length,
             itemBuilder: (context, index) {
+              final idValue = vm.topRatedFood[index].id;
+              ;
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: TopRatedFoodCard(
                   image: vm.topRatedFood[index].thumbnail,
                   foodType: vm.topRatedFood[index].category,
                   title: vm.topRatedFood[index].name,
-                  reviews:
-                      "${vm.topRatedFood[index].rating?.toStringAsFixed(1) ?? "0"} Reviews",
-                  rating: vm.topRatedFood[index].rating ?? 0,
-                  price: vm.topRatedFood[index].price ?? 0,
+                  reviews: "${(int.tryParse(idValue).hashCode % 20)}",
+                  rating: (idValue.hashCode % 5) + 1,
+                  price: (5 + (idValue.hashCode % 20)),
                   distance: vm.topRatedFood[index].area,
                 ),
               );

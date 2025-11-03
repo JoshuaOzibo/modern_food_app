@@ -7,6 +7,7 @@ import 'package:modern_food_app/features/home/component/showcase_order_history/o
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_section.dart';
 import 'package:modern_food_app/features/home/repository/fetch_product_repository.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,12 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final vn = HomeViewModel();
 
   @override
   void initState() {
     super.initState();
-    vn.initProvider();
+   Future.microtask(() => Provider.of<HomeViewModel>(context, listen: false).initProvider());
   }
 
   @override

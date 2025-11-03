@@ -29,7 +29,7 @@ class TopRatedFoodCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(10),
-              child: Image.asset(
+              child: Image.network(
                 image,
                 width: 140,
                 height: 100,
@@ -57,11 +57,11 @@ class TopRatedFoodCard extends StatelessWidget {
               style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
             ),
             Row(
-              spacing: 5,
+              spacing: 2,
               children: [
                 Icon(Icons.star, size: 15),
                 Row(
-                  spacing: 6,
+                  spacing: 8,
                   children: [
                     Text(
                       rating.toString(),
@@ -70,7 +70,7 @@ class TopRatedFoodCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(reviews, style: TextStyle(fontSize: 11)),
+                    Text('$reviews Reviews', style: TextStyle(fontSize: 11)),
                   ],
                 ),
               ],
