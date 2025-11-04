@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/base/app_static_data.dart';
+import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/home/component/restaurant/restaurant_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
@@ -11,15 +11,30 @@ class Restaurant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
-    final AppStaticData appStaticData = AppStaticData();
     return Column(
       spacing: 10,
       children: [
         TitleText(leftText: 'Popular Categories', rightText: 'View all'),
-        if (vm.popularCategoty.isEmpty)
-          Center(child: CircularProgressIndicator()),
+
+        if (vm.isLoading)
+          Padding(
+            padding: const EdgeInsets.only(top: 90),
+            child: const Center(child: CircularProgressIndicator()),
+          ),
+        if (!vm.isLoading && vm.errorMessage)
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 90),
+              child: ErrorView(
+                message: 'Error Fetching Popular Categories',
+                onRetry: () {
+                  vm.initProvider();
+                },
+              ),
+            ),
+          ),
         SizedBox(
-          height: 200,
+          height: vm.popularCategoty.isNotEmpty ? 200 : 100,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: vm.popularCategoty.length,
