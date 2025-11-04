@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AppClient {
-  static const String baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
-
+  static String baseUrl = '${dotenv.env['API_BASE_URL']}';
   final Dio _dio = Dio()..interceptors.add(CustomInterceptors());
 
   Future<Response?> getTopRatedFoodRequest(String endpoint) async {
