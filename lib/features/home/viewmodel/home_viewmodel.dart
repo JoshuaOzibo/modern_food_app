@@ -3,19 +3,41 @@ import 'package:modern_food_app/features/home/repository/fetch_product_repositor
 import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
+  final FetchProductRepository productRepository = FetchProductRepository();
   List<ProductUiModel> topRatedFood = [];
   List<ProductUiModel> popularCategoty = [];
-  final FetchProductRepository productRepository = FetchProductRepository();
+  bool isLoading = false;
+  bool errorMessage = false;
 
   initProvider() async {
-    final response = await productRepository.fetchTopRatedFood();
-    final productCategoryResponse = await productRepository.fetchPopularCategory();
-    topRatedFood =
-        response?['meals']
-            ?.map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-            .toList() ??
-        [];
-    notifyListeners();
+      isLoading = true;
+      errorMessage = false;
+      notifyListeners();
+    try {
+      final response = await productRepository.fetchTopRatedFood();
+      topRatedFood =
+          response?['meals']
+              ?.map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+              .toList() ??
+          [];
+      notifyListeners();
+      if (response != null && response['meals'] != null) {
+        print('fetch successfully from vm');
+        isLoading = false;
+        notifyListeners();
+      } else {
+        isLoading = false;
+        errorMessage = true;
+        notifyListeners();
+      }
+    } catch (e) {
+      isLoading = false;
+      errorMessage = true;
+      notifyListeners();
+      print('Error fetching top rated food: $e');
+    }
+    final productCategoryResponse = await productRepository
+        .fetchPopularCategory();
 
     popularCategoty =
         productCategoryResponse?['meals']

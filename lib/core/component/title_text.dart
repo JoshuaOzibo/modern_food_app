@@ -19,9 +19,12 @@ class TitleText extends StatelessWidget {
             fontSize: 15,
           ),
         ),
-        Row(
-          spacing: 5,
-          children: [Text(rightText), Icon(Icons.arrow_forward_ios, size: 15)],
+        Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: Row(
+            spacing: 5,
+            children: [Text(rightText), Icon(Icons.arrow_forward_ios, size: 15)],
+          ),
         ),
       ],
     );

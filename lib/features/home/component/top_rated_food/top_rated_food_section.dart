@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
@@ -12,12 +11,14 @@ class TopRatedFoodSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
     print('from rating ${vm.topRatedFood}');
-    final AppStaticData appStaticData = AppStaticData();
     return Column(
       spacing: 10,
       children: [
         TitleText(leftText: 'Top Rated Food', rightText: 'View all'),
-        if (vm.topRatedFood.isEmpty) Center(child: CircularProgressIndicator()),
+        if (vm.isLoading) const Center(child: CircularProgressIndicator()),
+
+        if (!vm.isLoading && vm.errorMessage)
+          const Center(child: Text('Hello, there was an error')),
         SizedBox(
           height: 180,
           child: ListView.builder(
@@ -25,7 +26,6 @@ class TopRatedFoodSection extends StatelessWidget {
             itemCount: vm.topRatedFood.length,
             itemBuilder: (context, index) {
               final idValue = vm.topRatedFood[index].id;
-              ;
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: TopRatedFoodCard(
