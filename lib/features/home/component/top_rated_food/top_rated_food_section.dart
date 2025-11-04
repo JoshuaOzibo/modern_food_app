@@ -35,7 +35,7 @@ class TopRatedFoodSection extends StatelessWidget {
             ),
           ),
         SizedBox(
-          height: vm.topRatedFood.isNotEmpty ? 180 : 100,
+          height: vm.topRatedFood.isNotEmpty ? 200 : 100,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: vm.topRatedFood.length,
@@ -51,6 +51,7 @@ class TopRatedFoodSection extends StatelessWidget {
                   rating: (idValue.hashCode % 5) + 1,
                   price: (5 + (idValue.hashCode % 20)),
                   distance: vm.topRatedFood[index].area,
+                  handleAddToCart: () => print(vm.topRatedFood[index].name),
                 ),
               );
             },

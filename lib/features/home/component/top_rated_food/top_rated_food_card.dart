@@ -10,6 +10,7 @@ class TopRatedFoodCard extends StatelessWidget {
     required this.rating,
     required this.price,
     required this.distance,
+    required this.handleAddToCart
   });
 
   final String image;
@@ -19,6 +20,7 @@ class TopRatedFoodCard extends StatelessWidget {
   final double price;
   final String reviews;
   final String distance;
+  final VoidCallback handleAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +90,30 @@ class TopRatedFoodCard extends StatelessWidget {
               ],
             ),
             Row(
-              spacing: 5,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '\$${price.toString()}',
-                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                Row(
+                  spacing: 5,
+                  children: [
+                    Text(
+                      '\$${price.toString()}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(distance, style: TextStyle(fontSize: 11)),
+                  ],
                 ),
-                Text(distance, style: TextStyle(fontSize: 11)),
+
+                MaterialButton(
+                  minWidth: 50,
+                  height: 50,
+                  padding: EdgeInsets.all(2),
+                  color: Colors.deepOrange,
+                  onPressed: handleAddToCart,
+                  child: Text('Add To Cart', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
+                  ),
               ],
             ),
           ],
