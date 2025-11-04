@@ -12,7 +12,7 @@ class Restaurant extends StatelessWidget {
     return Column(
       spacing: 10,
       children: [
-        TitleText(leftText: 'Restaurant Near Me', rightText: 'View all'),
+        TitleText(leftText: 'Popular Categories', rightText: 'View all'),
         SizedBox(
           height: 200,
           child: ListView.builder(

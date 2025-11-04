@@ -158,11 +158,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SelectFoodType(),
-                      OrderHistory(),
-                      SizedBox(height: 20),
-                      TopRatedFoodSection(),
-                      Restaurant(),
+                     const SelectFoodType(),
+                      const OrderHistory(),
+                     const SizedBox(height: 20),
+                     const TopRatedFoodSection(),
+                     const Restaurant(),
                     ],
                   ),
                 ),

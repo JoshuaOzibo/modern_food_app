@@ -37,12 +37,24 @@ class TopRatedFoodCard extends StatelessWidget {
               ),
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(child: Text(foodType)),
-                Icon(Icons.favorite),
-              ],
+            Positioned(
+              top: 5,
+              left: 5,
+              right: 5,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(foodType),
+                  ),
+                  Icon(Icons.favorite),
+                ],
+              ),
             ),
           ],
         ),
