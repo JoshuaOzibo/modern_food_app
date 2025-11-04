@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/extensions/text_extension.dart';
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
@@ -16,6 +17,7 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final extension = TextExtension();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,7 +53,7 @@ class RestaurantCard extends StatelessWidget {
           ],
         ),
 
-        Text(name),
+        Text(extension.limitWords(name)),
         Text(location),
       ],
     );
