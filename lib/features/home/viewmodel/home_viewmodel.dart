@@ -4,13 +4,22 @@ import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
   List<ProductUiModel> topRatedFood = [];
+  List<ProductUiModel> popularCategoty = [];
   final FetchProductRepository productRepository = FetchProductRepository();
 
   initProvider() async {
-    final response = await productRepository.fetchProduct();
+    final response = await productRepository.fetchTopRatedFood();
+    final productCategoryResponse = await productRepository.fetchPopularCategory();
     topRatedFood =
         response?['meals']
             ?.map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+            .toList() ??
+        [];
+    notifyListeners();
+
+    popularCategoty =
+        productCategoryResponse?['meals']
+            .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
             .toList() ??
         [];
     notifyListeners();

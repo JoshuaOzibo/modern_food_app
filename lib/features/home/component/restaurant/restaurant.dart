@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/home/component/restaurant/restaurant_card.dart';
+import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class Restaurant extends StatelessWidget {
   const Restaurant({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<HomeViewModel>();
     final AppStaticData appStaticData = AppStaticData();
     return Column(
       spacing: 10,
@@ -22,9 +25,9 @@ class Restaurant extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: RestaurantCard(
-                  image: appStaticData.restaurantsNearMe[index]['image'], 
+                  image: vm.popularCategoty[index].thumbnail, 
                   location: appStaticData.restaurantsNearMe[index]['location'], 
-                  name: appStaticData.restaurantsNearMe[index]['name'],
+                  name: vm.popularCategoty[index].name, 
                   distance: appStaticData.restaurantsNearMe[index]['distance'],
                   ),
               );
