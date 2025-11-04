@@ -16,20 +16,23 @@ class Restaurant extends StatelessWidget {
       spacing: 10,
       children: [
         TitleText(leftText: 'Popular Categories', rightText: 'View all'),
+        if (vm.popularCategoty.isEmpty)
+          Center(child: CircularProgressIndicator()),
         SizedBox(
           height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: appStaticData.restaurantsNearMe.length,
+            itemCount: vm.popularCategoty.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: RestaurantCard(
-                  image: vm.popularCategoty[index].thumbnail, 
-                  location: appStaticData.restaurantsNearMe[index]['location'], 
-                  name: vm.popularCategoty[index].name, 
-                  distance: appStaticData.restaurantsNearMe[index]['distance'],
-                  ),
+                  image: vm.popularCategoty[index].thumbnail,
+                  location: vm.popularCategoty[index].area,
+                  name: vm.popularCategoty[index].name,
+                  distance:
+                      "${(vm.popularCategoty[index].id.hashCode % 10) + 1} km",
+                ),
               );
             },
           ),
