@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 
 class AppClient {
-  static const String baseUrl = 'https://www.themealdb.com';
+  static const String baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 
-  final Dio _dio = Dio()
-    ..interceptors.add(CustomInterceptors()); 
+  final Dio _dio = Dio()..interceptors.add(CustomInterceptors());
 
-  Future<Response?> getRequest(String endpoint) async {
+  Future<Response?> getTopRatedFoodRequest(String endpoint) async {
     try {
       final response = await _dio.get('$baseUrl/$endpoint');
       return response;
@@ -17,6 +16,22 @@ class AppClient {
       } else {
         print("Network error: ${e.message}");
       }
+      return null;
+    }
+  }
+
+  Future<Response?> getPopularCategory(String endpoint) async {
+    try {
+      final response = await _dio.get('$baseUrl/$endpoint');
+      return response;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        print("Server error with status code: ${e.response?.statusCode}");
+        print("Response data: ${e.response?.data}");
+      } else {
+        print("Network error: ${e.message}");
+      }
+
       return null;
     }
   }
