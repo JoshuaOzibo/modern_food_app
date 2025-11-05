@@ -6,13 +6,20 @@ class HomeViewModel extends ChangeNotifier {
   final FetchProductRepository productRepository = FetchProductRepository();
   List<ProductUiModel> topRatedFood = [];
   List<ProductUiModel> popularCategoty = [];
-  bool isLoading = false;
-  bool errorMessage = false;
+  bool isLoadingTopFood = false;
+  bool isLoadingFoodCategory = false;
+  bool topFooderrorMessage = false;
+  bool foodCategoryerrorMessage = false;
 
   initProvider() async {
-      isLoading = true;
-      errorMessage = false;
-      notifyListeners();
+    topFoodFunc();
+    foodCategoryFunc();
+  }
+
+  void topFoodFunc() async {
+    isLoadingTopFood = true;
+    topFooderrorMessage = false;
+    notifyListeners();
     try {
       final response = await productRepository.fetchTopRatedFood();
       topRatedFood =
@@ -23,28 +30,50 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
       if (response != null && response['meals'] != null) {
         print('fetch successfully from vm');
-        isLoading = false;
+        isLoadingTopFood = false;
         notifyListeners();
       } else {
-        isLoading = false;
-        errorMessage = true;
+        isLoadingTopFood = false;
+        topFooderrorMessage = true;
         notifyListeners();
       }
     } catch (e) {
-      isLoading = false;
-      errorMessage = true;
+      isLoadingTopFood = false;
+      topFooderrorMessage = true;
       notifyListeners();
       print('Error fetching top rated food: $e');
     }
-    final productCategoryResponse = await productRepository
-        .fetchPopularCategory();
+  }
 
-    popularCategoty =
-        productCategoryResponse?['meals']
-            .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-            .toList() ??
-        [];
+  void foodCategoryFunc() async {
+    isLoadingFoodCategory = true;
+    foodCategoryerrorMessage = false;
     notifyListeners();
+    try {
+      final productCategoryResponse = await productRepository
+          .fetchPopularCategory();
+
+      popularCategoty =
+          productCategoryResponse?['meals']
+              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+              .toList() ??
+          [];
+      notifyListeners();
+      if (productCategoryResponse != null &&
+          productCategoryResponse['meals'] != null) {
+        print('fetch successfully from vm');
+        isLoadingFoodCategory = false;
+        notifyListeners();
+      } else {
+        isLoadingFoodCategory = false;
+        foodCategoryerrorMessage = true;
+        notifyListeners();
+      }
+    } catch (e) {
+      isLoadingFoodCategory = false;
+      foodCategoryerrorMessage = true;
+      notifyListeners();
+    }
 
     print('Top Rated Food: $topRatedFood');
   }

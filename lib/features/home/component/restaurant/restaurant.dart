@@ -16,19 +16,19 @@ class Restaurant extends StatelessWidget {
       children: [
         TitleText(leftText: 'Popular Categories', rightText: 'View all'),
 
-        if (vm.isLoading)
+        if (vm.isLoadingFoodCategory)
           Padding(
             padding: const EdgeInsets.only(top: 90),
             child: const Center(child: CircularProgressIndicator()),
           ),
-        if (!vm.isLoading && vm.errorMessage)
+        if (!vm.isLoadingFoodCategory && vm.foodCategoryerrorMessage)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 90),
               child: ErrorView(
                 message: 'Error Fetching Popular Categories',
                 onRetry: () {
-                  vm.initProvider();
+                  vm.foodCategoryFunc();
                 },
               ),
             ),

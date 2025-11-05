@@ -16,20 +16,20 @@ class TopRatedFoodSection extends StatelessWidget {
       spacing: 10,
       children: [
         TitleText(leftText: 'Top Rated Food', rightText: 'View all'),
-        if (vm.isLoading)
+        if (vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 70),
             child: const Center(child: CircularProgressIndicator()),
           ),
 
-        if (!vm.isLoading && vm.errorMessage)
+        if (!vm.isLoadingTopFood && vm.topFooderrorMessage)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 60),
               child: ErrorView(
                 message: 'Error Fetching Top Rated Food',
                 onRetry: () {
-                  vm.initProvider();
+                  vm.topFoodFunc();
                 },
               ),
             ),
