@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
+import 'package:modern_food_app/features/home/component/top_rated_food/see_all_top_rated_screen.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class TopRatedFoodSection extends StatelessWidget {
     return Column(
       spacing: 10,
       children: [
-        TitleText(leftText: 'Top Rated Food', rightText: 'View all'),
+        TitleText(leftText: 'Top Rated Food', rightText: 'View all', handleNavigate: () =>Navigator.push(context, MaterialPageRoute(builder: (context) => SeeAllTopRatedScreen(),))),
         if (vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 70),
@@ -44,6 +45,8 @@ class TopRatedFoodSection extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: TopRatedFoodCard(
+                  width: 140,
+                  height: 100,
                   image: vm.topRatedFood[index].thumbnail,
                   foodType: vm.topRatedFood[index].category,
                   title: vm.topRatedFood[index].name,

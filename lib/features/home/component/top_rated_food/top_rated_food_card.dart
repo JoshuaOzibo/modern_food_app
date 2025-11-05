@@ -10,7 +10,9 @@ class TopRatedFoodCard extends StatelessWidget {
     required this.rating,
     required this.price,
     required this.distance,
-    required this.handleAddToCart
+    required this.handleAddToCart,
+    required this.width,
+    required this.height
   });
 
   final String image;
@@ -21,6 +23,8 @@ class TopRatedFoodCard extends StatelessWidget {
   final String reviews;
   final String distance;
   final VoidCallback handleAddToCart;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,10 @@ class TopRatedFoodCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(10),
-              child: Image.network(
+              child: Image.asset(
                 image,
-                width: 140,
-                height: 100,
+                width: width,
+                height: height,
                 fit: BoxFit.cover,
               ),
             ),
@@ -107,12 +111,12 @@ class TopRatedFoodCard extends StatelessWidget {
                 ),
 
                 MaterialButton(
-                  minWidth: 50,
-                  height: 50,
+                  minWidth: 30,
+                  height: 10,
                   padding: EdgeInsets.all(2),
                   color: Colors.deepOrange,
                   onPressed: handleAddToCart,
-                  child: Text('Add To Cart', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),),
+                  child: Text('Add', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),),
                   ),
               ],
             ),
