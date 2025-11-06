@@ -6,6 +6,7 @@ class HomeViewModel extends ChangeNotifier {
   final FetchProductRepository productRepository = FetchProductRepository();
   List<ProductUiModel> topRatedFood = [];
   List<ProductUiModel> popularCategoty = [];
+  List<ProductUiModel> allTopRatedFoodList = [];
   bool isLoadingTopFood = false;
   bool isLoadingFoodCategory = false;
   bool topFooderrorMessage = false;
@@ -14,6 +15,7 @@ class HomeViewModel extends ChangeNotifier {
   initProvider() async {
     topFoodFunc();
     foodCategoryFunc();
+    allTopRatedFood();
   }
 
   void topFoodFunc() async {
@@ -62,6 +64,38 @@ class HomeViewModel extends ChangeNotifier {
       if (productCategoryResponse != null &&
           productCategoryResponse['meals'] != null) {
         print('fetch successfully from vm');
+        isLoadingFoodCategory = false;
+        notifyListeners();
+      } else {
+        isLoadingFoodCategory = false;
+        foodCategoryerrorMessage = true;
+        notifyListeners();
+      }
+    } catch (e) {
+      isLoadingFoodCategory = false;
+      foodCategoryerrorMessage = true;
+      notifyListeners();
+    }
+
+    print('Top Rated Food: $topRatedFood');
+  }
+
+  void allTopRatedFood() async {
+    isLoadingFoodCategory = true;
+    foodCategoryerrorMessage = false;
+    notifyListeners();
+    try {
+      final productCategoryResponse = await productRepository
+          .fetchAllTopRatedFood();
+      allTopRatedFoodList =
+          productCategoryResponse?['meals']
+              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+              .toList() ??
+          [];
+      notifyListeners();
+      if (productCategoryResponse != null &&
+          productCategoryResponse['meals'] != null) {
+        print('fetch all top rated food successfully from vm');
         isLoadingFoodCategory = false;
         notifyListeners();
       } else {
