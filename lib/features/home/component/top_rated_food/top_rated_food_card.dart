@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/extensions/text_extension.dart';
 
 class TopRatedFoodCard extends StatelessWidget {
   const TopRatedFoodCard({
@@ -71,7 +72,7 @@ class TopRatedFoodCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              TextExtension(maxWords: 2).limitWords(title),
               style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
             ),
             Row(

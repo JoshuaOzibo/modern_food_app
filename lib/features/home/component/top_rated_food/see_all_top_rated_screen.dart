@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +8,7 @@ class SeeAllTopRatedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<HomeViewModel>();
-    final AppStaticData localData = AppStaticData();
+    final vm = context.read<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 150,

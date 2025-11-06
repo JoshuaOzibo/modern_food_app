@@ -1,5 +1,7 @@
 class TextExtension {
-  String limitWords(String text, {int maxWords = 3}) {
+  final int maxWords;
+  TextExtension({ this.maxWords = 3});
+  String limitWords(String text, { maxwords}) {
     final words = text.split(" ");
     if (words.length <= maxWords) return text;
     return words.sublist(0, maxWords).join(" ") + "...";
