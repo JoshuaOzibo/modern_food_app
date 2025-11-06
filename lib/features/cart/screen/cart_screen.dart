@@ -4,6 +4,7 @@ import 'package:modern_food_app/core/component/title_text_without_icon.dart';
 import 'package:modern_food_app/features/cart/component/cart_card.dart';
 import 'package:modern_food_app/features/cart/component/cart_option.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
+import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
@@ -122,12 +123,26 @@ class _CartScreenScreenState extends State<CartScreen> {
                                     horizontal: 10,
                                     vertical: 10,
                                   ),
-                                  child: CartCard(
-                                    image: vm.cartList[index].thumbnail,
-                                    title: vm.cartList[index].name,
-                                    subTitle: vm.cartList[index].category,
-                                    price: vm.cartList[index].price.toString(),
-                                    quantity: vm.cartList[index].quantity,
+                                  child: SwipeActionCell(
+                                    trailingActions: <SwipeAction>[
+                                       SwipeAction(
+                                        title: "delete",
+                                        onTap: (CompletionHandler handler) async {
+                                          await handler(true);
+                                          vm.cartList.removeAt(index);
+                                          setState(() {});
+                                        },
+                                        color: Colors.red),
+                                  ],
+                                    key: ObjectKey(vm.cartList[index]),
+                                    child: CartCard(
+                                      image: vm.cartList[index].thumbnail,
+                                      title: vm.cartList[index].name,
+                                      subTitle: vm.cartList[index].category,
+                                      price: vm.cartList[index].price
+                                          .toString(),
+                                      quantity: vm.cartList[index].quantity,
+                                    ),
                                   ),
                                 );
                               },
