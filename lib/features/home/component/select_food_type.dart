@@ -14,37 +14,42 @@ class SelectFoodType extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: appStaticData.selectItemList.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        blurRadius: 6,
-                        offset: const Offset(0, 6),
+          return GestureDetector(
+            onTap: (){
+              print(appStaticData.selectItemList[index]['title']);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 6,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.asset(
+                        appStaticData.selectItemList[index]['image'],
+                        height: 60,
+                        width: 60,
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.asset(
-                      appStaticData.selectItemList[index]['image'],
-                      height: 60,
-                      width: 60,
-                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(appStaticData.selectItemList[index]['title']),
-              ],
+                  const SizedBox(height: 8),
+                  Text(appStaticData.selectItemList[index]['title']),
+                ],
+              ),
             ),
           );
         },

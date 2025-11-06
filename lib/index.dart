@@ -33,13 +33,14 @@ class _IndexState extends State<Index> {
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         iconSize: 20,
+        selectedItemColor: Colors.deepOrangeAccent,
 
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
+          // BottomNavigationBarItem(icon: Icon(Icons.scale_outlined), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: 'Save'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_pin), label: 'Profile'),
         ],
       ),
     );
