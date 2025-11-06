@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DetailsCard extends StatelessWidget {
-  const DetailsCard({
+class CartCard extends StatelessWidget {
+  const CartCard({
     super.key,
     required this.image,
     required this.title,
@@ -14,7 +14,7 @@ class DetailsCard extends StatelessWidget {
   final String title;
   final String subTitle;
   final String price;
-  final int quantity;
+  final int? quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class DetailsCard extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.asset(
+                  child: Image.network(
                     image,
                     height: 65,
                     width: 65,
@@ -55,7 +55,7 @@ class DetailsCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    'x10',
+                    '$quantity',
                     style: TextStyle(fontSize: 10, color: Colors.white),
                   ),
                 ),

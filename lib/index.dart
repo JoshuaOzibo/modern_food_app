@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/features/cart/screen/cart_screen.dart';
 import 'package:modern_food_app/features/details/screen/details_screen.dart';
 import 'package:modern_food_app/features/home/screen/home_screen.dart';
 
@@ -13,9 +14,9 @@ class _IndexState extends State<Index> {
   int currentIndex = 0;
   List<Widget> pages = [
     HomeScreen(),
-    DetailsScreen(),
+    CartScreen(),
     HomeScreen(),
-    DetailsScreen(),
+    CartScreen(),
     HomeScreen(),
   ];
 
