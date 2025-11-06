@@ -16,7 +16,14 @@ class TopRatedFoodSection extends StatelessWidget {
     return Column(
       spacing: 10,
       children: [
-        TitleText(leftText: 'Top Rated Food', rightText: 'View all', handleNavigate: () =>Navigator.push(context, MaterialPageRoute(builder: (context) => SeeAllTopRatedScreen(),))),
+        TitleText(
+          leftText: 'Top Rated Food',
+          rightText: 'View all',
+          handleNavigate: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SeeAllTopRatedScreen()),
+          ),
+        ),
         if (vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 70),

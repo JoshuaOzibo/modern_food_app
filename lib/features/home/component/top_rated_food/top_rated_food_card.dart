@@ -35,7 +35,7 @@ class TopRatedFoodCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(10),
-              child: Image.asset(
+              child: Image.network(
                 image,
                 width: width,
                 height: height,

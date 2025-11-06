@@ -25,8 +25,6 @@ class SeeAllTopRatedScreen extends StatelessWidget {
         child: GridView.builder(
           itemCount: localData.topRatedFoodData.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            // childAspectRatio: 1,
-            // mainAxisSpacing: 10,
             crossAxisCount: 2,
           ),
           itemBuilder: (context, index) {

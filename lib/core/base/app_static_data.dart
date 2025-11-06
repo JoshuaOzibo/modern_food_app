@@ -1,16 +1,18 @@
 class AppStaticData {
   List<Map<String, dynamic>> selectItemList = [
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
-    {"title": "Pizza", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Beef", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Breakfast", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Chicken", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Dessert", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Goat", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Lamb", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Pasta", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Pork", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Seafood", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Side", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Starter", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Vegan", "image": "assets/images/squirrel-619968_1280.jpg"},
+    {"title": "Vegetarian", "image": "assets/images/squirrel-619968_1280.jpg"},
   ];
 
   List<Map<String, dynamic>> orderHistory = [

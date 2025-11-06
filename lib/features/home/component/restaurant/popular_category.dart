@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
-import 'package:modern_food_app/features/home/component/restaurant/restaurant_card.dart';
+import 'package:modern_food_app/features/home/component/restaurant/popular_category_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-class Restaurant extends StatelessWidget {
-  const Restaurant({super.key});
+class PopularCategory extends StatelessWidget {
+  const PopularCategory({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class Restaurant extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
-                child: RestaurantCard(
+                child: PopularCategoryCard(
                   image: vm.popularCategoty[index].thumbnail,
                   location: vm.popularCategoty[index].area,
                   name: vm.popularCategoty[index].name,

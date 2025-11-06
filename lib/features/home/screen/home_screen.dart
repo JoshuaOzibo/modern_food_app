@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/circular_button.dart';
-import 'package:modern_food_app/features/home/component/restaurant/restaurant.dart';
+import 'package:modern_food_app/features/home/component/restaurant/popular_category.dart';
 import 'package:modern_food_app/features/home/component/select_food_type.dart';
 import 'package:modern_food_app/features/home/component/showcase_order_history/order_history.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_section.dart';
-import 'package:modern_food_app/features/home/repository/fetch_product_repository.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -162,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const OrderHistory(),
                      const SizedBox(height: 20),
                      const TopRatedFoodSection(),
-                     const Restaurant(),
+                     const PopularCategory(),
                     ],
                   ),
                 ),

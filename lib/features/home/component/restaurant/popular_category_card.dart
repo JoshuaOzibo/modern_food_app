@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/extensions/text_extension.dart';
 
-class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({
+class PopularCategoryCard extends StatelessWidget {
+  const PopularCategoryCard({
     super.key,
     required this.image,
     required this.location,
