@@ -11,6 +11,8 @@ class ProductUiModel {
   int? quantity;
   final double? rating;
   final double? price;
+  final String? distance;
+  final String? reviews;
 
   ProductUiModel({
     required this.id,
@@ -25,6 +27,8 @@ class ProductUiModel {
     this.price,
     this.quantity = 1,
     this.rating,
+    this.distance,
+    this.reviews,
   });
 
   factory ProductUiModel.fromJson(Map<String, dynamic> json) {
@@ -51,8 +55,12 @@ class ProductUiModel {
       youtube: json['strYoutube'],
       ingredients: ingredients,
       measures: measures,
-      price: (json['price'] != null) ? double.tryParse(json['price'].toString()) : null,
-      rating: (json['rating'] != null) ? double.tryParse(json['rating'].toString()) : null,
+      price: (json['price'] != null)
+          ? double.tryParse(json['price'].toString())
+          : null,
+      rating: (json['rating'] != null)
+          ? double.tryParse(json['rating'].toString())
+          : null,
     );
   }
 }

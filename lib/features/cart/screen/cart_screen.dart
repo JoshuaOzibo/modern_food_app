@@ -16,7 +16,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-  final vm = context.watch<CartViewmodel>();
+    final vm = context.watch<CartViewmodel>();
     Future<void> _refreshData() async {
       await Future.delayed(Duration(seconds: 1));
       setState(() {});
@@ -100,28 +100,40 @@ class _CartScreenScreenState extends State<CartScreen> {
                       color: Colors.grey.shade300,
                     ),
                     width: double.infinity,
-                    child: SizedBox(
-                      height: 230,
-                      child: ListView.builder(
-                        itemCount: vm.cartList.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 10,
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (vm.cartList.isEmpty)
+                          SizedBox(
+                            height: 200,
+                            child: Center(
+                              child: Text('No Items in Cart currently'),
                             ),
-                            child: CartCard(
-                              image: vm.cartList[index].thumbnail,
-                              title: vm.cartList[index].name,
-                              subTitle:
-                                  vm.cartList[index].category,
-                              price: vm.cartList[index].price.toString(),
-                              quantity:
-                                  vm.cartList[index].quantity,
+                          ),
+                        if (vm.cartList.isNotEmpty)
+                          SizedBox(
+                            height: 230,
+                            child: ListView.builder(
+                              itemCount: vm.cartList.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 10,
+                                  ),
+                                  child: CartCard(
+                                    image: vm.cartList[index].thumbnail,
+                                    title: vm.cartList[index].name,
+                                    subTitle: vm.cartList[index].category,
+                                    price: vm.cartList[index].price.toString(),
+                                    quantity: vm.cartList[index].quantity,
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                      ],
                     ),
                   ),
 
@@ -183,6 +195,8 @@ class _CartScreenScreenState extends State<CartScreen> {
                     onPressed: () {},
                     child: Text('Proceed Payout'),
                   ),
+
+                  SizedBox(height: 10),
                 ],
               ),
             ],
