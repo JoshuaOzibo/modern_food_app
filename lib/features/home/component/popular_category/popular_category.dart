@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
-import 'package:modern_food_app/features/home/component/restaurant/popular_category_card.dart';
+import 'package:modern_food_app/features/home/component/popular_category/popular_category_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
