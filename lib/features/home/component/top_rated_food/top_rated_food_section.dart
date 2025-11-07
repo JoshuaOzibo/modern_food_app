@@ -22,10 +22,13 @@ class TopRatedFoodSection extends StatelessWidget {
         TitleText(
           leftText: 'Top Rated Food',
           rightText: 'View all',
-          handleNavigate: () => Navigator.push(
+          handleNavigate: (){
+            vm.allTopRatedFood();
+            Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
-          ),
+          );
+          }
         ),
         if (vm.isLoadingTopFood)
           Padding(

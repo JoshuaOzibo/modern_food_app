@@ -7,15 +7,23 @@ class HomeViewModel extends ChangeNotifier {
   List<ProductUiModel> topRatedFood = [];
   List<ProductUiModel> popularCategoty = [];
   List<ProductUiModel> allTopRatedFoodList = [];
+  List<ProductUiModel> allPopularCategoryList = [];
+
+  // loadings
   bool isLoadingTopFood = false;
   bool isLoadingFoodCategory = false;
+  bool isLoadingAllTopFood = false;
+  bool isLoadingAllFoodCategory = false;
+
+  // error message
   bool topFooderrorMessage = false;
   bool foodCategoryerrorMessage = false;
+  bool allTopFooderrorMessage = false;
+  bool allFoodCategoryErrorMessage = false;
 
   initProvider() async {
     topFoodFunc();
     foodCategoryFunc();
-    allTopRatedFood();
   }
 
   void topFoodFunc() async {
@@ -81,8 +89,8 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   void allTopRatedFood() async {
-    isLoadingFoodCategory = true;
-    foodCategoryerrorMessage = false;
+    isLoadingAllTopFood = true;
+    allTopFooderrorMessage = false;
     notifyListeners();
     try {
       final productCategoryResponse = await productRepository
@@ -96,16 +104,48 @@ class HomeViewModel extends ChangeNotifier {
       if (productCategoryResponse != null &&
           productCategoryResponse['meals'] != null) {
         print('fetch all top rated food successfully from vm');
-        isLoadingFoodCategory = false;
+        isLoadingAllTopFood = false;
         notifyListeners();
       } else {
-        isLoadingFoodCategory = false;
-        foodCategoryerrorMessage = true;
+        isLoadingAllTopFood = false;
+        allTopFooderrorMessage = true;
         notifyListeners();
       }
     } catch (e) {
-      isLoadingFoodCategory = false;
-      foodCategoryerrorMessage = true;
+      isLoadingAllTopFood = false;
+      allTopFooderrorMessage = true;
+      notifyListeners();
+    }
+
+    print('Top Rated Food: $topRatedFood');
+  }
+
+  void allPopularCategory() async {
+    isLoadingAllFoodCategory = true;
+    allFoodCategoryErrorMessage = false;
+    notifyListeners();
+    try {
+      final productCategoryResponse = await productRepository
+          .fetchAllPopularCategoty();
+      allPopularCategoryList =
+          productCategoryResponse?['meals']
+              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+              .toList() ??
+          [];
+      notifyListeners();
+      if (productCategoryResponse != null &&
+          productCategoryResponse['meals'] != null) {
+        print('fetch all top rated food successfully from vm');
+        isLoadingAllFoodCategory = false;
+        notifyListeners();
+      } else {
+        isLoadingAllFoodCategory = false;
+        allFoodCategoryErrorMessage = true;
+        notifyListeners();
+      }
+    } catch (e) {
+      isLoadingAllFoodCategory = false;
+      allFoodCategoryErrorMessage = true;
       notifyListeners();
     }
 

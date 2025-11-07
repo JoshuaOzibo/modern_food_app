@@ -8,9 +8,11 @@ class PopularCategoryCard extends StatelessWidget {
     required this.location,
     required this.name,
     required this.distance,
+    this.width
   });
 
   final String image;
+  final double? width;
   final String name;
   final String location;
   final String distance;
@@ -28,7 +30,7 @@ class PopularCategoryCard extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.cover,
-                width: 210,
+                width: width ?? 210,
                 height: 150,
               ),
             ),
