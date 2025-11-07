@@ -125,15 +125,17 @@ class _CartScreenScreenState extends State<CartScreen> {
                                   ),
                                   child: SwipeActionCell(
                                     trailingActions: <SwipeAction>[
-                                       SwipeAction(
+                                      SwipeAction(
                                         title: "delete",
-                                        onTap: (CompletionHandler handler) async {
-                                          await handler(true);
-                                          vm.cartList.removeAt(index);
-                                          setState(() {});
-                                        },
-                                        color: Colors.red),
-                                  ],
+                                        onTap:
+                                            (CompletionHandler handler) async {
+                                              await handler(true);
+                                              vm.cartList.removeAt(index);
+                                              setState(() {});
+                                            },
+                                        color: Colors.red,
+                                      ),
+                                    ],
                                     key: ObjectKey(vm.cartList[index]),
                                     child: CartCard(
                                       image: vm.cartList[index].thumbnail,
