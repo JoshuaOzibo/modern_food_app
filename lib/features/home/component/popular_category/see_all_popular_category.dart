@@ -9,17 +9,20 @@ class SeeAllPopularCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<HomeViewModel>();
-    return ListView.builder(
-      itemCount: vm.allPopularCategoryList.length,
-      itemBuilder: (context, index) {
-        return PopularCategoryCard(
-          width: double.infinity,
-          image: vm.allPopularCategoryList[index].thumbnail,
-          location: vm.allPopularCategoryList[index].area,
-          name: vm.allPopularCategoryList[index].name,
-          distance: "${(vm.popularCategoty[index].id.hashCode % 10) + 1} km",
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(title: const Text('Popular Categories')),
+      body: ListView.builder(
+        itemCount: vm.allPopularCategoryList.length,
+        itemBuilder: (context, index) {
+          return PopularCategoryCard(
+            width: double.infinity,
+            image: vm.allPopularCategoryList[index].thumbnail,
+            location: vm.allPopularCategoryList[index].area,
+            name: vm.allPopularCategoryList[index].name,
+            distance: "${(vm.popularCategoty[index].id.hashCode % 10) + 1} km",
+          );
+        },
+      ),
     );
   }
 }
