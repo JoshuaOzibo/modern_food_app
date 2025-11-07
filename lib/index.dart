@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/features/cart/screen/cart_screen.dart';
-import 'package:modern_food_app/features/details/screen/details_screen.dart';
+import 'package:modern_food_app/features/favorite/screen/favorite_screen.dart';
 import 'package:modern_food_app/features/home/screen/home_screen.dart';
+import 'package:modern_food_app/features/profile/screen/profile_screen.dart';
 
 class Index extends StatefulWidget {
   const Index({super.key});
@@ -15,9 +16,8 @@ class _IndexState extends State<Index> {
   List<Widget> pages = [
     HomeScreen(),
     CartScreen(),
-    HomeScreen(),
-    CartScreen(),
-    HomeScreen(),
+    FavoriteScreen(),
+    ProfileScreen(),
   ];
 
   @override
@@ -39,7 +39,6 @@ class _IndexState extends State<Index> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
-          // BottomNavigationBarItem(icon: Icon(Icons.scale_outlined), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), label: 'Save'),
           BottomNavigationBarItem(icon: Icon(Icons.person_pin), label: 'Profile'),
         ],
