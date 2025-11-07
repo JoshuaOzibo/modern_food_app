@@ -19,11 +19,11 @@ class PopularCategory extends StatelessWidget {
           leftText: 'Popular Categories',
           rightText: 'View all',
           handleNavigate: () {
-            vm.allPopularCategory();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SeeAllPopularCategory()),
             );
+            vm.allPopularCategory();
           },
         ),
 

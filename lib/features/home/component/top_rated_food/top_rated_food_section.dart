@@ -23,11 +23,11 @@ class TopRatedFoodSection extends StatelessWidget {
           leftText: 'Top Rated Food',
           rightText: 'View all',
           handleNavigate: (){
-            vm.allTopRatedFood();
             Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
           );
+            vm.allTopRatedFood();
           }
         ),
         if (vm.isLoadingTopFood)

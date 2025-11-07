@@ -45,43 +45,43 @@ class FetchProductRepository {
   }
 
   Future<Map<String, dynamic>?> fetchAllTopRatedFood() async {
-    // try {
-    //   final response = await AppClient().getTopRatedFoodRequest(
-    //     'search.php?f=b',
-    //   );
-    //   if (response != null && response.data['meals'] != null) {
-    //     print('repository response ${response.data}');
-    //     return response.data;
-    //   } else {
-    //     print('No data found');
-    //     print(response?.data);
-    //   }
-    // } on DioException catch (e) {
-    //   print('DioException error: ${e.message}');
-    // } catch (e) {
-    //   print('Unexpected error: $e');
-    // }
+    try {
+      final response = await AppClient().getTopRatedFoodRequest(
+        'search.php?f=b',
+      );
+      if (response != null && response.data['meals'] != null) {
+        print('repository response ${response.data}');
+        return response.data;
+      } else {
+        print('No data found');
+        print(response?.data);
+      }
+    } on DioException catch (e) {
+      print('DioException error: ${e.message}');
+    } catch (e) {
+      print('Unexpected error: $e');
+    }
 
     return null;
   }
 
   Future<Map<String, dynamic>?> fetchAllPopularCategoty() async{
-    // try{
-    //   final response = await AppClient().getTopRatedFoodRequest(
-    //     'search.php?f=c',
-    //   );
-    //   if (response != null && response.data['meals'] != null) {
-    //     print('repository response ${response.data}');
-    //     return response.data;
-    //   } else {
-    //     print('No data found');
-    //     print(response?.data);
-    //   }
-    // }on DioException catch (e) {
-    //   print('DioException error: ${e.message}');
-    // } catch (e) {
-    //   print('Unexpected error: $e');
-    // }
+    try{
+      final response = await AppClient().getTopRatedFoodRequest(
+        'search.php?f=c',
+      );
+      if (response != null && response.data['meals'] != null) {
+        print('repository response ${response.data}');
+        return response.data;
+      } else {
+        print('No data found');
+        print(response?.data);
+      }
+    }on DioException catch (e) {
+      print('DioException error: ${e.message}');
+    } catch (e) {
+      print('Unexpected error: $e');
+    }
 
     return null;
   }

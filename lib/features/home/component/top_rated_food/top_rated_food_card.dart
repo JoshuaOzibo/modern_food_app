@@ -114,6 +114,7 @@ class TopRatedFoodCard extends StatelessWidget {
                 MaterialButton(
                   minWidth: 30,
                   height: 10,
+                  elevation: 0,
                   padding: EdgeInsets.all(2),
                   color: Colors.deepOrange,
                   onPressed: handleAddToCart,
