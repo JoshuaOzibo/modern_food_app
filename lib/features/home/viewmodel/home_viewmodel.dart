@@ -119,7 +119,7 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    print('Top Rated Food: $topRatedFood');
+    print('all Top Rated Food: $topRatedFood');
   }
 
   void allPopularCategory() async {

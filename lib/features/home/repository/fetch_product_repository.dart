@@ -53,7 +53,7 @@ class FetchProductRepository {
         print('repository response ${response.data}');
         return response.data;
       } else {
-        print('No data found');
+        print('No data found for allTopRated food');
         print(response?.data);
       }
     } on DioException catch (e) {
@@ -74,7 +74,7 @@ class FetchProductRepository {
         print('repository response ${response.data}');
         return response.data;
       } else {
-        print('No data found');
+        print('No data found for all popular category');
         print(response?.data);
       }
     }on DioException catch (e) {
