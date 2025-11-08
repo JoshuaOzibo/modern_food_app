@@ -9,7 +9,7 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appData = AppStaticData().cartData;
     return Scaffold(
-      appBar: AppBar(title: const Text('Favorite Screen', style: TextStyle(fontSize: 18),),
+      appBar: AppBar(title: const Text('Favorite', style: TextStyle(fontSize: 18),),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 10),
