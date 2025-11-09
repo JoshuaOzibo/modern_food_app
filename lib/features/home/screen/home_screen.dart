@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 40,
                               width: 40,
                               color: Colors.white,
-                              widget: Icon(Icons.notification_add),
+                              widget: Icon(Icons.home_repair_service_outlined),
                             ),
                           ],
                         ),

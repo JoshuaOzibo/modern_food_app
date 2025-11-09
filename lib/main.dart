@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:modern_food_app/core/theme/theme.dart';
+import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
@@ -29,6 +31,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: const Index());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Modern Food App',
+      theme: AppTheme.darkThemeMode,
+      home: const SignupPage(),
+    );
   }
 }
