@@ -17,7 +17,9 @@ class ElevationButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => print('hello'),
         // onPressed: handleButtonPressed,
-        style: ElevatedButton.styleFrom(fixedSize: Size(double.infinity, 55)),
+        style: ElevatedButton.styleFrom(fixedSize: Size(double.infinity, 55), side: BorderSide(
+          width: 2, color: Colors.blue
+        )),
         child: Text(buttonText),
       ),
     );

@@ -29,39 +29,42 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      body: Form(
-        key: formkey,
-        child: Column(
-          spacing: 10,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text('Signup', style: TextStyle(
-                fontSize: 30,
-              )),
-            ),
-        
-            AuthField(hintText: 'Name', controller: nameController,),
-            AuthField(hintText: 'Email', controller: emailController,),
-            AuthField(hintText: 'Password', controller: passwordController,),
-            const ElevationButton(buttonText: 'Sign up', ),
-        
-             RichText(text: 
-             TextSpan(
-              text: 'Hello',
-              style: TextStyle(
-                color: Colors.grey.shade300
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Form(
+          key: formkey,
+          child: Column(
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text('Signup', style: TextStyle(
+                  fontSize: 30,
+                )),
               ),
-              children: [
-                TextSpan(
-                  text: 'World',
-                  style: TextStyle(
-                    color: Colors.cyan,
+          
+              AuthField(hintText: 'Name', controller: nameController,),
+              AuthField(hintText: 'Email', controller: emailController,),
+              AuthField(hintText: 'Password', controller: passwordController,),
+              SizedBox(height: 5,),
+              const ElevationButton(buttonText: 'Sign up', ),
+               RichText(text: 
+               TextSpan(
+                text: 'Hello',
+                style: TextStyle(
+                  color: Colors.grey.shade300
+                ),
+                children: [
+                  TextSpan(
+                    text: 'World',
+                    style: TextStyle(
+                      color: Colors.cyan,
+                    )
                   )
-                )
-              ]
-            ))
-          ],
+                ]
+              ))
+            ],
+          ),
         ),
       ),
     );
