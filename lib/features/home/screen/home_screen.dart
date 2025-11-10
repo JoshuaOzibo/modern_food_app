@@ -19,7 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-   Future.microtask(() => Provider.of<HomeViewModel>(context, listen: false).initProvider());
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HomeViewModel>().initProvider();
+    });
   }
 
   @override
