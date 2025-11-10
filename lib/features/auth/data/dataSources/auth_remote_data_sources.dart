@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-abstract interface class AuthRepository {
+abstract interface class AuthRemoteDataSources {
   Future<String> signupWithEmailPassword({
     required String name,
     required String email,
@@ -12,7 +12,7 @@ abstract interface class AuthRepository {
   });
 }
 
-class AuthRemoteDataSourcesImpl implements AuthRepository {
+class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
   final SupabaseClient supabaseClient;
 
   AuthRemoteDataSourcesImpl({required this.supabaseClient});
