@@ -9,15 +9,6 @@ class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this.authRemoteDataSources);
 
   @override
-  Future<Either<Failure, String>> signinWithEmailPassword({
-    required String email,
-    required String password,
-  }) {
-    // TODO: implement signinWithEmailPassword
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<Failure, String>> signupWithEmailPassword({
     required String name,
     required String email,
@@ -29,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
         email: email,
         password: password,
       );
-      if(userId.isNotEmpty){
+      if (userId.isNotEmpty) {
         print('success');
         return right(userId);
       }
@@ -39,5 +30,29 @@ class AuthRepositoryImpl implements AuthRepository {
     }
 
     return left(Failure());
+  }
+
+  @override
+  Future<Either<Failure, String>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await authRemoteDataSources.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      if (response.isNotEmpty) {
+        print('user signin successfully');
+        return Either.right(response);
+      } else {
+        print('error signing in');
+        return Either.left(Failure());
+      }
+    } catch (e) {
+      print(e);
+      return Either.left(Failure(message: e.toString()));
+    }
   }
 }

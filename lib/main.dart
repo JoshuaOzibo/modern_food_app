@@ -4,6 +4,7 @@ import 'package:modern_food_app/core/theme/theme.dart';
 import 'package:modern_food_app/features/auth/data/dataSources/auth_remote_data_sources.dart';
 import 'package:modern_food_app/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:modern_food_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:modern_food_app/features/auth/domain/usecases/user_signin.dart';
 import 'package:modern_food_app/features/auth/domain/usecases/user_signup.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
@@ -46,6 +47,13 @@ flutter run
         ChangeNotifierProvider(
           create: (_) => AuthProvider(
             UserSignup(
+              AuthRepositoryImpl(
+                AuthRemoteDataSourcesImpl(
+                  supabaseClient: supabaseClient.client,
+                ),
+              ),
+            ),
+            UserSignin(
               AuthRepositoryImpl(
                 AuthRemoteDataSourcesImpl(
                   supabaseClient: supabaseClient.client,

@@ -6,7 +6,8 @@ abstract interface class AuthRemoteDataSources {
     required String email,
     required String password,
   });
-  Future<String> signinWithEmailPassword({
+
+  Future<String> signInWithEmailAndPassword({
     required String email,
     required String password,
   });
@@ -44,7 +45,7 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
   }
 
   @override
-  Future<String> signinWithEmailPassword({
+  Future<String> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -53,16 +54,20 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
         email: email,
         password: password,
       );
+
       if (response.user != null) {
         return response.user!.id;
       } else {
         throw Exception('Sign-in failed');
       }
     } on AuthException catch (e) {
+      print(e);
       if (e.message != null) {
         throw Exception(e.message);
       } else {
-        throw Exception('An unknown authentication error occurred');
+        throw Exception(
+          'An unknown authentication error occurred while trying to signin',
+        );
       }
     }
   }
