@@ -8,13 +8,28 @@ import 'package:modern_food_app/index.dart';
 import 'package:modern_food_app/models/product_db_model/product_db_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() async {
+void main() async { // dotenv.env['VAR_NAME'];
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ProductDbModelAdapter());
   await dotenv.load(fileName: ".env");
   // await Hive.openBox<ProductDbModel>('productsBox');
+    await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
+
+  /**
+   * flutter clean
+flutter pub get
+flutter pub upgrade
+flutter run
+
+   */
+
+  print('Supabase Initialized ${dotenv.env['SUPABASE_URL']} , ${dotenv.env['SUPABASE_ANON_KEY']}');
   runApp(
     MultiProvider(
       providers: [
