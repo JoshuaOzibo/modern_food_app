@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.1.5+1
   flutter_dotenv: ^5.1.0
   flutter_swipe_action_cell: ^3.1.6
+  fpdart: ^1.2.0
 
 dev_dependencies:
   flutter_test:
