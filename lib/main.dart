@@ -12,6 +12,7 @@ import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
 import 'package:modern_food_app/models/product_db_model/product_db_model.dart';
+import 'package:modern_food_app/features/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -76,8 +77,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Modern Food App',
-      theme: AppTheme.darkThemeMode,
-      home: const SignupPage(),
+      theme: AppTheme.darkThemeMode, // SignupPage(),
+      home: const SplashScreen(),
     );
   }
 }
