@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/features/auth/domain/usecases/user_signup.dart';
+import 'package:modern_food_app/features/auth/presentation/pages/signin_page.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/elevation_button.dart';
@@ -62,16 +63,23 @@ class _SignupPageState extends State<SignupPage> {
                 // handleButtonPressed: handleSignup
                 handleButtonPressed: handleSignup,
               ),
-              RichText(
-                text: TextSpan(
-                  text: 'Hello',
-                  style: TextStyle(color: Colors.grey.shade300),
-                  children: [
-                    TextSpan(
-                      text: 'World',
-                      style: TextStyle(color: Colors.cyan),
-                    ),
-                  ],
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
+                    return SigninPage();
+                  },));
+                },
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Have an account? ',
+                    style: TextStyle(color: Colors.grey.shade300),
+                    children: [
+                      TextSpan(
+                        text: 'Login',
+                        style: TextStyle(color: Colors.cyan),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

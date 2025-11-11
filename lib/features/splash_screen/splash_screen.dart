@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/features/auth/presentation/pages/signin_page.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
@@ -113,7 +114,7 @@ class _SplashScreenState extends State<SplashScreen>
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) {
-              return const SignupPage();
+              return const SigninPage();
             },
             // transitionDuration: const Duration(seconds: 1),
             transitionsBuilder:
