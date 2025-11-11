@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_page_transition.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/elevation_button.dart';
@@ -41,11 +42,7 @@ class _SigninPageState extends State<SigninPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return SignupPage();
-                      },
-                    ),
+                    CustomPageTransition(route: const SignupPage()),
                   );
                 },
                 child: RichText(

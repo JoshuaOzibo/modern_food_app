@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_page_transition.dart';
 import 'package:modern_food_app/features/auth/domain/usecases/user_signup.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signin_page.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
@@ -52,7 +53,7 @@ class _SignupPageState extends State<SignupPage> {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(child: Text('Signup', style: TextStyle(fontSize: 30))),
+              Center(child: const Text('Signup', style: TextStyle(fontSize: 30))),
 
               AuthField(hintText: 'Name', controller: nameController),
               AuthField(hintText: 'Email', controller: emailController),
@@ -64,10 +65,11 @@ class _SignupPageState extends State<SignupPage> {
                 handleButtonPressed: handleSignup,
               ),
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, PageRouteBuilder(pageBuilder: (context, animation, secondaryAnimation) {
-                    return SigninPage();
-                  },));
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CustomPageTransition(route: const SigninPage())
+                  );
                 },
                 child: RichText(
                   text: TextSpan(
