@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
 import 'package:provider/provider.dart';
@@ -40,26 +41,26 @@ class _SplashScreenState extends State<SplashScreen>
     // controllers
     _smallCircleController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1500),
     );
 
     _bigCircleController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1500),
     );
     _textFadeController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     );
 
     _bigCircleScaleController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1500),
     );
 
     _rotationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1500),
     );
 
     // actions
@@ -80,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
       end: 1,
     ).animate(CurvedAnimation(parent: _textFadeController, curve: Curves.ease));
 
-    _bigBoxScaleTransition = Tween<double>(begin: 1, end: 10).animate(
+    _bigBoxScaleTransition = Tween<double>(begin: 1, end: 12).animate(
       CurvedAnimation(parent: _bigCircleScaleController, curve: Curves.ease),
     );
 
@@ -112,12 +113,12 @@ class _SplashScreenState extends State<SplashScreen>
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) {
-              return const Index();
+              return const SignupPage();
             },
-            transitionDuration: const Duration(seconds: 1),
+            // transitionDuration: const Duration(seconds: 1),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-                  final slideTransition = Tween<Offset>(begin: Offset(1, 0), end: Offset.zero)
+                  final slideTransition = Tween<Offset>(begin: Offset(3, 0), end: Offset.zero)
                       .animate(
                         CurvedAnimation(parent: animation, curve: Curves.ease),
                       );
