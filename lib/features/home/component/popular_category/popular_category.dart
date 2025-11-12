@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/home/component/popular_category/popular_category_card.dart';
+import 'package:modern_food_app/features/home/component/popular_category/popular_category_shimmer.dart';
 import 'package:modern_food_app/features/home/component/popular_category/see_all_popular_category.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class PopularCategory extends StatelessWidget {
         if (vm.isLoadingFoodCategory)
           Padding(
             padding: const EdgeInsets.only(top: 90),
-            child: const Center(child: CircularProgressIndicator()),
+            child: const Center(child: const PopularCategoryShimmer()),
           ),
         if (!vm.isLoadingFoodCategory && vm.foodCategoryerrorMessage)
           Center(

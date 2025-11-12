@@ -32,7 +32,7 @@ class TopRatedFoodSection extends StatelessWidget {
             vm.allTopRatedFood();
           }
         ),
-        if (!vm.isLoadingTopFood)
+        if (vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 70),
             child: const Center(child: TopRatedLoading(),),
