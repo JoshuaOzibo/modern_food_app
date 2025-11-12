@@ -53,14 +53,14 @@ class _SignupPageState extends State<SignupPage> {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(child: const Text('Signup', style: TextStyle(fontSize: 30))),
+              Center(child: const Text('Sign-up', style: TextStyle(fontSize: 30))),
 
               AuthField(hintText: 'Name', controller: nameController),
               AuthField(hintText: 'Email', controller: emailController),
               AuthField(hintText: 'Password', controller: passwordController),
               SizedBox(height: 5),
               ElevationButton(
-                buttonText: 'Sign up',
+                buttonText: 'Log Out',
                 // handleButtonPressed: handleSignup
                 handleButtonPressed: handleSignup,
               ),

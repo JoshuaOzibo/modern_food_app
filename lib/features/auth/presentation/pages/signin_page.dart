@@ -3,6 +3,7 @@ import 'package:modern_food_app/core/component/custom_page_transition.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:modern_food_app/features/auth/presentation/widgets/elevation_button.dart';
+import 'package:modern_food_app/index.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -16,7 +17,9 @@ class _SigninPageState extends State<SigninPage> {
   final passwordController = TextEditingController();
   final formkey = GlobalKey<FormState>();
 
-  void handleSignup() {}
+  void handleSignup() {
+    Navigator.push(context, CustomPageTransition(route: Index()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +32,12 @@ class _SigninPageState extends State<SigninPage> {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(child: Text('Signup', style: TextStyle(fontSize: 30))),
+              Center(child: Text('Sign-In', style: TextStyle(fontSize: 30))),
               AuthField(hintText: 'Email', controller: emailController),
               AuthField(hintText: 'Password', controller: passwordController),
               SizedBox(height: 5),
               ElevationButton(
-                buttonText: 'Signin',
+                buttonText: 'Log In',
                 // handleButtonPressed: handleSignup
                 handleButtonPressed: handleSignup,
               ),
@@ -51,7 +54,7 @@ class _SigninPageState extends State<SigninPage> {
                     style: TextStyle(color: Colors.grey.shade300),
                     children: [
                       TextSpan(
-                        text: 'Signup',
+                        text: 'Sign-in',
                         style: TextStyle(color: Colors.cyan),
                       ),
                     ],

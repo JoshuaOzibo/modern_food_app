@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/theme/theme.dart';
 
 class ElevationButton extends StatelessWidget {
   const ElevationButton({
@@ -16,10 +17,9 @@ class ElevationButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: handleButtonPressed,
-        style: ElevatedButton.styleFrom(fixedSize: Size(double.infinity, 55), side: BorderSide(
-          width: 2, color: Colors.blue
-        )),
-        child: Text(buttonText),
+        child: Text(buttonText, style: TextStyle(
+          color: Colors.white
+        ),),
       ),
     );
   }
