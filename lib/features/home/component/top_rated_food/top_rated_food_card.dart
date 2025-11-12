@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/core/extensions/text_extension.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class TopRatedFoodCard extends StatelessWidget {
   const TopRatedFoodCard({
@@ -13,7 +15,7 @@ class TopRatedFoodCard extends StatelessWidget {
     required this.distance,
     required this.handleAddToCart,
     required this.width,
-    required this.height
+    required this.height,
   });
 
   final String image;
@@ -36,12 +38,21 @@ class TopRatedFoodCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(10),
-              child: Image.network(
-                image,
-                width: width,
+              child: CachedNetworkImage(
+                imageUrl: image,
+                placeholder: (context, url) => const CustomShimmer(height: 110, width: 130),
+                errorWidget: (context, url, error) => Icon(Icons.error),
                 height: height,
+                width: width,
                 fit: BoxFit.cover,
-              ),
+
+              // child: Image.network(
+              //   image,
+              //   height: height,
+              //   width: width,
+              //   fit: BoxFit.cover,
+              // ),
+            ),
             ),
 
             Positioned(
@@ -118,8 +129,15 @@ class TopRatedFoodCard extends StatelessWidget {
                   padding: EdgeInsets.all(2),
                   color: Colors.deepOrange,
                   onPressed: handleAddToCart,
-                  child: Text('Add', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),),
+                  child: Text(
+                    'Add',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
+                ),
               ],
             ),
           ],

@@ -43,6 +43,7 @@ dependencies:
   flutter_swipe_action_cell: ^3.1.6
   fpdart: ^1.2.0
   supabase_flutter: ^2.10.3
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

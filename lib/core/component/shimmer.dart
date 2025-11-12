@@ -21,7 +21,7 @@ class _CustomShimmerState extends State<CustomShimmer>
     _shimmerController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
-    )..repeat(); // repeat indefinitely
+    )..repeat(); 
 
     _shimmerAnimation = Tween<double>(begin: -1.0, end: 2.0).animate(
       CurvedAnimation(
@@ -70,8 +70,6 @@ class _CustomShimmerState extends State<CustomShimmer>
     );
   }
 }
-
-// Helper class to shift gradient
 class _SlidingGradientTransform extends GradientTransform {
   const _SlidingGradientTransform({required this.slidePercent});
 
