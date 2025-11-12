@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     bottomRight: Radius.circular(25),
                   ),
                   child: Image.asset(
-                    'assets/images/chilli-9202873_1280.jpg',
+                    'assets/images/home_image.webp',
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.cover,
@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
+                          spacing: 5,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClipRRect(
@@ -71,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Joshua Firm'),
-                                Text('Dubai-unlimited Firm'),
+                                Text('Joshua'),
+                                Text('Dubai-unlimited Food'),
                               ],
                             ),
                           ],
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               height: 40,
                               width: 40,
-                              color: Colors.white,
+                              color: Colors.black,
                               widget: Icon(Icons.notification_add),
                             ),
                             CircularButton(
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               height: 40,
                               width: 40,
-                              color: Colors.white,
+                              color: Colors.black,
                               widget: Icon(Icons.home_repair_service_outlined),
                             ),
                           ],

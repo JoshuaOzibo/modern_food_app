@@ -21,7 +21,7 @@ class OrderHistoryCard extends StatelessWidget {
       height: 80,
       width: 330,
       decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.black),
+        border: Border.all(width: 1, color: Colors.grey.shade400),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -52,7 +52,7 @@ class OrderHistoryCard extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.grey.shade500,
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                         ),
@@ -60,7 +60,7 @@ class OrderHistoryCard extends StatelessWidget {
                       Text(
                         subTitle,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.grey.shade600,
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                         ),
@@ -70,12 +70,15 @@ class OrderHistoryCard extends StatelessWidget {
                 ],
               ),
 
-              Text(
-                '\$$price',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Text(
+                  '\$$price',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -83,7 +86,7 @@ class OrderHistoryCard extends StatelessWidget {
 
           Text(
             'See Details',
-            style: TextStyle(color: Colors.black, fontSize: 15),
+            style: TextStyle(color:Colors.grey.shade600, fontSize: 15),
           ),
         ],
       ),
