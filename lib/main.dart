@@ -77,8 +77,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Modern Food App',
-      theme: AppTheme.darkThemeMode, // SignupPage(),
-      home: const SplashScreen(),
+      theme: AppTheme.darkThemeMode, //const SplashScreen(),,
+      home: const Index(),
     );
   }
 }

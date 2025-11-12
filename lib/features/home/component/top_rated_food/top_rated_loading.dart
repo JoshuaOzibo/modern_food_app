@@ -6,9 +6,34 @@ class TopRatedLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomShimmer(
+    return SizedBox(
       height: 200,
-      width: 150,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomShimmer(height: 110, width: 130),
+                SizedBox(height: 10),
+                CustomShimmer(height: 10, width: 130),
+                SizedBox(height: 10),
+                Row(
+                  spacing: 48,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CustomShimmer(height: 10, width: 40),
+                    CustomShimmer(height: 10, width: 40),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

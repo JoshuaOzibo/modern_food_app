@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/see_all_top_rated_screen.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
+import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_loading.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +32,10 @@ class TopRatedFoodSection extends StatelessWidget {
             vm.allTopRatedFood();
           }
         ),
-        if (vm.isLoadingTopFood)
+        if (!vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 70),
-            child: const Center(child: CircularProgressIndicator()),
+            child: const Center(child: TopRatedLoading(),),
           ),
 
         if (!vm.isLoadingTopFood && vm.topFooderrorMessage)
