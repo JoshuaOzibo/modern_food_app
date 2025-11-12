@@ -37,22 +37,13 @@ class TopRatedFoodCard extends StatelessWidget {
         Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: image,
-                placeholder: (context, url) => const CustomShimmer(height: 110, width: 130),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+              borderRadius: BorderRadius.circular(10),
+             child: Image.network(
+                image,
                 height: height,
                 width: width,
                 fit: BoxFit.cover,
-
-              // child: Image.network(
-              //   image,
-              //   height: height,
-              //   width: width,
-              //   fit: BoxFit.cover,
-              // ),
-            ),
+              )
             ),
 
             Positioned(
