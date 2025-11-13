@@ -17,7 +17,7 @@ class OrderHistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: 80,
       width: 330,
       decoration: BoxDecoration(
@@ -28,65 +28,75 @@ class OrderHistoryCard extends StatelessWidget {
         spacing: 20,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                spacing: 10,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(10),
-                    child: Image.asset(
-                      image,
-                      fit: BoxFit.cover,
-                      height: 50,
-                      width: 50,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.orangeAccent.shade200,
+              borderRadius: BorderRadius.circular(10)
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 10,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                      child: Image.asset(
+                        image,
+                        fit: BoxFit.cover,
+                        height: 50,
+                        width: 50,
+                      ),
+                    ),
+            
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.grey.shade900,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          subTitle,
+                          style: TextStyle( 
+                            color: Colors.grey.shade700,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+            
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Text(
+                    '\$$price',
+                    style: TextStyle(
+                      color: Colors.grey.shade900,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        subTitle,
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Text(
-                  '\$$price',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
-          Text(
-            'See Details',
-            style: TextStyle(color:Colors.grey.shade600, fontSize: 15),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Text(
+              'See Details',
+              style: TextStyle(color:Colors.grey.shade600, fontSize: 15),
+            ),
           ),
         ],
       ),
