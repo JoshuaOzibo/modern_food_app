@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/shimmer.dart';
 
-class TopRatedLoading extends StatelessWidget {
-  const TopRatedLoading({super.key});
+class TopRatedShimmer extends StatelessWidget {
+  const TopRatedShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,

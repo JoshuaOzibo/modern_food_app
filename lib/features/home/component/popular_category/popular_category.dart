@@ -30,7 +30,7 @@ class PopularCategory extends StatelessWidget {
 
         if (vm.isLoadingFoodCategory)
           Padding(
-            padding: const EdgeInsets.only(top: 90),
+            padding: const EdgeInsets.only(top: 10),
             child: const Center(child: const PopularCategoryShimmer()),
           ),
         if (!vm.isLoadingFoodCategory && vm.foodCategoryerrorMessage)
@@ -46,7 +46,7 @@ class PopularCategory extends StatelessWidget {
             ),
           ),
         SizedBox(
-          height: vm.popularCategoty.isNotEmpty ? 200 : 100,
+          height: vm.popularCategoty.isNotEmpty ? 200 : 50,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: vm.popularCategoty.length,

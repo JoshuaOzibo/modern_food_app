@@ -5,7 +5,7 @@ import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/see_all_top_rated_screen.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
-import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_loading.dart';
+import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_shimmer.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +34,8 @@ class TopRatedFoodSection extends StatelessWidget {
         ),
         if (vm.isLoadingTopFood)
           Padding(
-            padding: const EdgeInsets.only(top: 70),
-            child: const Center(child: TopRatedLoading(),),
+            padding: const EdgeInsets.only(top: 10),
+            child: const Center(child: TopRatedShimmer(),),
           ),
 
         if (!vm.isLoadingTopFood && vm.topFooderrorMessage)
@@ -51,7 +51,7 @@ class TopRatedFoodSection extends StatelessWidget {
             ),
           ),
         SizedBox(
-          height: vm.topRatedFood.isNotEmpty ? 200 : 100,
+          height: vm.topRatedFood.isNotEmpty ? 200 : 50,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: vm.topRatedFood.length,
