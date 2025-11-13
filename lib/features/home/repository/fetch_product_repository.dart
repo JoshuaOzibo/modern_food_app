@@ -5,7 +5,7 @@ class FetchProductRepository {
   Future<Map<String, dynamic>?> fetchTopRatedFood() async {
     try {
       final response = await AppClient().getTopRatedFoodRequest(
-        'search.php?f=a',
+        'search.php?f=c',
       );
       if (response != null && response.data['meals'] != null) {
         print('repository response ${response.data}');
@@ -26,7 +26,7 @@ class FetchProductRepository {
   Future<Map<String, dynamic>?> fetchPopularCategory() async {
     try {
       final response = await AppClient().getTopRatedFoodRequest(
-        'search.php?f=f',
+        'search.php?f=h',
       );
       if (response != null && response.data['meals'] != null) {
         print('repository response ${response.data}');
@@ -47,7 +47,7 @@ class FetchProductRepository {
   Future<Map<String, dynamic>?> fetchAllTopRatedFood() async {
     try {
       final response = await AppClient().getTopRatedFoodRequest(
-        'search.php?f=a',
+        'search.php?f=e',
       );
       if (response != null && response.data['meals'] != null) {
         print('repository response ${response.data}');
@@ -68,7 +68,7 @@ class FetchProductRepository {
   Future<Map<String, dynamic>?> fetchAllPopularCategoty() async{
     try{
       final response = await AppClient().getTopRatedFoodRequest(
-        'search.php?f=c',
+        'search.php?f=g',
       );
       if (response != null && response.data['meals'] != null) {
         print('repository response ${response.data}');

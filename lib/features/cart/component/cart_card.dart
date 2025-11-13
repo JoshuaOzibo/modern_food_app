@@ -23,7 +23,7 @@ class CartCard extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        color: Colors.grey,
       ),
       child: Row(
         children: [
@@ -33,7 +33,7 @@ class CartCard extends StatelessWidget {
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.shade300,
+                  color: Colors.black,
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
@@ -49,14 +49,14 @@ class CartCard extends StatelessWidget {
                 bottom: 0,
                 right: 5,
                 child: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     '$quantity',
-                    style: TextStyle(fontSize: 10, color: Colors.white),
+                    style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -69,10 +69,16 @@ class CartCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title),
-                Text(subTitle),
+                Text(title, style: TextStyle(
+                  color: Colors.black
+                ),),
+                Text(subTitle, style: TextStyle(
+                  color: Colors.black
+                ),),
                 Spacer(),
-                Text('\$$price'),
+                Text('\$$price', style: TextStyle(
+                  color: Colors.black
+                ),),
               ],
             ),
           ),
@@ -83,7 +89,7 @@ class CartCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.grey.shade400,
+                  color: Colors.grey.shade800,
                 ),
                 child: Row(
                   children: [
@@ -93,7 +99,7 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: Icon(Icons.remove, size: 16),
+                      child: Icon(Icons.remove, size: 16, color: Colors.black,),
                     ),
                     SizedBox(width: 5),
                     Text(quantity.toString()),
@@ -104,7 +110,7 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: Icon(Icons.add, size: 16),
+                      child: Icon(Icons.add, size: 16, color: Colors.black,),
                     ),
                   ],
                 ),
