@@ -24,7 +24,6 @@ class HomeViewModel extends ChangeNotifier {
   initProvider() async {
     topFoodFunc();
     foodCategoryFunc();
-    allPopularCategory();
   }
 
   void topFoodFunc() async {
