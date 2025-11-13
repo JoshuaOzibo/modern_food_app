@@ -26,7 +26,7 @@ class TitleTextWithoutIcon extends StatelessWidget {
               leftText,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.deepOrange,
                 fontSize: 15,
               ),
             ),

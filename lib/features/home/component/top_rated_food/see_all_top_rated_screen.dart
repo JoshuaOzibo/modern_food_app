@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/features/home/component/top_rated_food/all_top_rated_shimmer.dart';
 import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -42,8 +43,8 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
       ),
       body: Builder(
         builder: (_) {
-          if (!vm.isLoadingAllTopFood) {
-            return const Center(child: CircularProgressIndicator());
+          if (vm.isLoadingAllTopFood) {
+            return const Center(child: const AllTopRatedShimmer());
           }
 
           if (vm.allTopFooderrorMessage) {

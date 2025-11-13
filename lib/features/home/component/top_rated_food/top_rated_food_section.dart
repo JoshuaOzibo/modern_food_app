@@ -24,18 +24,18 @@ class TopRatedFoodSection extends StatelessWidget {
         TitleText(
           leftText: 'Top Rated Food',
           rightText: 'View all',
-          handleNavigate: (){
+          handleNavigate: () {
             Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
-          );
+              context,
+              MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
+            );
             vm.allTopRatedFood();
-          }
+          },
         ),
         if (vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: const Center(child: TopRatedShimmer(),),
+            child: const Center(child: TopRatedShimmer()),
           ),
 
         if (!vm.isLoadingTopFood && vm.topFooderrorMessage)

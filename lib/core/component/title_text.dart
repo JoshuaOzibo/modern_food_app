@@ -16,7 +16,7 @@ class TitleText extends StatelessWidget {
           leftText,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.deepOrange,
             fontSize: 15,
           ),
         ),
@@ -26,7 +26,7 @@ class TitleText extends StatelessWidget {
             onTap: handleNavigate,
             child: Row(
               spacing: 5,
-              children: [Text(rightText), Icon(Icons.arrow_forward_ios, size: 15)],
+              children: [Text(rightText, style: TextStyle(color: Colors.white),), Icon(Icons.arrow_forward_ios, size: 15)],
             ),
           ),
         ),
