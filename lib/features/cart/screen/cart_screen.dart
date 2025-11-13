@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text_without_icon.dart';
 import 'package:modern_food_app/features/cart/component/cart_card.dart';
@@ -23,11 +22,8 @@ class _CartScreenScreenState extends State<CartScreen> {
       await Future.delayed(Duration(seconds: 1));
       setState(() {});
     }
-
-    final AppStaticData appStaticData = AppStaticData();
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios),
         title: Text('Payout Details'),
       ),
       body: RefreshIndicator(

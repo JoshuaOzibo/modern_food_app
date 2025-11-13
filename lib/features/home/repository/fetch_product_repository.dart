@@ -47,7 +47,7 @@ class FetchProductRepository {
   Future<Map<String, dynamic>?> fetchAllTopRatedFood() async {
     try {
       final response = await AppClient().getTopRatedFoodRequest(
-        'search.php?f=b',
+        'search.php?f=a',
       );
       if (response != null && response.data['meals'] != null) {
         print('repository response ${response.data}');

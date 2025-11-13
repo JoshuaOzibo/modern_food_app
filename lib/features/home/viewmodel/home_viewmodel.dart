@@ -10,10 +10,10 @@ class HomeViewModel extends ChangeNotifier {
   List<ProductUiModel> allPopularCategoryList = [];
 
   // loadings
-  bool isLoadingTopFood = false;
-  bool isLoadingFoodCategory = false;
-  bool isLoadingAllTopFood = false;
-  bool isLoadingAllFoodCategory = false;
+  bool isLoadingTopFood = true;
+  bool isLoadingFoodCategory = true;
+  bool isLoadingAllTopFood = true;
+  bool isLoadingAllFoodCategory = true;
 
   // error message
   bool topFooderrorMessage = false;
@@ -24,7 +24,6 @@ class HomeViewModel extends ChangeNotifier {
   initProvider() async {
     topFoodFunc();
     foodCategoryFunc();
-    allTopRatedFood();
     allPopularCategory();
   }
 

@@ -4,12 +4,26 @@ import 'package:modern_food_app/features/home/component/top_rated_food/top_rated
 import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-class SeeAllTopRatedScreen extends StatelessWidget {
+class SeeAllTopRatedScreen extends StatefulWidget {
   const SeeAllTopRatedScreen({super.key});
 
   @override
+  State<SeeAllTopRatedScreen> createState() => _SeeAllTopRatedScreenState();
+}
+
+class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HomeViewModel>().allTopRatedFood();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final vm = context.read<HomeViewModel>();
+    final vm = context.watch<HomeViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 150,
@@ -19,63 +33,61 @@ class SeeAllTopRatedScreen extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
-                child: Icon(Icons.arrow_back_ios),
+                child: const Icon(Icons.arrow_back_ios),
               ),
-              Text('Top Rated Food'),
+              const Text('Top Rated Food'),
             ],
           ),
         ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          if(vm.isLoadingAllTopFood)
-          Center(
-            child:  const Center(child: CircularProgressIndicator()),
-          ),
-          if (!vm.isLoadingAllTopFood && vm.allTopFooderrorMessage)
-          Center(
-            child: Container(
-              margin: const EdgeInsets.only(top: 60),
+      body: Builder(
+        builder: (_) {
+          if (!vm.isLoadingAllTopFood) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (vm.allTopFooderrorMessage) {
+            return Center(
               child: ErrorView(
                 message: 'Error Fetching Top Rated Food',
-                onRetry: () {
-                  vm.allTopRatedFood();
-                },
+                onRetry: () => vm.allTopRatedFood(),
               ),
-            ),
-          ),
-          SizedBox(
-            height: 500,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: GridView.builder(
-                itemCount: vm.allTopRatedFoodList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  final idValue = vm.allTopRatedFoodList[index].id;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: TopRatedFoodCard(
-                      width: double.infinity,
-                      height: 100,
-                      image: vm.allTopRatedFoodList[index].thumbnail,
-                      foodType: vm.allTopRatedFoodList[index].category,
-                      title: vm.allTopRatedFoodList[index].name,
-                      reviews: "${(int.tryParse(idValue).hashCode % 20)}",
-                      rating: (idValue.hashCode % 5) + 1,
-                      price: (5 + (idValue.hashCode % 20)),
-                      distance: vm.allTopRatedFoodList[index].area,
-                      handleAddToCart: () => print('Hello'),
-                    ),
-                  );
-                },
+            );
+          }
+
+          if (vm.allTopRatedFoodList.isEmpty) {
+            return const Center(child: Text('No foods found.'));
+          }
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: GridView.builder(
+              itemCount: vm.allTopRatedFoodList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
               ),
+              itemBuilder: (context, index) {
+                final item = vm.allTopRatedFoodList[index];
+                final idValue = item.id;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: TopRatedFoodCard(
+                    width: double.infinity,
+                    height: 100,
+                    image: item.thumbnail,
+                    foodType: item.category,
+                    title: item.name,
+                    reviews: "${(int.tryParse(idValue).hashCode % 20)}",
+                    rating: (idValue.hashCode % 5) + 1,
+                    price: (5 + (idValue.hashCode % 20)),
+                    distance: item.area,
+                    handleAddToCart: () => print('Add to cart'),
+                  ),
+                );
+              },
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

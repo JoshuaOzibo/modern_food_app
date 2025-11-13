@@ -38,8 +38,8 @@ class FavoriteCard extends StatelessWidget {
             spacing: 5,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [Text(title, style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold
-            ),), Text(subtitle), Text('\$${price.toString()}')]),
+              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black
+            ),), Text(subtitle, style: TextStyle(color: Colors.black),), Text('\$${price.toString()}', style: TextStyle(color: Colors.black),)]),
         ],
       ),
     );
