@@ -43,6 +43,7 @@ class TopRatedFoodSection extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(top: 60),
               child: ErrorView(
+                icon: Icons.error_outline,
                 message: 'Error Fetching Top Rated Food',
                 onRetry: () {
                   vm.topFoodFunc();

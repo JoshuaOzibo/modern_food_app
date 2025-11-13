@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class ErrorView extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
+  final IconData? icon;
+  final Color? color;
 
   const ErrorView({
     super.key,
     required this.message,
     this.onRetry,
+    this.icon,
+    this.color,
   });
 
   @override
@@ -16,8 +20,8 @@ class ErrorView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
-            Icons.error_outline,
+           Icon(
+            icon,
             size: 48,
             color: Colors.redAccent,
           ),
@@ -25,8 +29,9 @@ class ErrorView extends StatelessWidget {
           Text(
             message,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
+              color: color,
               fontWeight: FontWeight.w600,
             ),
           ),

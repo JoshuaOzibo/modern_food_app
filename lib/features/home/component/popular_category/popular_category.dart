@@ -38,6 +38,7 @@ class PopularCategory extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(top: 90),
               child: ErrorView(
+                icon: Icons.error_outline,
                 message: 'Error Fetching Popular Categories',
                 onRetry: () {
                   vm.foodCategoryFunc();

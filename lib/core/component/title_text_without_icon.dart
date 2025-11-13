@@ -26,7 +26,7 @@ class TitleTextWithoutIcon extends StatelessWidget {
               leftText,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 15,
               ),
             ),
@@ -36,7 +36,7 @@ class TitleTextWithoutIcon extends StatelessWidget {
                 height: 20,
                 width: 25,
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: Colors.deepOrange,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
@@ -48,7 +48,7 @@ class TitleTextWithoutIcon extends StatelessWidget {
               ),
           ],
         ),
-        Row(spacing: 5, children: [Text(rightText)]),
+        Row(spacing: 5, children: [Text(rightText, style: TextStyle(color: Colors.white),)]),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/base/app_static_data.dart';
+import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text_without_icon.dart';
 import 'package:modern_food_app/features/cart/component/cart_card.dart';
 import 'package:modern_food_app/features/cart/component/cart_option.dart';
@@ -109,7 +110,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                           SizedBox(
                             height: 200,
                             child: Center(
-                              child: Text('No Items in Cart currently'),
+                              child: ErrorView(message: 'No Items in Cart currently', color: Colors.black,)
                             ),
                           ),
                         if (vm.cartList.isNotEmpty)
@@ -176,15 +177,15 @@ class _CartScreenScreenState extends State<CartScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('Total Item(03)'), Text('\$190.00')],
+                          children: [Text('Total Item(03)', style: TextStyle(color: Colors.black),), Text('\$190.00', style: TextStyle(color: Colors.black),)],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('Discount(10%)'), Text('\$-20.00')],
+                          children: [Text('Discount(10%)', style: TextStyle(color: Colors.black),), Text('-\$20.00', style: TextStyle(color: Colors.black),)],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('Tax(2.5%)'), Text('\$10.00')],
+                          children: [Text('Tax(2.5%)', style: TextStyle(color: Colors.black),), Text('\$10.00', style: TextStyle(color: Colors.black),)],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,9 +195,10 @@ class _CartScreenScreenState extends State<CartScreen> {
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.black
                               ),
                             ),
-                            Text('\$100.00'),
+                            Text('\$100.00', style: TextStyle(color: Colors.black),),
                           ],
                         ),
                       ],
