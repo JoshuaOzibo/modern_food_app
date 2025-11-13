@@ -95,7 +95,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.grey.shade900,
+                      color: Colors.grey.shade300,
                     ),
                     width: double.infinity,
                     child: Column(

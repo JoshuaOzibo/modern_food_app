@@ -8,7 +8,7 @@ class CustomPageTransition extends PageRouteBuilder {
         pageBuilder: (context, animation, secondaryAnimation) {
           return route;
         },
-        transitionDuration: const Duration(milliseconds: 500),
+        // transitionDuration: const Duration(milliseconds: 500),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           final animationStartPosition =
               Tween<Offset>(begin: Offset(0.5, 0), end: Offset.zero).animate(

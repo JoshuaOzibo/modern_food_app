@@ -28,14 +28,6 @@ void main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  /**
-   * flutter clean
-flutter pub get
-flutter pub upgrade
-flutter run
-
-   */
-
   print(
     'Supabase Initialized ${dotenv.env['SUPABASE_URL']} , ${dotenv.env['SUPABASE_ANON_KEY']}',
   );
