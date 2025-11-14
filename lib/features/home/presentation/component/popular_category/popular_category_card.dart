@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
 import 'package:modern_food_app/core/extensions/text_extension.dart';
 
 class PopularCategoryCard extends StatelessWidget {
@@ -8,7 +9,7 @@ class PopularCategoryCard extends StatelessWidget {
     required this.location,
     required this.name,
     required this.distance,
-    this.width
+    this.width,
   });
 
   final String image;
@@ -27,11 +28,10 @@ class PopularCategoryCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                image,
-                fit: BoxFit.cover,
-                width: width ?? 210,
+              child: CustomCacheNetworkImage(
                 height: 150,
+                image: image,
+                width: width ?? 210,
               ),
             ),
             Positioned(

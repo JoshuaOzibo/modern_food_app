@@ -17,7 +17,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // context.read<HomeViewModel>().allTopRatedFood();
+      context.read<HomeViewModel>().allTopRatedFood();
     });
   }
 
@@ -51,7 +51,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
             return Center(
               child: ErrorView(
                 message: 'Error Fetching Top Rated Food',
-                // onRetry: () => vm.allTopRatedFood(),
+                onRetry: () => vm.allTopRatedFood(),
               ),
             );
           }

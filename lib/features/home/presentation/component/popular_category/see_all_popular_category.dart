@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/features/home/presentation/component/popular_category/all_popular_category_shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/component/popular_category/popular_category_card.dart';
-import 'package:modern_food_app/features/home/presentation/component/top_rated_food/all_top_rated_shimmer.dart';
-import 'package:modern_food_app/features/home/presentation/component/top_rated_food/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +17,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllPopularCategory> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // context.read<HomeViewModel>().allPopularCategory();
+      context.read<HomeViewModel>().allPopularCategory();
     });
   }
 
@@ -53,14 +51,14 @@ class _SeeAllTopRatedScreenState extends State<SeeAllPopularCategory> {
             return Center(
               child: ErrorView(
                 message: 'Error Fetching Popular category',
-                // onRetry: () => vm.allTopRatedFood(),
+                onRetry: () => vm.allTopRatedFood(),
               ),
             );
           }
 
-          // if (vm.allPopularCategoryList.isEmpty) {
-          //   return const Center(child: Text('No foods found.'));
-          // }
+          if (vm.allPopularCategoryList.isEmpty) {
+            return const Center(child: Text('No foods found.'));
+          }
 
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

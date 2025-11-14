@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const OrderHistory(),
                      const SizedBox(height: 20),
                      const TopRatedFoodSection(),
-                    //  const PopularCategory(),
+                     const PopularCategory(),
                     ],
                   ),
                 ),

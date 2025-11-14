@@ -24,7 +24,7 @@ class PopularCategory extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => SeeAllPopularCategory()),
             );
-            // vm.allPopularCategory();
+            vm.allPopularCategory();
           },
         ),
 
@@ -41,7 +41,7 @@ class PopularCategory extends StatelessWidget {
                 icon: Icons.error_outline,
                 message: 'Error Fetching Popular Categories',
                 onRetry: () {
-                  // vm.foodCategoryFunc();
+                  vm.foodCategoryFunc();
                 },
               ),
             ),
