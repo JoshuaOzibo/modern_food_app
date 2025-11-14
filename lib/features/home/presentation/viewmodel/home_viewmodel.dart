@@ -45,22 +45,22 @@ class HomeViewModel extends ChangeNotifier {
           throw Failure(message: failure.message);
         },
         (data) {
-          isLoadingTopFood = false;
-          notifyListeners();
-          return data['meals']
+            isLoadingTopFood = false;
+            notifyListeners();
+          return data['meals']  
               .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
               .toList();
         },
       );
+
     } catch (e) {
       isLoadingTopFood = false;
       topFooderrorMessage = true;
       notifyListeners();
     }
 
-    print('Top Rated Food fetched successfully from VM $topRatedFood');
-  }
-
+      print('Top Rated Food fetched successfully from VM $topRatedFood');
+  }}
 
   // void foodCategoryFunc() async {
   //   isLoadingFoodCategory = true;
@@ -158,5 +158,3 @@ class HomeViewModel extends ChangeNotifier {
 
   //   print('Top Rated Food: $topRatedFood');
   // }
-
-}

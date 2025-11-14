@@ -1,34 +1,20 @@
-class ProductUiModel {
-  final String id;
-  final String name;
-  final String category;
-  final String area;
-  final String instructions;
-  final String thumbnail;
-  final String? youtube;
-  final List<String> ingredients;
-  final List<String> measures;
-  int? quantity;
-  final double? rating;
-  final double? price;
-  final String? distance;
-  final String? reviews;
+import 'package:modern_food_app/features/home/domain/entities/domain_ui_entity.dart';class ProductUiModel extends DomainUiEntity{
 
   ProductUiModel({
-    required this.id,
-    required this.name,
-    required this.category,
-    required this.area,
-    required this.instructions,
-    required this.thumbnail,
-    required this.ingredients,
-    required this.measures,
-    this.youtube,
-    this.price,
-    this.quantity = 1,
-    this.rating,
-    this.distance,
-    this.reviews,
+    required super.id,
+    required super.name,
+    required super.category,
+    required super.area,
+    required super.instructions,
+    required super.thumbnail,
+    required super.ingredients,
+    required super.measures,
+    super.youtube,
+    super.price,
+    super.quantity = 1,
+    super.rating,
+    super.distance,
+    super.reviews,
   });
 
   factory ProductUiModel.fromJson(Map<String, dynamic> json) {
