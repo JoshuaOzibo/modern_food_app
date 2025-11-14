@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
 import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/core/extensions/text_extension.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -38,31 +39,11 @@ class TopRatedFoodCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: image.isNotEmpty && Uri.tryParse(image)?.hasScheme == true
-                  ? CachedNetworkImage(
-                      imageUrl: image,
-                      height: height,
-                      width: width,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(
-                        height: height,
-                        width: width,
-                        color: Colors.grey[200],
-                        child: Center(child: CircularProgressIndicator()),
-                      ),
-                      errorWidget: (context, url, error) => Container(
-                        height: height,
-                        width: width,
-                        color: Colors.grey[300],
-                        child: Icon(Icons.image_not_supported, size: 40),
-                      ),
-                    )
-                  : Container(
-                      height: height,
-                      width: width,
-                      color: Colors.grey[300],
-                      child: Icon(Icons.image_not_supported, size: 40),
-                    ),
+              child: CustomCacheNetworkImage(
+                height: height,
+                image: image,
+                width: width,
+              ),
             ),
 
             Positioned(
