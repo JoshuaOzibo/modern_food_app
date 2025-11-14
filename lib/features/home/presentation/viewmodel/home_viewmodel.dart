@@ -28,7 +28,7 @@ class HomeViewModel extends ChangeNotifier {
 
   initProvider() async {
     topFoodFunc();
-    // foodCategoryFunc();
+    foodCategoryFunc();
   }
 
   void topFoodFunc() async {
@@ -45,87 +45,65 @@ class HomeViewModel extends ChangeNotifier {
           throw Failure(message: failure.message);
         },
         (data) {
-            isLoadingTopFood = false;
-            notifyListeners();
-          return data['meals']  
+          isLoadingTopFood = false;
+          notifyListeners();
+          return data['meals']
               .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
               .toList();
         },
       );
-
     } catch (e) {
       isLoadingTopFood = false;
       topFooderrorMessage = true;
       notifyListeners();
     }
 
-      print('Top Rated Food fetched successfully from VM $topRatedFood');
-  }}
+    print('Top Rated Food fetched successfully from VM $topRatedFood');
+  }
 
-  // void foodCategoryFunc() async {
-  //   isLoadingFoodCategory = true;
-  //   foodCategoryerrorMessage = false;
-  //   notifyListeners();
-  //   try {
-  //     final productCategoryResponse = await productRepository
-  //         .fetchPopularCategory();
+  void foodCategoryFunc() async {
+    isLoadingFoodCategory = true;
+    foodCategoryerrorMessage = false;
+    notifyListeners();
+    try {
+      final response = await getTopRatedFoodUsecase.call('search.php?f=f');
+      topRatedFood = response.fold(
+        (failure) {
+          isLoadingFoodCategory = false;
+          foodCategoryerrorMessage = true;
+          notifyListeners();
+          throw Failure(message: failure.message);
+        },
+        (data) {
+          isLoadingFoodCategory = false;
+          notifyListeners();
+          return data['meals']
+              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+              .toList();
+        },
+      );
+    } catch (e) {
+      isLoadingFoodCategory = false;
+      foodCategoryerrorMessage = true;
+      notifyListeners();
+    }
 
-  //     popularCategoty =
-  //         productCategoryResponse?['meals']
-  //             .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-  //             .toList() ??
-  //         [];
-  //     notifyListeners();
-  //     if (productCategoryResponse != null &&
-  //         productCategoryResponse['meals'] != null) {
-  //       print('fetch successfully from vm');
-  //       isLoadingFoodCategory = false;
-  //       notifyListeners();
-  //     } else {
-  //       isLoadingFoodCategory = false;
-  //       foodCategoryerrorMessage = true;
-  //       notifyListeners();
-  //     }
-  //   } catch (e) {
-  //     isLoadingFoodCategory = false;
-  //     foodCategoryerrorMessage = true;
-  //     notifyListeners();
-  //   }
+    print(' Food Category fetched successfully from VM $topRatedFood');
+  }
 
-  //   print('Top Rated Food: $topRatedFood');
-  // }
+ void allTopRatedFood() async {
+    isLoadingAllTopFood = true;
+    allTopFooderrorMessage = false;
+    notifyListeners();
+   
+   
 
-  // void allTopRatedFood() async {
-  //   isLoadingAllTopFood = true;
-  //   allTopFooderrorMessage = false;
-  //   notifyListeners();
-  //   try {
-  //     final productCategoryResponse = await productRepository
-  //         .fetchAllTopRatedFood();
-  //     allTopRatedFoodList =
-  //         productCategoryResponse?['meals']
-  //             .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-  //             .toList() ??
-  //         [];
-  //     notifyListeners();
-  //     if (productCategoryResponse != null &&
-  //         productCategoryResponse['meals'] != null) {
-  //       print('fetch all top rated food successfully from vm');
-  //       isLoadingAllTopFood = false;
-  //       notifyListeners();
-  //     } else {
-  //       isLoadingAllTopFood = false;
-  //       allTopFooderrorMessage = true;
-  //       notifyListeners();
-  //     }
-  //   } catch (e) {
-  //     isLoadingAllTopFood = false;
-  //     allTopFooderrorMessage = true;
-  //     notifyListeners();
-  //   }
+    print('all Top Rated Food: $topRatedFood');
+  }
 
-  //   print('all Top Rated Food: $topRatedFood');
-  // }
+}
+
+ 
 
   // void allPopularCategory() async {
   //   isLoadingAllFoodCategory = true;
