@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:modern_food_app/core/error/network_exception.dart';
+import 'package:modern_food_app/core/error/server_exception_error.dart';
 
 class AppClient {
   static String baseUrl = '${dotenv.env['API_BASE_URL']}';
@@ -11,29 +13,30 @@ class AppClient {
       return response;
     } on DioException catch (e) {
       if (e.response != null) {
-        print("Server error: ${e.response?.statusCode}");
-        print("Response data: ${e.response?.data}");
+        throw ServerExceptionError(
+          message: e.response?.data?.toString() ?? 'Server error',
+          statusCode: e.response?.statusCode ?? 500,
+        );
       } else {
-        print("Network error: ${e.message}");
+        throw NetworkException(message: e.message ?? 'Network Error');
       }
-      return null;
     }
   }
 
   Future<Response?> getPopularCategory(String endpoint) async {
-    try {
-      final response = await _dio.get('$baseUrl/$endpoint');
-      return response;
-    } on DioException catch (e) {
-      if (e.response != null) {
-        print("Server error with status code: ${e.response?.statusCode}");
-        print("Response data: ${e.response?.data}");
-      } else {
-        print("Network error: ${e.message}");
-      }
+    // try {
+    //   final response = await _dio.get('$baseUrl/$endpoint');
+    //   return response;
+    // } on DioException catch (e) {
+    //   if (e.response != null) {
+    //     print("Server error with status code: ${e.response?.statusCode}");
+    //     print("Response data: ${e.response?.data}");
+    //   } else {
+    //     print("Network error: ${e.message}");
+    //   }
 
-      return null;
-    }
+    //   return null;
+    // }
   }
 }
 

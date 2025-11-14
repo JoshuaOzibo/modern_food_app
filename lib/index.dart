@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/features/cart/screen/cart_screen.dart';
 import 'package:modern_food_app/features/favorite/screen/favorite_screen.dart';
-import 'package:modern_food_app/features/home/screen/home_screen.dart';
+import 'package:modern_food_app/features/home/presentation/screen/home_screen.dart';
 import 'package:modern_food_app/features/profile/screen/profile_screen.dart';
 
 class Index extends StatefulWidget {

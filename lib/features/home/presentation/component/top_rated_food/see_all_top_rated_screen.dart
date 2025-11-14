@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
-import 'package:modern_food_app/features/home/component/top_rated_food/all_top_rated_shimmer.dart';
-import 'package:modern_food_app/features/home/component/top_rated_food/top_rated_food_card.dart';
-import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
+import 'package:modern_food_app/features/home/presentation/component/top_rated_food/all_top_rated_shimmer.dart';
+import 'package:modern_food_app/features/home/presentation/component/top_rated_food/top_rated_food_card.dart';
+import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class SeeAllTopRatedScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeViewModel>().allTopRatedFood();
+      // context.read<HomeViewModel>().allTopRatedFood();
     });
   }
 
@@ -51,7 +51,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
             return Center(
               child: ErrorView(
                 message: 'Error Fetching Top Rated Food',
-                onRetry: () => vm.allTopRatedFood(),
+                // onRetry: () => vm.allTopRatedFood(),
               ),
             );
           }

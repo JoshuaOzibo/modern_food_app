@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
-import 'package:modern_food_app/features/home/component/popular_category/popular_category_card.dart';
-import 'package:modern_food_app/features/home/component/popular_category/popular_category_shimmer.dart';
-import 'package:modern_food_app/features/home/component/popular_category/see_all_popular_category.dart';
-import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
+import 'package:modern_food_app/features/home/presentation/component/popular_category/popular_category_card.dart';
+import 'package:modern_food_app/features/home/presentation/component/popular_category/popular_category_shimmer.dart';
+import 'package:modern_food_app/features/home/presentation/component/popular_category/see_all_popular_category.dart';
+import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class PopularCategory extends StatelessWidget {
@@ -24,7 +24,7 @@ class PopularCategory extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => SeeAllPopularCategory()),
             );
-            vm.allPopularCategory();
+            // vm.allPopularCategory();
           },
         ),
 
@@ -41,7 +41,7 @@ class PopularCategory extends StatelessWidget {
                 icon: Icons.error_outline,
                 message: 'Error Fetching Popular Categories',
                 onRetry: () {
-                  vm.foodCategoryFunc();
+                  // vm.foodCategoryFunc();
                 },
               ),
             ),

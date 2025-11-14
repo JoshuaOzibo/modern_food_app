@@ -9,10 +9,15 @@ import 'package:modern_food_app/features/auth/domain/usecases/user_signup.dart';
 import 'package:modern_food_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
-import 'package:modern_food_app/features/home/viewmodel/home_viewmodel.dart';
+import 'package:modern_food_app/features/home/data/remote_data_source/top_food_remote_data_source.dart';
+import 'package:modern_food_app/features/home/data/repository_impl/fetch_product_repository_impl.dart';
+import 'package:modern_food_app/features/home/domain/repository/fetch_product_repository.dart';
+import 'package:modern_food_app/features/home/domain/usecase/get_top_rated_food_usecase.dart';
+import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
 import 'package:modern_food_app/models/product_db_model/product_db_model.dart';
 import 'package:modern_food_app/features/splash_screen/splash_screen.dart';
+import 'package:modern_food_app/network/app_client.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -34,7 +39,21 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(
+          create: (_) {
+            final apiClient = AppClient();
+            final topFoodRemoteDataSource = TopFoodRemoteDataSourceImpl(
+              apiClient,
+            );
+            final fetchProductRepository = FetchProductRepositoryImpl(
+              topFoodRemoteDataSource,
+            );
+            final getTopRatedFoodUsecase = GetTopRatedFoodUsecase(
+              fetchProductRepository,
+            );
+            return HomeViewModel(getTopRatedFoodUsecase);
+          },
+        ),
         ChangeNotifierProvider(create: (_) => CartViewmodel()),
         ChangeNotifierProvider(
           create: (_) => AuthProvider(
