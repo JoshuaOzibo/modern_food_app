@@ -1,3 +1,4 @@
+
 import 'package:fpdart/src/either.dart';
 import 'package:modern_food_app/core/error/failure.dart';
 import 'package:modern_food_app/core/error/server_exception_error.dart';
@@ -9,10 +10,8 @@ class FetchProductRepositoryImpl implements FetchProductRepository {
 
   FetchProductRepositoryImpl(this.remoteDataSource,);
 
-  @override
-  Future<Either<Failure, Map<String, dynamic>>> fetchTopRatedFood({
-    required String url,
-  }) async {
+@override
+  Future<Either<Failure, Map<String, dynamic>>> fetchTopFood({required String url}) async {
     try {
       final result = await remoteDataSource.fetchTopFood(url: url);
       return Right(result);
@@ -25,5 +24,6 @@ class FetchProductRepositoryImpl implements FetchProductRepository {
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }
+    
   }
 }

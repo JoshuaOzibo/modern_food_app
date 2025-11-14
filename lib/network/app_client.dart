@@ -22,22 +22,6 @@ class AppClient {
       }
     }
   }
-
-  Future<Response?> getPopularCategory(String endpoint) async {
-    // try {
-    //   final response = await _dio.get('$baseUrl/$endpoint');
-    //   return response;
-    // } on DioException catch (e) {
-    //   if (e.response != null) {
-    //     print("Server error with status code: ${e.response?.statusCode}");
-    //     print("Response data: ${e.response?.data}");
-    //   } else {
-    //     print("Network error: ${e.message}");
-    //   }
-
-    //   return null;
-    // }
-  }
 }
 
 class CustomInterceptors extends Interceptor {

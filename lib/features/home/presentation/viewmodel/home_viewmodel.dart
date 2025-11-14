@@ -39,40 +39,28 @@ class HomeViewModel extends ChangeNotifier {
       final response = await getTopRatedFoodUsecase.call('search.php?f=c');
       topRatedFood = response.fold(
         (failure) {
+          isLoadingTopFood = false;
+          topFooderrorMessage = true;
+          notifyListeners();
           throw Failure(message: failure.message);
         },
         (data) {
-          return data['meals']  
+          isLoadingTopFood = false;
+          notifyListeners();
+          return data['meals']
               .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
               .toList();
         },
       );
-
-      print('topRatedFood from vm: $topRatedFood');
+    } catch (e) {
       isLoadingTopFood = false;
-          // response?['meals']
-          //     ?.map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-          //     .toList() ??
-          // [];
-      // notifyListeners();
-      // if (response != null && response['meals'] != null) {
-      //   print('fetch successfully from vm');
-      //   isLoadingTopFood = false;
-      //   notifyListeners();
-      // } else {
-      //   isLoadingTopFood = false;
-      //   topFooderrorMessage = true;
-      //   notifyListeners();
-      // }
-    } on Failure catch (e) {
-      print(e.toString());
-      print(Failure(message: e.message));
-    //   isLoadingTopFood = false;
-    //   topFooderrorMessage = true;
-    //   notifyListeners();
-    //   print('Error fetching top rated food: $e');
+      topFooderrorMessage = true;
+      notifyListeners();
     }
+
+    print('Top Rated Food fetched successfully from VM $topRatedFood');
   }
+
 
   // void foodCategoryFunc() async {
   //   isLoadingFoodCategory = true;
@@ -170,4 +158,5 @@ class HomeViewModel extends ChangeNotifier {
 
   //   print('Top Rated Food: $topRatedFood');
   // }
+
 }

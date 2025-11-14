@@ -29,7 +29,7 @@ class TopRatedFoodSection extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
             );
-            // vm.allTopRatedFood();
+            vm.topFoodFunc();
           },
         ),
         if (vm.isLoadingTopFood)
@@ -44,7 +44,7 @@ class TopRatedFoodSection extends StatelessWidget {
               margin: const EdgeInsets.only(top: 60),
               child: ErrorView(
                 icon: Icons.error_outline,
-                message: 'Error Fetching Top Rated Food',
+                message: 'Failed to load top rated food.',
                 onRetry: () {
                   vm.topFoodFunc();
                 },
