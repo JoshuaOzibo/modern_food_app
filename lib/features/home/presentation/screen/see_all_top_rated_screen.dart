@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
-import 'package:modern_food_app/features/home/presentation/component/top_rated_food/all_top_rated_shimmer.dart';
-import 'package:modern_food_app/features/home/presentation/component/top_rated_food/top_rated_food_card.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/top_rated/all_top_rated_shimmer.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 

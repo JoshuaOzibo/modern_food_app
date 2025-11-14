@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
-import 'package:modern_food_app/features/home/presentation/component/popular_category/popular_category_card.dart';
-import 'package:modern_food_app/features/home/presentation/component/popular_category/popular_category_shimmer.dart';
-import 'package:modern_food_app/features/home/presentation/component/popular_category/see_all_popular_category.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/popular_category/popular_category_card.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/popular_category/popular_category_shimmer.dart';
+import 'package:modern_food_app/features/home/presentation/screen/see_all_popular_category.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 

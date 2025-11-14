@@ -48,7 +48,7 @@ class PopularCategoryCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Icon(Icons.favorite, color: Colors.white),
+                  Icon(Icons.favorite_border, color: Colors.white),
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/base/app_static_data.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
-import 'package:modern_food_app/features/home/presentation/component/showcase_order_history/order_history_card.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/order_history/order_history_card.dart';
 
 class OrderHistory extends StatelessWidget {
   const OrderHistory({super.key});

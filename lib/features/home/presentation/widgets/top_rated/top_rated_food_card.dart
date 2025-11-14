@@ -54,14 +54,14 @@ class TopRatedFoodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(2),
+                    padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
                     decoration: BoxDecoration(
-                      color: Colors.white70,
+                      color: Colors.grey.shade800,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(foodType),
                   ),
-                  Icon(Icons.favorite),
+                  Icon(Icons.favorite_border),
                 ],
               ),
             ),
