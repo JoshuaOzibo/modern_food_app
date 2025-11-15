@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
-import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/presentation/screen/see_all_top_rated_screen.dart';
@@ -12,7 +11,6 @@ import 'package:provider/provider.dart';
 
 class TopRatedFoodSection extends StatelessWidget {
   const TopRatedFoodSection({super.key});
-
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
@@ -70,22 +68,24 @@ class TopRatedFoodSection extends StatelessWidget {
                   rating: (idValue.hashCode % 5) + 1,
                   price: (5 + (idValue.hashCode % 20)),
                   distance: vm.topRatedFood[index].area,
-                  handleAddToCart: () => cartVM.addToCart(
-                    ProductUiModel(
-                      id: vm.topRatedFood[index].id,
-                      name: vm.topRatedFood[index].name,
-                      category: vm.topRatedFood[index].category,
-                      area: vm.topRatedFood[index].area,
-                      instructions: vm.topRatedFood[index].instructions,
-                      thumbnail: vm.topRatedFood[index].thumbnail,
-                      ingredients: vm.topRatedFood[index].ingredients,
-                      measures: vm.topRatedFood[index].measures,
-                      reviews: "${(int.tryParse(idValue).hashCode % 20)}",
-                      rating: (idValue.hashCode % 5) + 1,
-                      price: (5 + (idValue.hashCode % 20)),
-                      distance: vm.topRatedFood[index].area,
-                    ),
-                  ),
+                  handleAddToCart: () {
+                    cartVM.addToCart(
+                      ProductUiModel(
+                        id: vm.topRatedFood[index].id,
+                        name: vm.topRatedFood[index].name,
+                        category: vm.topRatedFood[index].category,
+                        area: vm.topRatedFood[index].area,
+                        instructions: vm.topRatedFood[index].instructions,
+                        thumbnail: vm.topRatedFood[index].thumbnail,
+                        ingredients: vm.topRatedFood[index].ingredients,
+                        measures: vm.topRatedFood[index].measures,
+                        reviews: "${(int.tryParse(idValue).hashCode % 20)}",
+                        rating: (idValue.hashCode % 5) + 1,
+                        price: (5 + (idValue.hashCode % 20)),
+                        distance: vm.topRatedFood[index].area,
+                      ),
+                    );
+                  },
                 ),
               );
             },
