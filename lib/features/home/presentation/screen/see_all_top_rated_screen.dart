@@ -13,6 +13,21 @@ class SeeAllTopRatedScreen extends StatefulWidget {
 }
 
 class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
+  // Track favorite items by ID
+  final Set<String> _favoriteIds = <String>{};
+
+  void _toggleFavorite(String id, bool isFavorite) {
+    setState(() {
+      if (isFavorite) {
+        _favoriteIds.add(id);
+      } else {
+        _favoriteIds.remove(id);
+      }
+    });
+    // TODO: Add to favorite viewmodel/repository here if needed
+    print('Favorite ${isFavorite ? "added" : "removed"}: $id');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -70,6 +85,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
               itemBuilder: (context, index) {
                 final item = vm.allTopRatedFoodList[index];
                 final idValue = item.id;
+                final isFavorite = _favoriteIds.contains(idValue);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: TopRatedFoodCard(
@@ -82,6 +98,8 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
                     rating: (idValue.hashCode % 5) + 1,
                     price: (5 + (idValue.hashCode % 20)),
                     distance: item.area,
+                    isFavorite: isFavorite,
+                    onFavoriteToggle: (fav) => _toggleFavorite(idValue, fav),
                     handleAddToCart: () => print('Add to cart'),
                   ),
                 );

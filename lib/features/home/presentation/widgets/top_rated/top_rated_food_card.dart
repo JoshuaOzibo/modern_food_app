@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/animations/fly_to_destination_animation.dart';
 import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
 import 'package:modern_food_app/core/extensions/text_extension.dart';
 
@@ -15,6 +16,8 @@ class TopRatedFoodCard extends StatefulWidget {
     required this.handleAddToCart,
     required this.width,
     required this.height,
+    this.isFavorite = false,
+    this.onFavoriteToggle,
   });
 
   final String image;
@@ -27,6 +30,8 @@ class TopRatedFoodCard extends StatefulWidget {
   final VoidCallback handleAddToCart;
   final double height;
   final double width;
+  final bool isFavorite;
+  final ValueChanged<bool>? onFavoriteToggle;
 
   @override
   State<TopRatedFoodCard> createState() => _TopRatedFoodCardState();
@@ -34,51 +39,151 @@ class TopRatedFoodCard extends StatefulWidget {
 
 class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
   final GlobalKey _imageKey = GlobalKey();
-  OverlayEntry? _overlayEntry;
+  final GlobalKey _favoriteIconKey = GlobalKey();
+  bool _isFavorite = false;
 
-  void _animateToCart() {
-    // Get the image position
-    final RenderBox? renderBox =
-        _imageKey.currentContext?.findRenderObject() as RenderBox?;
-    if (renderBox == null) return;
+  @override
+  void initState() {
+    super.initState();
+    _isFavorite = widget.isFavorite;
+  }
 
-    final Offset startPosition = renderBox.localToGlobal(Offset.zero);
-    final Size imageSize = renderBox.size;
+  @override
+  void didUpdateWidget(TopRatedFoodCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isFavorite != widget.isFavorite) {
+      _isFavorite = widget.isFavorite;
+    }
+  }
 
-    // Calculate cart icon position (second item in bottom nav bar at index 1)
-    // With 4 items, cart icon is approximately at 1/4 of screen width
+  Offset _calculateCartIconPosition() {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double bottomNavHeight = kBottomNavigationBarHeight;
     final double screenHeight = MediaQuery.of(context).size.height;
     
     // Cart icon is at index 1, so approximately at 1/4 of screen width (assuming 4 items)
-    final Offset endPosition = Offset(
-      screenWidth * 0.25, // Approximate position of cart icon (second of 4 items)
-      screenHeight - bottomNavHeight / 2, // Middle of bottom nav bar
+    return Offset(
+      screenWidth * 0.25,
+      screenHeight - bottomNavHeight / 2,
     );
-
-    // Create overlay entry with animated widget
-    _overlayEntry = OverlayEntry(
-      builder: (context) => _AnimatedImageOverlay(
-        startPosition: startPosition,
-        endPosition: endPosition,
-        imageSize: imageSize,
-        imageUrl: widget.image,
-        onAnimationComplete: () {
-          _overlayEntry?.remove();
-          _overlayEntry = null;
-          widget.handleAddToCart();
-        },
-      ),
-    );
-
-    Overlay.of(context).insert(_overlayEntry!);
   }
 
-  @override
-  void dispose() {
-    _overlayEntry?.remove();
-    super.dispose();
+  Offset _calculateFavoriteIconPosition() {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double bottomNavHeight = kBottomNavigationBarHeight;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    
+    // Favorite icon is at index 2, so approximately at 50% of screen width (third of 4 items)
+    return Offset(
+      screenWidth * 0.5,
+      screenHeight - bottomNavHeight / 2,
+    );
+  }
+
+  void _animateToCart() {
+    FlyToDestinationAnimation.start(
+      context: context,
+      sourceKey: _imageKey,
+      destinationPosition: _calculateCartIconPosition(),
+      widget: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: CustomCacheNetworkImage(
+          height: widget.height,
+          image: widget.image,
+          width: widget.width,
+        ),
+      ),
+      onComplete: widget.handleAddToCart,
+    );
+  }
+
+  void _animateToFavorite() {
+    // If already favorite, just toggle without animation
+    if (_isFavorite) {
+      setState(() {
+        _isFavorite = false;
+      });
+      widget.onFavoriteToggle?.call(false);
+      return;
+    }
+
+    // Get the favorite icon position for animation
+    final RenderBox? renderBox =
+        _favoriteIconKey.currentContext?.findRenderObject() as RenderBox?;
+    
+    if (renderBox == null) {
+      // If icon key is not available, use image key
+      _animateFavoriteFromImage();
+      return;
+    }
+
+    final Size iconSize = renderBox.size;
+
+    FlyToDestinationAnimation.start(
+      context: context,
+      sourceKey: _favoriteIconKey,
+      destinationPosition: _calculateFavoriteIconPosition(),
+      widget: Container(
+        width: iconSize.width,
+        height: iconSize.height,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.red.withOpacity(0.5),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Icon(
+          Icons.favorite,
+          color: Colors.white,
+          size: iconSize.width * 0.6,
+        ),
+      ),
+      onComplete: () {
+        setState(() {
+          _isFavorite = true;
+        });
+        widget.onFavoriteToggle?.call(true);
+      },
+    );
+  }
+
+  void _animateFavoriteFromImage() {
+    FlyToDestinationAnimation.start(
+      context: context,
+      sourceKey: _imageKey,
+      destinationPosition: _calculateFavoriteIconPosition(),
+      widget: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.red.withOpacity(0.5),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Icon(
+          Icons.favorite,
+          color: Colors.white,
+          size: 24,
+        ),
+      ),
+      onComplete: () {
+        setState(() {
+          _isFavorite = true;
+        });
+        widget.onFavoriteToggle?.call(true);
+      },
+    );
   }
 
   @override
@@ -113,7 +218,22 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
                     ),
                     child: Text(widget.foodType),
                   ),
-                  Icon(Icons.favorite_border),
+                  GestureDetector(
+                    key: _favoriteIconKey,
+                    onTap: _animateToFavorite,
+                    child: Container(
+                      padding: EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        color: _isFavorite ? Colors.red : Colors.transparent,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        _isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: _isFavorite ? Colors.white : Colors.white,
+                        size: 18,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -186,136 +306,6 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
           ],
         ),
       ],
-    );
-  }
-}
-
-class _AnimatedImageOverlay extends StatefulWidget {
-  final Offset startPosition;
-  final Offset endPosition;
-  final Size imageSize;
-  final String imageUrl;
-  final VoidCallback onAnimationComplete;
-
-  const _AnimatedImageOverlay({
-    required this.startPosition,
-    required this.endPosition,
-    required this.imageSize,
-    required this.imageUrl,
-    required this.onAnimationComplete,
-  });
-
-  @override
-  State<_AnimatedImageOverlay> createState() => _AnimatedImageOverlayState();
-}
-
-class _AnimatedImageOverlayState extends State<_AnimatedImageOverlay>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _opacityAnimation;
-  late Animation<Offset> _positionAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 800),
-      vsync: this,
-    );
-
-    // Scale animation: scale up to 1.2, then scale down more as it moves to cart
-    _scaleAnimation = TweenSequence<double>([
-      TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 1.15).chain(
-          CurveTween(curve: Curves.easeOut),
-        ),
-        weight: 0.3,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.2, end: 0.1).chain(
-          CurveTween(curve: Curves.easeIn),
-        ),
-        weight: 8,
-      ),
-    ]).animate(_controller);
-
-    // Opacity animation: fade out as it moves (starts fading after initial scale)
-    _opacityAnimation = TweenSequence<double>([
-      TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 1.0),
-        weight: 0.4,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 0.0).chain(
-          CurveTween(curve: Curves.easeIn),
-        ),
-        weight: 0.6,
-      ),
-    ]).animate(_controller);
-
-    // Position animation: move from start to end with a curved path
-    _positionAnimation = Tween<Offset>(
-      begin: widget.startPosition,
-      end: widget.endPosition,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOutCubic,
-      ),
-    );
-
-    _controller.forward().then((_) {
-      widget.onAnimationComplete();
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Positioned(
-          left: _positionAnimation.value.dx,
-          top: _positionAnimation.value.dy,
-          child: IgnorePointer(
-            child: Opacity(
-              opacity: _opacityAnimation.value,
-              child: Transform.scale(
-                scale: _scaleAnimation.value,
-                child: Container(
-                  width: widget.imageSize.width,
-                  height: widget.imageSize.height,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CustomCacheNetworkImage(
-                      height: widget.imageSize.height,
-                      image: widget.imageUrl,
-                      width: widget.imageSize.width,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

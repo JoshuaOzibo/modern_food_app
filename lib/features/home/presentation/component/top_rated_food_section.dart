@@ -9,13 +9,36 @@ import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmo
 import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 import 'package:provider/provider.dart';
 
-class TopRatedFoodSection extends StatelessWidget {
-  const TopRatedFoodSection({super.key});
+class TopRatedFoodSection extends StatefulWidget {
+  const TopRatedFoodSection({super.key, required this.vm});
+  final HomeViewModel vm;
+
   @override
-  Widget build(BuildContext context) {
-    final vm = context.watch<HomeViewModel>();
+  State<TopRatedFoodSection> createState() => _TopRatedFoodSectionState();
+}
+
+class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
+  // Track favorite items by ID
+  final Set<String> _favoriteIds = <String>{};
+
+  void _toggleFavorite(String id, bool isFavorite) {
+    setState(() {
+      if (isFavorite) {
+        _favoriteIds.add(id);
+      } else {
+        _favoriteIds.remove(id);
+      }
+    });
+
+    print('favorite ids: $_favoriteIds');
+    // TODO: Add to favorite viewmodel/repository here if needed
+    print('Favorite ${isFavorite ? "added" : "removed"}: $id');
+  }
+
+  @override
+  Widget build(BuildContext context) {  
     final cartVM = context.read<CartViewmodel>();
-    print('from rating ${vm.topRatedFood}');
+    print('from rating ${widget.vm.topRatedFood}');
     return Column(
       spacing: 10,
       children: [
@@ -27,16 +50,16 @@ class TopRatedFoodSection extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
             );
-            vm.topFoodFunc();
+            widget.vm.topFoodFunc();
           },
         ),
-        if (vm.isLoadingTopFood)
+        if (widget.vm.isLoadingTopFood)
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: const Center(child: TopRatedShimmer()),
           ),
 
-        if (!vm.isLoadingTopFood && vm.topFooderrorMessage)
+        if (!widget.vm.isLoadingTopFood && widget.vm.topFooderrorMessage)
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 60),
@@ -44,45 +67,48 @@ class TopRatedFoodSection extends StatelessWidget {
                 icon: Icons.error_outline,
                 message: 'Failed to load top rated food.',
                 onRetry: () {
-                  vm.topFoodFunc();
+                  widget.vm.topFoodFunc();
                 },
               ),
             ),
           ),
         SizedBox(
-          height: vm.topRatedFood.isNotEmpty ? 200 : 50,
+          height: widget.vm.topRatedFood.isNotEmpty ? 200 : 50,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: vm.topRatedFood.length,
+            itemCount: widget.vm.topRatedFood.length,
             itemBuilder: (context, index) {
-              final idValue = vm.topRatedFood[index].id;
+              final idValue = widget.vm.topRatedFood[index].id;
+              final isFavorite = _favoriteIds.contains(idValue);
               return Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: TopRatedFoodCard(
                   width: 140,
                   height: 100,
-                  image: vm.topRatedFood[index].thumbnail,
-                  foodType: vm.topRatedFood[index].category,
-                  title: vm.topRatedFood[index].name,
+                  image: widget.vm.topRatedFood[index].thumbnail,
+                  foodType: widget.vm.topRatedFood[index].category,
+                  title: widget.vm.topRatedFood[index].name,
                   reviews: "${(int.tryParse(idValue).hashCode % 20)}",
                   rating: (idValue.hashCode % 5) + 1,
                   price: (5 + (idValue.hashCode % 20)),
-                  distance: vm.topRatedFood[index].area,
+                  distance: widget.vm.topRatedFood[index].area,
+                  isFavorite: isFavorite,
+                  onFavoriteToggle: (fav) => _toggleFavorite(idValue, fav),
                   handleAddToCart: () {
                     cartVM.addToCart(
                       ProductUiModel(
-                        id: vm.topRatedFood[index].id,
-                        name: vm.topRatedFood[index].name,
-                        category: vm.topRatedFood[index].category,
-                        area: vm.topRatedFood[index].area,
-                        instructions: vm.topRatedFood[index].instructions,
-                        thumbnail: vm.topRatedFood[index].thumbnail,
-                        ingredients: vm.topRatedFood[index].ingredients,
-                        measures: vm.topRatedFood[index].measures,
+                        id: widget.vm.topRatedFood[index].id,
+                        name: widget.vm.topRatedFood[index].name,
+                        category: widget.vm.topRatedFood[index].category,
+                        area: widget.vm.topRatedFood[index].area,
+                        instructions: widget.vm.topRatedFood[index].instructions,
+                        thumbnail: widget.vm.topRatedFood[index].thumbnail,
+                        ingredients: widget.vm.topRatedFood[index].ingredients,
+                        measures: widget.vm.topRatedFood[index].measures,
                         reviews: "${(int.tryParse(idValue).hashCode % 20)}",
                         rating: (idValue.hashCode % 5) + 1,
                         price: (5 + (idValue.hashCode % 20)),
-                        distance: vm.topRatedFood[index].area,
+                        distance: widget.vm.topRatedFood[index].area,
                       ),
                     );
                   },

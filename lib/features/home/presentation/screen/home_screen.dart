@@ -15,11 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeViewModel>().initProvider();
     });
   }
@@ -159,11 +158,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     const SelectFoodType(),
+                      const SelectFoodType(),
                       const OrderHistory(),
-                     const SizedBox(height: 20),
-                     const TopRatedFoodSection(),
-                     const PopularCategory(),
+                      const SizedBox(height: 20),
+                      Consumer<HomeViewModel>(
+                        builder: (context, vm, child) {
+                          return TopRatedFoodSection(vm: vm);
+                        },
+                      ),
+                      Consumer<HomeViewModel>(
+                        builder: (context, vm, child) {
+                          return PopularCategory(vm: vm);
+                        },
+                      ),
                     ],
                   ),
                 ),

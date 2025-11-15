@@ -5,14 +5,13 @@ import 'package:modern_food_app/features/home/presentation/widgets/popular_categ
 import 'package:modern_food_app/features/home/presentation/widgets/popular_category/popular_category_shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/screen/see_all_popular_category.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
-import 'package:provider/provider.dart';
 
 class PopularCategory extends StatelessWidget {
-  const PopularCategory({super.key});
+  const PopularCategory({super.key, required this.vm});
+  final HomeViewModel vm;
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<HomeViewModel>();
     return Column(
       spacing: 10,
       children: [
