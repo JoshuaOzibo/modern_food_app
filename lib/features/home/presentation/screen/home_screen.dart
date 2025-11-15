@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/circular_button.dart';
 import 'package:modern_food_app/features/home/presentation/component/popular_category.dart';
+import 'package:modern_food_app/features/home/presentation/component/selected_section.dart';
 import 'package:modern_food_app/features/home/presentation/component/select_food_type.dart';
 import 'package:modern_food_app/features/home/presentation/component/order_history.dart';
 import 'package:modern_food_app/features/home/presentation/component/top_rated_food_section.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String selectedCategory = 'All';
   @override
   void initState() {
     super.initState();
@@ -25,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void selectByCategory(String value) {
+      print('value: $value');
+      setState(() {
+        selectedCategory = value;
+      });
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -158,19 +167,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SelectFoodType(),
-                      const OrderHistory(),
-                      const SizedBox(height: 20),
-                      Consumer<HomeViewModel>(
-                        builder: (context, vm, child) {
-                          return TopRatedFoodSection(vm: vm);
-                        },
-                      ),
-                      Consumer<HomeViewModel>(
-                        builder: (context, vm, child) {
-                          return PopularCategory(vm: vm);
-                        },
-                      ),
+                      SelectFoodType(handleSelectByCategory: selectByCategory),
+                      if (selectedCategory != 'All')
+                        SelectedSectionWidget(
+                          handleCloseWidget: () => setState(() {
+                            selectedCategory = 'All';
+                          }),
+                          selectedCategory: selectedCategory,
+                        )
+                      else
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const OrderHistory(),
+                            const SizedBox(height: 20),
+                            Consumer<HomeViewModel>(
+                              builder: (context, vm, child) {
+                                return TopRatedFoodSection(vm: vm);
+                              },
+                            ),
+                            Consumer<HomeViewModel>(
+                              builder: (context, vm, child) {
+                                return PopularCategory(vm: vm);
+                              },
+                            ),
+                          ],
+                        ),
                     ],
                   ),
                 ),

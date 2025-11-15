@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/base/app_static_data.dart';
 
 class SelectFoodType extends StatelessWidget {
-  const SelectFoodType({super.key});
+  const SelectFoodType({super.key, required this.handleSelectByCategory});
+  final Function(String) handleSelectByCategory;
 
   @override
   Widget build(BuildContext context) {
     final AppStaticData appStaticData = AppStaticData();
-
     return SizedBox(
       height: 110,
       child: ListView.builder(
@@ -16,7 +16,7 @@ class SelectFoodType extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: (){
-              print(appStaticData.selectItemList[index]['title']);
+              handleSelectByCategory(appStaticData.selectItemList[index]['title']);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
@@ -39,6 +39,7 @@ class SelectFoodType extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
+                        key: GlobalKey(debugLabel: 'image_key_${index}'),
                         appStaticData.selectItemList[index]['image'],
                         height: 60,
                         width: 60,

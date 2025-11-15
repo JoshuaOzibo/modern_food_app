@@ -27,8 +27,13 @@ class HomeViewModel extends ChangeNotifier {
   bool allFoodCategoryErrorMessage = false;
 
   initProvider() async {
+
+    if(topRatedFood.isEmpty) {
     topFoodFunc();
+    }
+    if(popularCategoty.isEmpty) {
     foodCategoryFunc();
+    }
   }
 
   void topFoodFunc() async {
