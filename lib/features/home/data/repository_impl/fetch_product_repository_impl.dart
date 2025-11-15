@@ -1,4 +1,3 @@
-
 import 'package:fpdart/src/either.dart';
 import 'package:modern_food_app/core/error/failure.dart';
 import 'package:modern_food_app/core/error/network_exception.dart';

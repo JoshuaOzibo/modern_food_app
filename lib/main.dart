@@ -9,6 +9,7 @@ import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provid
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/home/data/remote_data_source/top_food_remote_data_source.dart';
 import 'package:modern_food_app/features/home/data/repository_impl/fetch_product_repository_impl.dart';
+import 'package:modern_food_app/features/home/domain/usecase/filter_food_by_category_usecase.dart';
 import 'package:modern_food_app/features/home/domain/usecase/get_top_rated_food_usecase.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/index.dart';
@@ -29,9 +30,9 @@ void main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  print(
-    'Supabase Initialized ${dotenv.env['SUPABASE_URL']} , ${dotenv.env['SUPABASE_ANON_KEY']}',
-  );
+  // print(
+  //   'Supabase Initialized ${dotenv.env['SUPABASE_URL']} , ${dotenv.env['SUPABASE_ANON_KEY']}',
+  // );
   runApp(
     MultiProvider(
       providers: [
@@ -47,7 +48,11 @@ void main() async {
             final getTopRatedFoodUsecase = GetTopRatedFoodUsecase(
               fetchProductRepository,
             );
-            return HomeViewModel(getTopRatedFoodUsecase);
+            final filterFoodByCategoryUsecase = FilterFoodByCategoryUsecase(
+              fetchProductRepository,
+            );
+
+            return HomeViewModel(getTopRatedFoodUsecase, filterFoodByCategoryUsecase);
           },
         ),
         ChangeNotifierProvider(create: (_) => CartViewmodel()),

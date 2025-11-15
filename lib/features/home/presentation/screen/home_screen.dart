@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String selectedCategory = 'All';
+  String selectedCategory = '';
   @override
   void initState() {
     super.initState();
@@ -28,10 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     void selectByCategory(String value) {
+      final vm = context.read<HomeViewModel>();
       print('value: $value');
       setState(() {
         selectedCategory = value;
       });
+      vm.filterFoodByCategory(selectedCategory);
     }
 
     return Scaffold(
