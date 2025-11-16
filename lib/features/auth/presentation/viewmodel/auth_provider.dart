@@ -9,7 +9,7 @@ class AuthProvider extends ChangeNotifier {
   final UserSignup userSignup;
   final UserSignin userSignin;
 
-  AuthProvider(this.userSignup, this.userSignin);
+  AuthProvider({required this.userSignup, required this.userSignin});
 
   Future signUpFunc(UserSignupParams params) async {
     try {

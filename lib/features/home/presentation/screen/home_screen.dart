@@ -170,10 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SelectFoodType(handleSelectByCategory: selectByCategory),
-                      if (selectedCategory != 'All')
+                      if (selectedCategory != '')
                         SelectedSectionWidget(
                           handleCloseWidget: () => setState(() {
-                            selectedCategory = 'All';
+                            selectedCategory = '';
                           }),
                           selectedCategory: selectedCategory,
                         )

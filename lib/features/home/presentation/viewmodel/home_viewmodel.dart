@@ -8,7 +8,7 @@ class HomeViewModel extends ChangeNotifier {
   final GetTopRatedFoodUsecase getTopRatedFoodUsecase;
   final FilterFoodByCategoryUsecase filterFoodByCategoryUsecase;
 
-  HomeViewModel(this.getTopRatedFoodUsecase, this.filterFoodByCategoryUsecase);
+  HomeViewModel({required this.getTopRatedFoodUsecase, required this.filterFoodByCategoryUsecase});
 
   List<ProductUiModel> topRatedFood = [];
   List<ProductUiModel> popularCategoty = [];

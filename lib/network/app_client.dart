@@ -4,7 +4,7 @@ import 'package:modern_food_app/core/error/network_exception.dart';
 import 'package:modern_food_app/core/error/server_exception_error.dart';
 
 class AppClient {
-  static String baseUrl = '${dotenv.env['API_BASE_URL']}';
+   String baseUrl = '${dotenv.env['API_BASE_URL']}';
   final Dio _dio = Dio()..interceptors.add(CustomInterceptors());
 
   Future<Response?> getTopRatedFoodRequest(String endpoint) async {
