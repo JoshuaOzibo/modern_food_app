@@ -44,14 +44,17 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await getTopRatedFoodUsecase.call('search.php?f=c');
+      print('top rated response $response');
       response.fold(
         (failure) {
+          print('top rated failure ${failure.message}');
           isLoadingTopFood = false;
           topFooderrorMessage = true;
           notifyListeners();
           throw Failure(message: failure.message);
         },
         (data) {
+          print('top rated data List ${data.length}');
           isLoadingTopFood = false;
           notifyListeners();
           topRatedFood = data.map((e) {
@@ -72,15 +75,17 @@ class HomeViewModel extends ChangeNotifier {
               reviews: e.reviews,
             );
           }).toList();
+          
         },
       );
     } catch (e) {
+      print('top rated error $e');
       isLoadingTopFood = false;
       topFooderrorMessage = true;
       notifyListeners();
     }
 
-    print('Top Rated Food fetched successfully from VM $topRatedFood');
+    // print('Top Rated Food fetched successfully from VM $topRatedFood');
   }
 
   void foodCategoryFunc() async {
