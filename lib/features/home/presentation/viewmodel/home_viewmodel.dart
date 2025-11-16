@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/error/failure.dart';
+import 'package:modern_food_app/features/home/domain/entities/entity.dart';
 import 'package:modern_food_app/features/home/domain/usecase/filter_food_by_category_usecase.dart';
 import 'package:modern_food_app/features/home/domain/usecase/get_top_rated_food_usecase.dart';
-import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final GetTopRatedFoodUsecase getTopRatedFoodUsecase;
   final FilterFoodByCategoryUsecase filterFoodByCategoryUsecase;
 
-  HomeViewModel({required this.getTopRatedFoodUsecase, required this.filterFoodByCategoryUsecase});
+  HomeViewModel({
+    required this.getTopRatedFoodUsecase,
+    required this.filterFoodByCategoryUsecase,
+  });
 
-  List<ProductUiModel> topRatedFood = [];
-  List<ProductUiModel> popularCategoty = [];
-  List<ProductUiModel> allTopRatedFoodList = [];
-  List<ProductUiModel> allPopularCategoryList = [];
-  List<ProductUiModel> filterFoodByCategoryList = [];
+  List<Entity> topRatedFood = [];
+  List<Entity> popularCategoty = [];
+  List<Entity> allTopRatedFoodList = [];
+  List<Entity> allPopularCategoryList = [];
+  List<Entity> filterFoodByCategoryList = [];
 
   // loadings
   bool isLoadingTopFood = true;
@@ -31,13 +34,8 @@ class HomeViewModel extends ChangeNotifier {
   bool isFilterByCategoryErrorMessage = false;
 
   initProvider() async {
-
-    if(topRatedFood.isEmpty) {
     topFoodFunc();
-    }
-    if(popularCategoty.isEmpty) {
     foodCategoryFunc();
-    }
   }
 
   void topFoodFunc() async {
@@ -46,7 +44,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await getTopRatedFoodUsecase.call('search.php?f=c');
-      topRatedFood = response.fold(
+      response.fold(
         (failure) {
           isLoadingTopFood = false;
           topFooderrorMessage = true;
@@ -56,9 +54,24 @@ class HomeViewModel extends ChangeNotifier {
         (data) {
           isLoadingTopFood = false;
           notifyListeners();
-          return data['meals']
-              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
-              .toList();
+          topRatedFood = data.map((e) {
+            return Entity(
+              id: e.id,
+              name: e.name,
+              category: e.category,
+              area: e.area,
+              instructions: e.instructions,
+              thumbnail: e.thumbnail,
+              ingredients: e.ingredients,
+              measures: e.measures,
+              youtube: e.youtube,
+              price: e.price,
+              quantity: e.quantity,
+              rating: e.rating,
+              distance: e.distance,
+              reviews: e.reviews,
+            );
+          }).toList();
         },
       );
     } catch (e) {
@@ -76,7 +89,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await getTopRatedFoodUsecase.call('search.php?f=f');
-      popularCategoty = response.fold(
+      response.fold(
         (failure) {
           isLoadingFoodCategory = false;
           foodCategoryerrorMessage = true;
@@ -86,8 +99,25 @@ class HomeViewModel extends ChangeNotifier {
         (data) {
           isLoadingFoodCategory = false;
           notifyListeners();
-          return data['meals']
-              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+          popularCategoty = data
+              .map(
+                (e) => Entity(
+                  id: e.id,
+                  name: e.name,
+                  category: e.category,
+                  area: e.area,
+                  instructions: e.instructions,
+                  thumbnail: e.thumbnail,
+                  ingredients: e.ingredients,
+                  measures: e.measures,
+                  youtube: e.youtube,
+                  price: e.price,
+                  quantity: e.quantity,
+                  rating: e.rating,
+                  distance: e.distance,
+                  reviews: e.reviews,
+                ),
+              )
               .toList();
         },
       );
@@ -106,7 +136,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await getTopRatedFoodUsecase.call('search.php?f=b');
-      allTopRatedFoodList = response.fold(
+      response.fold(
         (failure) {
           isLoadingAllTopFood = false;
           allTopFooderrorMessage = true;
@@ -116,8 +146,25 @@ class HomeViewModel extends ChangeNotifier {
         (data) {
           isLoadingAllTopFood = false;
           notifyListeners();
-          return data['meals']
-              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+          allTopRatedFoodList = data
+              .map(
+                (e) => Entity(
+                  id: e.id,
+                  name: e.name,
+                  category: e.category,
+                  area: e.area,
+                  instructions: e.instructions,
+                  thumbnail: e.thumbnail,
+                  ingredients: e.ingredients,
+                  measures: e.measures,
+                  youtube: e.youtube,
+                  price: e.price,
+                  quantity: e.quantity,
+                  rating: e.rating,
+                  distance: e.distance,
+                  reviews: e.reviews,
+                ),
+              )
               .toList();
         },
       );
@@ -136,7 +183,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await getTopRatedFoodUsecase.call('search.php?f=b');
-      allPopularCategoryList = response.fold(
+      response.fold(
         (failure) {
           isLoadingAllFoodCategory = false;
           allFoodCategoryErrorMessage = true;
@@ -146,8 +193,25 @@ class HomeViewModel extends ChangeNotifier {
         (data) {
           isLoadingAllFoodCategory = false;
           notifyListeners();
-          return data['meals']
-              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+          allPopularCategoryList = data
+              .map(
+                (e) => Entity(
+                  id: e.id,
+                  name: e.name,
+                  category: e.category,
+                  area: e.area,
+                  instructions: e.instructions,
+                  thumbnail: e.thumbnail,
+                  ingredients: e.ingredients,
+                  measures: e.measures,
+                  youtube: e.youtube,
+                  price: e.price,
+                  quantity: e.quantity,
+                  rating: e.rating,
+                  distance: e.distance,
+                  reviews: e.reviews,
+                ),
+              )
               .toList();
         },
       );
@@ -165,8 +229,10 @@ class HomeViewModel extends ChangeNotifier {
     isFilterByCategoryErrorMessage = false;
     notifyListeners();
     try {
-      final response = await getTopRatedFoodUsecase.call('filter.php?c=$params');
-      filterFoodByCategoryList = response.fold(
+      final response = await getTopRatedFoodUsecase.call(
+        'filter.php?c=$params',
+      );
+      response.fold(
         (failure) {
           isLoadingFilterByCategory = false;
           isFilterByCategoryErrorMessage = true;
@@ -177,8 +243,25 @@ class HomeViewModel extends ChangeNotifier {
           isLoadingFilterByCategory = false;
           notifyListeners();
           print('filter data $data');
-          return data['meals']
-              .map<ProductUiModel>((item) => ProductUiModel.fromJson(item))
+          filterFoodByCategoryList = data
+              .map(
+                (e) => Entity(
+                  id: e.id,
+                  name: e.name,
+                  category: e.category,
+                  area: e.area,
+                  instructions: e.instructions,
+                  thumbnail: e.thumbnail,
+                  ingredients: e.ingredients,
+                  measures: e.measures,
+                  youtube: e.youtube,
+                  price: e.price,
+                  quantity: e.quantity,
+                  rating: e.rating,
+                  distance: e.distance,
+                  reviews: e.reviews,
+                ),
+              )
               .toList();
         },
       );

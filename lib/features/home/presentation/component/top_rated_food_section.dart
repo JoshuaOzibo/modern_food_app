@@ -6,7 +6,7 @@ import 'package:modern_food_app/features/home/presentation/screen/see_all_top_ra
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
-import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
+import 'package:modern_food_app/models/product_ui_model.dart';
 import 'package:provider/provider.dart';
 
 class TopRatedFoodSection extends StatefulWidget {

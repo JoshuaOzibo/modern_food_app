@@ -1,4 +1,5 @@
 import 'package:modern_food_app/core/error/server_exception_error.dart';
+import 'package:modern_food_app/models/product_ui_model.dart';
 import 'package:modern_food_app/network/app_client.dart';
 
 abstract interface class TopFoodRemoteDataSource {
@@ -17,7 +18,7 @@ class TopFoodRemoteDataSourceImpl implements TopFoodRemoteDataSource {
         throw ServerExceptionError(message: 'No Data received');
       }
 
-      return response?.data as Map<String, dynamic>;
+      return response!.data;
     } catch (e) {
       print('Error fetching top food: $e');
       rethrow;

@@ -11,10 +11,7 @@ class SelectedSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      alignment: Alignment.bottomCenter,
-      duration: Duration(milliseconds: 1000),
-      curve: Curves.easeInOut,
+    return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),

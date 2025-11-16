@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/models/product_ui_model/product_ui_model.dart';
+import 'package:modern_food_app/models/product_ui_model.dart';
 
 class CartViewmodel extends ChangeNotifier {
   final List<ProductUiModel> cartList = [];
