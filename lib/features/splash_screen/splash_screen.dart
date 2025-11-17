@@ -17,10 +17,14 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<Offset> smallCircleTransition;
   late AnimationController _smallCircleController;
   bool scaleAnimation = false;
+  bool _hasNavigated = false;
 
   // text opacity transiction
   late Animation<double> _textFadeTransition;
   late AnimationController _textFadeController;
+  
+  // Navigation timer
+  Timer? _navigationTimer;
 
   @override
   void initState() {
@@ -49,13 +53,11 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _textFadeController, curve: Curves.ease),
     );
 
-    // forward function
-    // _scaleBounceController.forward();
    _textFadeController.forward();
 
     _textFadeController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Timer(const Duration(milliseconds: 1000), (){
+        Timer(const Duration(milliseconds: 500), (){
           _smallCircleController.forward();
         });
       }
@@ -65,29 +67,34 @@ class _SplashScreenState extends State<SplashScreen>
         setState(() {
           scaleAnimation = true;
         });
+        _navigationTimer?.cancel();
+        _navigationTimer = Timer(const Duration(milliseconds: 700), () {
+          _navigateToSignIn();
+        });
       }
     });
   }
 
+  void _navigateToSignIn() {
+    if (!_hasNavigated && mounted) {
+      _hasNavigated = true;
+      Navigator.push(
+        context,
+        CustomPageTransition(route: const SigninPage()),
+      );
+    }
+  }
+
   @override
   void dispose() {
+    _navigationTimer?.cancel();
     _textFadeController.dispose();
     _smallCircleController.dispose();
-    // _scaleBounceController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (scaleAnimation) {
-      Timer(const Duration(milliseconds: 800), () {
-        Navigator.push(
-          context,
-          CustomPageTransition(route: const SigninPage()),
-        );
-      });
-    }
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(

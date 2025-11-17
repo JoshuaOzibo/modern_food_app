@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomPageTransition extends PageRouteBuilder {
@@ -8,19 +9,14 @@ class CustomPageTransition extends PageRouteBuilder {
         pageBuilder: (context, animation, secondaryAnimation) {
           return route;
         },
-        // transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 300),
+        reverseTransitionDuration: const Duration(milliseconds: 300),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          final animationStartPosition =
-              Tween<Offset>(begin: Offset(0.5, 0), end: Offset.zero).animate(
-                CurvedAnimation(parent: animation, curve: Curves.easeInOut),
-              );
-          final fadeTransition = Tween<double>(begin: 0.5, end: 1).animate(
-            CurvedAnimation(parent: animation, curve: Curves.ease),
-          );
-
-          return SlideTransition(
-            position: animationStartPosition,
-            child: FadeTransition(opacity: fadeTransition, child: child),
+          return CupertinoPageTransition(
+            primaryRouteAnimation: animation,
+            secondaryRouteAnimation: secondaryAnimation,
+            child: child,
+            linearTransition: false,
           );
         },
       );
