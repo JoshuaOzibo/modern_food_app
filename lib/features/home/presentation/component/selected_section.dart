@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/features/home/presentation/widgets/select_by_category_card/select_by_category_card.dart';
 
 class SelectedSectionWidget extends StatelessWidget {
   const SelectedSectionWidget({
@@ -52,21 +53,12 @@ class SelectedSectionWidget extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 1.5,
+                childAspectRatio: 1,
               ),
               padding: EdgeInsets.all(10),
               itemCount: 20,
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListTile(
-                    title: Text('Hello World'),
-                    subtitle: Text('My name is josh'),
-                  ),
-                );
+                return SelectByCategoryCard();
               },
             ),
           ),
