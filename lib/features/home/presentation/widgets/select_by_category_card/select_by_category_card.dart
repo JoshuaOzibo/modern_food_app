@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
 
 class SelectByCategoryCard extends StatelessWidget {
-  const SelectByCategoryCard({super.key});
+  const SelectByCategoryCard({super.key, required this.image, required this.height, required this.width, required this.title, required this.subtitle});
 
+  final String image;
+  final double height;
+  final double width;
+  final String title;
+  final String subtitle;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,9 +21,13 @@ class SelectByCategoryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 2,
         children: [
-          Image.asset('assets/images/chilli-9202873_1280.jpg', cacheHeight: 100, width: double.infinity,),
-        Text('Hello'),
-        Text('Hello')
+          CustomCacheNetworkImage(
+            height: height, 
+            image: image, 
+            width: width,
+          ),
+          Text(title, style: TextStyle(color: Colors.white),),
+          Text(subtitle, style: TextStyle(color: Colors.white),)
         ],
       ),
     );
