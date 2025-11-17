@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CartOption extends StatelessWidget {
-    const CartOption({super.key, required this.selectedOption, required this.onOptionChanged});
+    const CartOption({super.key, required this.selectedOption, required this.onOptionChanged, required this.selectList});
   final String selectedOption;
   final Function(String) onOptionChanged;
+  final List<String> selectList;
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       decoration: BoxDecoration(
         boxShadow: List.of([
@@ -27,9 +27,11 @@ class CartOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ...['Delivery', 'Take away', 'Dine in'].map((item) => Expanded(
+          ...selectList.map((item) => Expanded(
             child: GestureDetector(
-              onTap: () => onOptionChanged(item),
+              onTap: (){
+                onOptionChanged(item);
+              },
               child: Container(
                 width: double.infinity,
                 height: 40,
