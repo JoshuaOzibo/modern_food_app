@@ -15,9 +15,11 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenScreenState extends State<CartScreen> {
+    final selectList = ['Delivery', 'Take away', 'Dine in'];
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<CartViewmodel>();
+    String selectedOption = 'Delivery';
     Future<void> _refreshData() async {
       await Future.delayed(Duration(seconds: 1));
       setState(() {});
@@ -34,7 +36,12 @@ class _CartScreenScreenState extends State<CartScreen> {
             children: [
               Column(
                 children: [
-                  CartOption(),
+                  CartOption(selectedOption: selectedOption, onOptionChanged: (option) {
+                    setState(() {
+                      selectedOption = option;
+                      print('selectedOption: $selectedOption');
+                    });
+                  }),
                   SizedBox(height: 10),
                   TitleTextWithoutIcon(
                     leftText: 'Address Details',
