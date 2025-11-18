@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/error_view.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
+import 'package:modern_food_app/features/favorite/viewmodel/favorite_view_model.dart';
+import 'package:modern_food_app/features/home/domain/entities/entity.dart';
 import 'package:modern_food_app/features/home/presentation/screen/see_all_top_rated_screen.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_shimmer.dart';
@@ -36,8 +38,9 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
   }
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     final cartVM = context.read<CartViewmodel>();
+    final fVM = context.read<FavoriteViewModel>();
     print('from rating ${widget.vm.topRatedFood}');
     return Column(
       spacing: 10,
@@ -93,7 +96,28 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
                   price: (5 + (idValue.hashCode % 20)),
                   distance: widget.vm.topRatedFood[index].area,
                   isFavorite: isFavorite,
-                  onFavoriteToggle: (fav) => _toggleFavorite(idValue, fav),
+                  onFavoriteToggle: (fav) {
+                    _toggleFavorite(idValue, fav);
+                    fVM.addToFavorite(
+                      Entity(
+                        id: widget.vm.topRatedFood[index].id,
+                        name: widget.vm.topRatedFood[index].name,
+                        category: widget.vm.topRatedFood[index].category,
+                        area: widget.vm.topRatedFood[index].area,
+                        instructions:
+                            widget.vm.topRatedFood[index].instructions,
+                        thumbnail: widget.vm.topRatedFood[index].thumbnail,
+                        ingredients: widget.vm.topRatedFood[index].ingredients,
+                        measures: widget.vm.topRatedFood[index].measures,
+                        reviews: "${(int.tryParse(idValue).hashCode % 20)}",
+                        rating: (idValue.hashCode % 5) + 1,
+                        price: (5 + (idValue.hashCode % 20)),
+                        distance: widget.vm.topRatedFood[index].area,
+                      ),
+                      idValue,
+                      isFavorite
+                    );
+                  },
                   handleAddToCart: () {
                     cartVM.addToCart(
                       ProductUiModel(
@@ -101,7 +125,8 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
                         name: widget.vm.topRatedFood[index].name,
                         category: widget.vm.topRatedFood[index].category,
                         area: widget.vm.topRatedFood[index].area,
-                        instructions: widget.vm.topRatedFood[index].instructions,
+                        instructions:
+                            widget.vm.topRatedFood[index].instructions,
                         thumbnail: widget.vm.topRatedFood[index].thumbnail,
                         ingredients: widget.vm.topRatedFood[index].ingredients,
                         measures: widget.vm.topRatedFood[index].measures,

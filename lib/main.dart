@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:modern_food_app/core/theme/theme.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
+import 'package:modern_food_app/features/favorite/viewmodel/favorite_view_model.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/features/service_locator.dart';
 import 'package:modern_food_app/index.dart';
@@ -27,6 +28,7 @@ void main() async {
           },
         ),
         ChangeNotifierProvider(create: (_) => CartViewmodel()),
+        ChangeNotifierProvider(create: (_) => FavoriteViewModel()),
 
         ChangeNotifierProvider(create: (_) => sl<AuthProvider>()),
       ],
