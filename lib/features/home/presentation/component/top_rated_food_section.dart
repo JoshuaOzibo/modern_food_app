@@ -115,7 +115,7 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
                         distance: widget.vm.topRatedFood[index].area,
                       ),
                       idValue,
-                      isFavorite
+                      fav
                     );
                   },
                   handleAddToCart: () {

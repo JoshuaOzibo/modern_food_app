@@ -7,14 +7,15 @@ class FavoriteViewModel extends ChangeNotifier {
   void addToFavorite(Entity favorite, String itemIndex, bool isFavorite){
     print(isFavorite);
 
-    if(isFavorite || !favoriteList.any((item) => item.id == itemIndex)){
+    if(isFavorite){
+      if(!favoriteList.any((item) => item.id == itemIndex)){
+        favoriteList.add(favorite);
+      }
+    } else {
       favoriteList.removeWhere((item) => item.id == itemIndex);
-    }else if(!isFavorite && !favoriteList.any((item) => item.id == itemIndex)){
-      favoriteList.add(favorite);
     }
 
     notifyListeners();
-    print(favoriteList);
-
+    print('favorite list $favoriteList');
   }
 }
