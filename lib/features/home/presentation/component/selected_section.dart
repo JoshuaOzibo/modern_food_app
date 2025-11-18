@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/select_by_category/select_by_category_card.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +18,7 @@ class SelectedSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -28,7 +30,7 @@ class SelectedSectionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,18 +49,50 @@ class SelectedSectionWidget extends StatelessWidget {
               ],
             ),
           ),
+          if (vm.isLoadingFilterByCategory)
+            SizedBox(
+              height: 400,
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 1,
+                ),
+                padding: const EdgeInsets.all(10),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return CustomShimmer(height: 150, width: double.infinity);
+                },
+              ),
+            ),
+
+          if (vm.isFilterByCategoryErrorMessage &&
+              !vm.isLoadingFilterByCategory)
+            Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: const Center(
+                child: ErrorView(
+                  icon: Icons.error_outline,
+                  message: 'Failed to load food.',
+                ),
+              ),
+            ),
+
           SizedBox(
             height: 400,
             child: GridView.builder(
               shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              physics: const ClampingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 1,
               ),
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemCount: vm.filterFoodByCategoryList.length,
               itemBuilder: (context, index) {
                 return SelectByCategoryCard(

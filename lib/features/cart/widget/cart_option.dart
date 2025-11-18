@@ -27,9 +27,7 @@ class CartOption extends StatelessWidget {
           ),
         ]),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
       child: Row(
-        spacing: 10,
         children: [
           ...selectList.map(
             (item) => Expanded(
@@ -38,13 +36,11 @@ class CartOption extends StatelessWidget {
                   onOptionChanged(item);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 5, left: 5, right: 5),
+                  margin: EdgeInsets.only(top: 5, left: 5),
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: selectedOption == item
-                        ? Colors.deepOrange
-                        : null,
+                    color: selectedOption == item ? Colors.deepOrange : null,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),

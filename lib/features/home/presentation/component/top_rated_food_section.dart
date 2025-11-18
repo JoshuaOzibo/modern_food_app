@@ -50,7 +50,7 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
               context,
               MaterialPageRoute(builder: (_) => SeeAllTopRatedScreen()),
             );
-            widget.vm.topFoodFunc();
+            widget.vm.allTopRatedFood();
           },
         ),
         if (widget.vm.isLoadingTopFood)
