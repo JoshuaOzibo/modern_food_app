@@ -10,11 +10,32 @@ class CartViewmodel extends ChangeNotifier {
   // }
 
   void addToCart(ProductUiModel item){
-    cartList.add(item);
-    notifyListeners();
+    if (!cartList.any((element) => element.id == item.id)) {
+      cartList.add(item);
+      notifyListeners();
+    }
   }
   void removeFromCart(ProductUiModel item){
     cartList.removeWhere((element) => element.id == item.id,);
     notifyListeners();
+  }
+
+
+  void incrementQuantity(ProductUiModel item){
+    if (item.quantity != null) {
+      item.quantity = item.quantity! + 1;
+    } else {
+      item.quantity = 1;
+    }
+    notifyListeners();
+  }
+
+  void decrementQuantity(ProductUiModel item){
+    if (item.quantity != null && item.quantity! > 1) {
+      item.quantity = item.quantity! - 1;
+      notifyListeners();
+    } else {
+      removeFromCart(item);
+    }
   }
 }

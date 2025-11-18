@@ -120,6 +120,8 @@ class _CartScreenScreenState extends State<CartScreen> {
                                     ],
                                     key: ObjectKey(vm.cartList[index]),
                                     child: CartCard(
+                                      handleIncrementQuantity: () => vm.incrementQuantity(vm.cartList[index]),
+                                      handleDecrementQuantity: () => vm.decrementQuantity(vm.cartList[index]),
                                       image: vm.cartList[index].thumbnail,
                                       title: vm.cartList[index].name,
                                       subTitle: vm.cartList[index].category,

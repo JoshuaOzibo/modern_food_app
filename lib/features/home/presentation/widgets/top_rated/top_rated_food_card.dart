@@ -188,124 +188,127 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(
-          children: [
-            ClipRRect(
-              key: _imageKey,
-              borderRadius: BorderRadius.circular(10),
-              child: CustomCacheNetworkImage(
-                height: widget.height,
-                image: widget.image,
-                width: widget.width,
+    return GestureDetector(
+      onTap: () => print('tapped'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              ClipRRect(
+                key: _imageKey,
+                borderRadius: BorderRadius.circular(10),
+                child: CustomCacheNetworkImage(
+                  height: widget.height,
+                  image: widget.image,
+                  width: widget.width,
+                ),
               ),
-            ),
-
-            Positioned(
-              top: 5,
-              left: 5,
-              right: 5,
-              child: Row(
+      
+              Positioned(
+                top: 5,
+                left: 5,
+                right: 5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade800,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(widget.foodType),
+                    ),
+                    GestureDetector(
+                      key: _favoriteIconKey,
+                      onTap: _animateToFavorite,
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: _isFavorite ? Colors.red : Colors.transparent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          _isFavorite ? Icons.favorite : Icons.favorite_border,
+                          color: _isFavorite ? Colors.white : Colors.white,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+      
+          SizedBox(height: 10),
+      
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                TextExtension(maxWords: 2).limitWords(widget.title),
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+              ),
+              Row(
+                spacing: 2,
+                children: [
+                  Icon(Icons.star, size: 15),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Text(
+                        widget.rating.toString(),
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text('${widget.reviews} Reviews', style: TextStyle(fontSize: 11)),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(widget.foodType),
-                  ),
-                  GestureDetector(
-                    key: _favoriteIconKey,
-                    onTap: _animateToFavorite,
-                    child: Container(
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        color: _isFavorite ? Colors.red : Colors.transparent,
-                        shape: BoxShape.circle,
+                  Row(
+                    spacing: 5,
+                    children: [
+                      Text(
+                        '\$${widget.price.toString()}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      child: Icon(
-                        _isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: _isFavorite ? Colors.white : Colors.white,
-                        size: 18,
+                      Text(widget.distance, style: TextStyle(fontSize: 11)),
+                    ],
+                  ),
+      
+                  MaterialButton(
+                    minWidth: 30,
+                    height: 10,
+                    elevation: 0,
+                    padding: EdgeInsets.all(2),
+                    color: Colors.deepOrange,
+                    onPressed: _animateToCart,
+                    child: Text(
+                      'Add',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-
-        SizedBox(height: 10),
-
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              TextExtension(maxWords: 2).limitWords(widget.title),
-              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              spacing: 2,
-              children: [
-                Icon(Icons.star, size: 15),
-                Row(
-                  spacing: 8,
-                  children: [
-                    Text(
-                      widget.rating.toString(),
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text('${widget.reviews} Reviews', style: TextStyle(fontSize: 11)),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  spacing: 5,
-                  children: [
-                    Text(
-                      '\$${widget.price.toString()}',
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(widget.distance, style: TextStyle(fontSize: 11)),
-                  ],
-                ),
-
-                MaterialButton(
-                  minWidth: 30,
-                  height: 10,
-                  elevation: 0,
-                  padding: EdgeInsets.all(2),
-                  color: Colors.deepOrange,
-                  onPressed: _animateToCart,
-                  child: Text(
-                    'Add',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

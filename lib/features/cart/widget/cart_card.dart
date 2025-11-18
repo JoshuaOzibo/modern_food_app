@@ -8,6 +8,8 @@ class CartCard extends StatelessWidget {
     required this.subTitle,
     required this.price,
     required this.quantity,
+    required this.handleIncrementQuantity,
+    required this.handleDecrementQuantity,
   });
 
   final String image;
@@ -15,6 +17,8 @@ class CartCard extends StatelessWidget {
   final String subTitle;
   final String price;
   final int? quantity;
+  final Function() handleIncrementQuantity;
+  final Function() handleDecrementQuantity;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +103,7 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: Icon(Icons.remove, size: 16, color: Colors.black,),
+                      child: GestureDetector(onTap: () => handleDecrementQuantity(), child: Icon(Icons.remove, size: 16, color: Colors.black,)),
                     ),
                     SizedBox(width: 5),
                     Text(quantity.toString()),
@@ -110,7 +114,7 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: Icon(Icons.add, size: 16, color: Colors.black,),
+                      child: GestureDetector(onTap: () => handleIncrementQuantity(), child: Icon(Icons.add, size: 16, color: Colors.black,)),
                     ),
                   ],
                 ),
