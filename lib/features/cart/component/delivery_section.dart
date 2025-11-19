@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/features/cart/component/location_widget.dart';
 
 class DeliverySection extends StatelessWidget {
   const DeliverySection({super.key});
@@ -16,7 +17,15 @@ class DeliverySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Placeholder(fallbackHeight: 50, fallbackWidth: double.infinity),
+          Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.black),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: LocationWidget(),
+          ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
