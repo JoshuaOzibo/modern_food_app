@@ -45,6 +45,12 @@ dependencies:
   supabase_flutter: ^2.10.3
   cached_network_image: ^3.4.1
   get_it: ^9.0.5
+  location: ^8.0.1
+  flutter_polyline_points: ^3.1.0
+  geolocator: ^14.0.2
+  flutter_map: ^7.0.0
+  latlong2: ^0.9.1
+  top_snackbar_flutter: ^3.3.0
 
 dev_dependencies:
   flutter_test:

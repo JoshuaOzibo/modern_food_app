@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
 
 class CartCard extends StatelessWidget {
   const CartCard({
@@ -41,11 +42,10 @@ class CartCard extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.network(
-                    image,
+                  child: CustomCacheNetworkImage(
                     height: 65,
+                    image: image,
                     width: 65,
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -60,7 +60,11 @@ class CartCard extends StatelessWidget {
                   ),
                   child: Text(
                     '$quantity',
-                    style: TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -73,16 +77,10 @@ class CartCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyle(
-                  color: Colors.black
-                ),),
-                Text(subTitle, style: TextStyle(
-                  color: Colors.black
-                ),),
+                Text(title, style: TextStyle(color: Colors.black)),
+                Text(subTitle, style: TextStyle(color: Colors.black)),
                 Spacer(),
-                Text('\$$price', style: TextStyle(
-                  color: Colors.black
-                ),),
+                Text('\$$price', style: TextStyle(color: Colors.black)),
               ],
             ),
           ),
@@ -103,7 +101,14 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: GestureDetector(onTap: () => handleDecrementQuantity(), child: Icon(Icons.remove, size: 16, color: Colors.black,)),
+                      child: GestureDetector(
+                        onTap: () => handleDecrementQuantity(),
+                        child: Icon(
+                          Icons.remove,
+                          size: 16,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                     SizedBox(width: 5),
                     Text(quantity.toString()),
@@ -114,7 +119,10 @@ class CartCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
-                      child: GestureDetector(onTap: () => handleIncrementQuantity(), child: Icon(Icons.add, size: 16, color: Colors.black,)),
+                      child: GestureDetector(
+                        onTap: () => handleIncrementQuantity(),
+                        child: Icon(Icons.add, size: 16, color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
