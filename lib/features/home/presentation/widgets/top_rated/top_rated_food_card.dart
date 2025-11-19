@@ -68,7 +68,7 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
     
     // Cart icon is at index 1, so approximately at 1/4 of screen width (assuming 4 items)
     return Offset(
-      screenWidth * 0.25,
+      screenWidth * 0.18,
       screenHeight - bottomNavHeight / 2,
     );
   }
@@ -80,7 +80,7 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
     
     // Favorite icon is at index 2, so approximately at 50% of screen width (third of 4 items)
     return Offset(
-      screenWidth * 0.5,
+      screenWidth * 0.65,
       screenHeight - bottomNavHeight / 2,
     );
   }
