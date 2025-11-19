@@ -21,39 +21,36 @@ class FavoriteScreen extends StatelessWidget {
         ],
       ),
       body: Column(
-  children: [
-    if (vm.favoriteList.isEmpty)
-      Expanded(
-        child: Center(
-          child: EmptyState(
-            message: 'Favorite List is empty',
-          ),
-        ),
-      ),
-
-    if (vm.favoriteList.isNotEmpty)
-      Expanded(
-        child: ListView.builder(
-          itemCount: vm.favoriteList.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 5,
+        children: [
+          if (vm.favoriteList.isEmpty)
+            Expanded(
+              child: Center(
+                child: EmptyState(message: 'Favorite List is empty'),
               ),
-              child: FavoriteCard(
-                image: vm.favoriteList[index].thumbnail,
-                title: vm.favoriteList[index].name,
-                subtitle: vm.favoriteList[index].category,
-                price: vm.favoriteList[index].price,
-              ),
-            );
-          },
-        ),
-      ),
-  ],
-),
+            ),
 
+          if (vm.favoriteList.isNotEmpty)
+            Expanded(
+              child: ListView.builder(
+                itemCount: vm.favoriteList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    child: FavoriteCard(
+                      image: vm.favoriteList[index].thumbnail,
+                      title: vm.favoriteList[index].name,
+                      subtitle: vm.favoriteList[index].category,
+                      price: vm.favoriteList[index].price,
+                    ),
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

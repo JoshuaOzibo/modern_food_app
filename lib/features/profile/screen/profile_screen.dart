@@ -24,37 +24,38 @@ class ProfileScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: 2,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Icon(Icons.edit),
+            GestureDetector(
+              onTap: () {
+                    showModalBottomSheet(
+                      elevation: 0,
+                      showDragHandle: true,
+                      backgroundColor: Colors.black,
+                      context: context, builder: (context){
+                      return Column(
+                        children: [
+                               Center(
+                          child: Text('Hello from bottom shit'),
+                        ),
+                        ],
+                      );
+                    });
+                  
+                  },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 2,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade300,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        BottomSheet(
-                          backgroundColor: Colors.brown,
-                          onClosing: (){}, builder: (context){
-                          return SizedBox(
-                            height: 200,
-                            child: Center(
-                              child: Text('Hello from bottom shit'),
-                            ),
-                          );
-                        });
-                      },
-                      child: Text('Edit')),
-                  ],
-                ),
-              ],
+                    child: Icon(Icons.edit),
+                  ),
+                  Text('Edit'),
+                ],
+              ),
             ),
           ],
         ),
