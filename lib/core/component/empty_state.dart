@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ErrorView extends StatelessWidget {
+class EmptyState extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
   final IconData? icon;
   final Color? color;
 
-  const ErrorView({
+  const EmptyState({
     super.key,
     required this.message,
     this.onRetry,

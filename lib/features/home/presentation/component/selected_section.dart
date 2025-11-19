@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/core/component/shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/select_by_category/select_by_category_card.dart';
@@ -74,7 +74,7 @@ class SelectedSectionWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: const Center(
-                child: ErrorView(
+                child: EmptyState(
                   icon: Icons.error_outline,
                   message: 'Failed to load food.',
                 ),

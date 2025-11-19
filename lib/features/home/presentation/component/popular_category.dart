@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/popular_category/popular_category_card.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/popular_category/popular_category_shimmer.dart';
@@ -36,7 +36,7 @@ class PopularCategory extends StatelessWidget {
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 90),
-              child: ErrorView(
+              child: EmptyState(
                 icon: Icons.error_outline,
                 message: 'Error Fetching Popular Categories',
                 onRetry: () {

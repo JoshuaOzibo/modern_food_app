@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/core/component/title_text.dart';
 import 'package:modern_food_app/features/cart/viewmodel/cart_viewmodel.dart';
 import 'package:modern_food_app/features/favorite/viewmodel/favorite_view_model.dart';
@@ -66,7 +66,7 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
           Center(
             child: Container(
               margin: const EdgeInsets.only(top: 60),
-              child: ErrorView(
+              child: EmptyState(
                 icon: Icons.error_outline,
                 message: 'Failed to load top rated food.',
                 onRetry: () {

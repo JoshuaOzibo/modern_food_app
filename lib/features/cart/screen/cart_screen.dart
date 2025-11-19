@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/core/component/title_text_without_icon.dart';
 import 'package:modern_food_app/features/cart/component/delivery_section.dart';
 import 'package:modern_food_app/features/cart/component/dine_in.dart';
@@ -88,7 +88,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                           SizedBox(
                             height: 200,
                             child: Center(
-                              child: ErrorView(
+                              child: EmptyState(
                                 message: 'No Items in Cart currently',
                                 color: Colors.black,
                               ),

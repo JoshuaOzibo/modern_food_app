@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modern_food_app/core/component/error_view.dart';
+import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/all_top_rated_shimmer.dart';
 import 'package:modern_food_app/features/home/presentation/widgets/top_rated/top_rated_food_card.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
@@ -64,7 +64,7 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
 
           if (vm.allTopFooderrorMessage) {
             return Center(
-              child: ErrorView(
+              child: EmptyState(
                 message: 'Error Fetching Top Rated Food',
                 onRetry: () => vm.allTopRatedFood(),
               ),
