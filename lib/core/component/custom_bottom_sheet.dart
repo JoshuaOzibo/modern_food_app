@@ -16,6 +16,8 @@ class CustomBottomSheet extends StatelessWidget {
     required this.onAddToCart,
     this.height,
     this.backgroundColor,
+    required this.ingredients,
+    required this.instructions,
   });
 
   final String image;
@@ -30,6 +32,8 @@ class CustomBottomSheet extends StatelessWidget {
   final VoidCallback onAddToCart;
   final double? height;
   final Color? backgroundColor;
+  final List<String> ingredients;
+  final String instructions;
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +166,14 @@ class CustomBottomSheet extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 30),
+                  Text('Ingredients', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Text(ingredients.join(', '), style: TextStyle(fontSize: 16, color: Colors.grey)),
+                  SizedBox(height: 30),
+                  Text('Instructions', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Text(instructions, style: TextStyle(fontSize: 16, color: Colors.grey)),
+                  SizedBox(height: 20),
                 
                   SizedBox(
                     width: double.infinity,

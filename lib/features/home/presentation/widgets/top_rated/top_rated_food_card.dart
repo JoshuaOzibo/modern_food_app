@@ -19,6 +19,8 @@ class TopRatedFoodCard extends StatefulWidget {
     required this.height,
     this.isFavorite = false,
     this.onFavoriteToggle,
+    required this.ingredients,
+    required this.instructions,
   });
 
   final String image;
@@ -33,6 +35,8 @@ class TopRatedFoodCard extends StatefulWidget {
   final double width;
   final bool isFavorite;
   final ValueChanged<bool>? onFavoriteToggle;
+  final List<String> ingredients;
+  final String instructions;
 
   @override
   State<TopRatedFoodCard> createState() => _TopRatedFoodCardState();
@@ -201,6 +205,8 @@ class _TopRatedFoodCardState extends State<TopRatedFoodCard> {
         price: widget.price,
         distance: widget.distance,
         isFavorite: _isFavorite,
+        ingredients: widget.ingredients,
+        instructions: widget.instructions,
         onFavoriteToggle: _animateToFavorite,
         onAddToCart: _animateToCart,
       ),

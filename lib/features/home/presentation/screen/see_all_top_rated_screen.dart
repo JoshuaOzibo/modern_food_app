@@ -100,7 +100,10 @@ class _SeeAllTopRatedScreenState extends State<SeeAllTopRatedScreen> {
                     distance: item.area,
                     isFavorite: isFavorite,
                     onFavoriteToggle: (fav) => _toggleFavorite(idValue, fav),
+                    ingredients: item.ingredients,
+                    instructions: item.instructions,
                     handleAddToCart: () => print('Add to cart'),
+
                   ),
                 );
               },

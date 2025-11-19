@@ -96,6 +96,8 @@ class _TopRatedFoodSectionState extends State<TopRatedFoodSection> {
                   price: (5 + (idValue.hashCode % 20)),
                   distance: widget.vm.topRatedFood[index].area,
                   isFavorite: isFavorite,
+                  ingredients: widget.vm.topRatedFood[index].ingredients,
+                  instructions: widget.vm.topRatedFood[index].instructions,
                   onFavoriteToggle: (fav) {
                     _toggleFavorite(idValue, fav);
                     fVM.addToFavorite(
