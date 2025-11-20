@@ -16,10 +16,7 @@ class FetchProductRepositoryImpl implements FetchProductRepository {
     try{
       final data = await _remoteDataSource.fetchTopFood(url: url);
       final meals = data['meals'] as List<dynamic>? ?? [];
-      print('Repository raw data: ${data.keys}'); 
-      print('Repository meals length: ${meals?.length}');
       final entities = meals.map((json) => ProductUiModel.fromJson(json as Map<String, dynamic>)).toList();
-      print('Repository entities length: ${entities.length}');
       return Right(entities);
     } on ServerExceptionError catch(e){
       return left(ServerExceptionError(message: e.message));

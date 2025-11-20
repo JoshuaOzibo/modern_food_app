@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/custom_cache_network_image.dart';
+import 'package:modern_food_app/core/extensions/text_extension.dart';
 
 class SelectByCategoryCard extends StatelessWidget {
   const SelectByCategoryCard({super.key, required this.image, required this.height, required this.width, required this.title, required this.subtitle});
@@ -26,7 +27,7 @@ class SelectByCategoryCard extends StatelessWidget {
             image: image, 
             width: width,
           ),
-          Text(title, style: TextStyle(color: Colors.white),),
+          Text(TextExtension().limitWords(title, maxwords: 1), style: TextStyle(color: Colors.white),),
           Text(subtitle, style: TextStyle(color: Colors.white),)
         ],
       ),
