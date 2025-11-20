@@ -33,10 +33,10 @@ class _LocationWidgetState extends State<LocationWidget> {
       // Handle error
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-
           SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: Text('Error getting location: $e')),
+            content: Text('Error getting location: $e'),
+          ),
         );
       }
     }
@@ -49,9 +49,9 @@ class _LocationWidgetState extends State<LocationWidget> {
         mapController: _mapController,
         options: MapOptions(
           initialCenter: _currentPosition ?? const LatLng(0, 0),
-          initialZoom: 15.0,
+          initialZoom: 5.0,
           minZoom: 2.0,
-          maxZoom: 18.0,
+          maxZoom: 12.0,
         ),
         children: [
           TileLayer(

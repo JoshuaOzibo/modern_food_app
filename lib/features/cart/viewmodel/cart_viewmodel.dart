@@ -38,4 +38,26 @@ class CartViewmodel extends ChangeNotifier {
       removeFromCart(item);
     }
   }
+
+  double get subtotal {
+    double total = 0.0;
+    for (var item in cartList) {
+      final price = item.price ?? 0.0;
+      final quantity = item.quantity ?? 1;
+      total += price * quantity;
+    }
+    return total;
+  }
+
+  double get discount {
+    return subtotal * 0.10;
+  }
+
+  double get tax {
+    return (subtotal - discount) * 0.025;
+  }
+
+  double get total {
+    return subtotal - discount + tax;
+  }
 }

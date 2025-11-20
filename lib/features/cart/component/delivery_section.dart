@@ -9,23 +9,23 @@ class DeliverySection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       width: double.infinity,
-      height: 150,
+      height: 250,
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.black),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 50,
+            height: 170,
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(width: 1, color: Colors.black),
               borderRadius: BorderRadius.circular(5),
             ),
             child: LocationWidget(),
           ),
+          SizedBox(height: 10),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +41,7 @@ class DeliverySection extends StatelessWidget {
               MaterialButton(
                 onPressed: () {},
                 shape: Border.all(width: 1, color: Colors.orange),
-                child: Text('Change', style: TextStyle(color: Colors.orange)),
+                child: Text('View', style: TextStyle(color: Colors.orange)),
               ),
             ],
           ),

@@ -21,6 +21,9 @@ class FavoriteViewModel extends ChangeNotifier {
 
   void removeFromFavorite(String itemIndex){
     favoriteList.removeWhere((item) => item.id == itemIndex);
+    if(!favoriteList.any((item) => item.id == itemIndex)){
+        
+      }
     notifyListeners();
   }
 }

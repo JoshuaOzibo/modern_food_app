@@ -112,8 +112,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                                         onTap:
                                             (CompletionHandler handler) async {
                                               await handler(true);
-                                              vm.cartList.removeAt(index);
-                                              setState(() {});
+                                              vm.removeFromCart(vm.cartList[index]);
                                             },
                                         color: Colors.red,
                                       ),
@@ -162,11 +161,11 @@ class _CartScreenScreenState extends State<CartScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Total Item(03)',
+                              'Total Item(${vm.cartList.length})',
                               style: TextStyle(color: Colors.black),
                             ),
                             Text(
-                              '\$190.00',
+                              '\$${vm.subtotal.toStringAsFixed(2)}',
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -179,7 +178,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                               style: TextStyle(color: Colors.black),
                             ),
                             Text(
-                              '-\$20.00',
+                              '-\$${vm.discount.toStringAsFixed(2)}',
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -192,7 +191,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                               style: TextStyle(color: Colors.black),
                             ),
                             Text(
-                              '\$10.00',
+                              '\$${vm.tax.toStringAsFixed(2)}',
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
@@ -209,7 +208,7 @@ class _CartScreenScreenState extends State<CartScreen> {
                               ),
                             ),
                             Text(
-                              '\$100.00',
+                              '\$${vm.total.toStringAsFixed(2)}',
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
