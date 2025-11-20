@@ -18,4 +18,9 @@ class FavoriteViewModel extends ChangeNotifier {
     notifyListeners();
     print('favorite list $favoriteList');
   }
+
+  void removeFromFavorite(String itemIndex){
+    favoriteList.removeWhere((item) => item.id == itemIndex);
+    notifyListeners();
+  }
 }

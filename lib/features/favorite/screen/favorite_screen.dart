@@ -47,8 +47,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         title: 'Delete',
                         onTap: (handler) async {
                           await handler(true);
-                          vm.favoriteList.removeAt(index);
-                          setState(() {});
+                          vm.removeFromFavorite(vm.favoriteList[index].id);
                         },
                         backgroundRadius: 8,
                         color: Colors.red,
