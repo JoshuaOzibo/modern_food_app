@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/component/empty_state.dart';
 import 'package:modern_food_app/features/favorite/component/favorite_card.dart';
 import 'package:modern_food_app/features/favorite/viewmodel/favorite_view_model.dart';
+import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:provider/provider.dart';
 
-class FavoriteScreen extends StatelessWidget {
+class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
 
+  @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<FavoriteViewModel>();
@@ -34,16 +40,31 @@ class FavoriteScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: vm.favoriteList.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 5,
-                    ),
-                    child: FavoriteCard(
-                      image: vm.favoriteList[index].thumbnail,
-                      title: vm.favoriteList[index].name,
-                      subtitle: vm.favoriteList[index].category,
-                      price: vm.favoriteList[index].price,
+                  return SwipeActionCell(
+                    key: ObjectKey(vm.favoriteList[index]),
+                    trailingActions: <SwipeAction>[
+                      SwipeAction(
+                        title: 'Delete',
+                        onTap: (handler) async {
+                          await handler(true);
+                          vm.favoriteList.removeAt(index);
+                          setState(() {});
+                        },
+                        backgroundRadius: 8,
+                        color: Colors.red,
+                      ),
+                    ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
+                        vertical: 5,
+                      ),
+                      child: FavoriteCard(
+                        image: vm.favoriteList[index].thumbnail,
+                        title: vm.favoriteList[index].name,
+                        subtitle: vm.favoriteList[index].category,
+                        price: vm.favoriteList[index].price,
+                      ),
                     ),
                   );
                 },
