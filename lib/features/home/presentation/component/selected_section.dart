@@ -96,11 +96,11 @@ class SelectedSectionWidget extends StatelessWidget {
               itemCount: vm.filterFoodByCategoryList.length,
               itemBuilder: (context, index) {
                 return SelectByCategoryCard(
-                  image: vm.filterFoodByCategoryList[index].thumbnail,
+                  image: vm.filterFoodByCategoryList[index].strMealThumb,
                   height: 100,
                   width: double.infinity,
-                  title: vm.filterFoodByCategoryList[index].name,
-                  subtitle: vm.filterFoodByCategoryList[index].category,
+                  title: vm.filterFoodByCategoryList[index].strMeal,
+                  subtitle: '',
                 );
               },
             ),

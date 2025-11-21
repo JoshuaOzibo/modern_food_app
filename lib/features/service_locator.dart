@@ -41,7 +41,7 @@ Future<void> initializeServiceLocator() async {
   //================================
 
   sl.registerLazySingleton<SelectByCategoryRepository>(() => SelectByCategoryImpl(sl<TopFoodRemoteDataSource>()));
-  sl.registerLazySingleton<Usecase>(() => FilterFoodByCategoryUsecase(sl<SelectByCategoryRepository>()));
+  sl.registerFactory<FilterFoodByCategoryUsecase>(() => FilterFoodByCategoryUsecase(sl<SelectByCategoryRepository>()));
 
   sl.registerFactory(
     () => HomeViewModel(

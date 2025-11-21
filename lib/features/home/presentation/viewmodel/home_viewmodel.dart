@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_food_app/core/error/failure.dart';
 import 'package:modern_food_app/features/home/domain/entities/entity.dart';
+import 'package:modern_food_app/features/home/domain/entities/select_by_category_entity.dart';
 import 'package:modern_food_app/features/home/domain/usecase/filter_food_by_category_usecase.dart';
 import 'package:modern_food_app/features/home/domain/usecase/get_top_rated_food_usecase.dart';
 
@@ -17,7 +18,7 @@ class HomeViewModel extends ChangeNotifier {
   List<Entity> popularCategoty = [];
   List<Entity> allTopRatedFoodList = [];
   List<Entity> allPopularCategoryList = [];
-  List<Entity> filterFoodByCategoryList = [];
+  List<SelectByCategoryEntity> filterFoodByCategoryList = [];
 
   // loadings
   bool isLoadingTopFood = true;
@@ -85,7 +86,6 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    // print('Top Rated Food fetched successfully from VM $topRatedFood');
   }
 
   void foodCategoryFunc() async {
@@ -132,7 +132,6 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    print(' Food Category fetched successfully from VM $topRatedFood');
   }
 
   void allTopRatedFood() async {
@@ -179,7 +178,6 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    print(' All Top Rated Food fetched successfully from VM $topRatedFood');
   }
 
   void allPopularCategory() async {
@@ -226,7 +224,6 @@ class HomeViewModel extends ChangeNotifier {
       notifyListeners();
     }
 
-    print(' All Top Rated Food fetched successfully from VM $topRatedFood');
   }
 
   void filterFoodByCategory(params) async {
@@ -250,22 +247,10 @@ class HomeViewModel extends ChangeNotifier {
           print('filter data $data');
           filterFoodByCategoryList = data
               .map(
-                (e) => Entity(
-                  id: e.id,
-                  name: e.name,
-                  category: e.category,
-                  area: e.area,
-                  instructions: e.instructions,
-                  thumbnail: e.thumbnail,
-                  ingredients: e.ingredients,
-                  measures: e.measures,
-                  youtube: e.youtube,
-                  price: e.price,
-                  quantity: e.quantity,
-                  rating: e.rating,
-                  distance: e.distance,
-                  reviews: e.reviews,
-                ),
+                (e) => SelectByCategoryEntity(
+                  idMeal: e.id, 
+                strMealThumb: e.thumbnail, 
+                strMeal: e.name)
               )
               .toList();
         },
@@ -275,7 +260,5 @@ class HomeViewModel extends ChangeNotifier {
       isFilterByCategoryErrorMessage = true;
       notifyListeners();
     }
-
-    print(' All Top Rated Food fetched successfully from VM $topRatedFood');
   }
 }
