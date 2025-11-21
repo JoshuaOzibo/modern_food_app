@@ -8,9 +8,12 @@ import 'package:modern_food_app/features/auth/domain/usecases/user_signup.dart';
 import 'package:modern_food_app/features/auth/presentation/viewmodel/auth_provider.dart';
 import 'package:modern_food_app/features/home/data/remote_data_source/top_food_remote_data_source.dart';
 import 'package:modern_food_app/features/home/data/repository_impl/fetch_product_repository_impl.dart';
+import 'package:modern_food_app/features/home/data/repository_impl/select_by_category_impl.dart';
 import 'package:modern_food_app/features/home/domain/repository/fetch_product_repository.dart';
+import 'package:modern_food_app/features/home/domain/repository/select_by_category_repository.dart';
 import 'package:modern_food_app/features/home/domain/usecase/filter_food_by_category_usecase.dart';
 import 'package:modern_food_app/features/home/domain/usecase/get_top_rated_food_usecase.dart';
+import 'package:modern_food_app/features/home/domain/usecase/filter_food_by_category_usecase.dart';
 import 'package:modern_food_app/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:modern_food_app/network/app_client.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -33,9 +36,12 @@ Future<void> initializeServiceLocator() async {
     () => GetTopRatedFoodUsecase(sl<FetchProductRepository>()),
   );
 
-  sl.registerLazySingleton<FilterFoodByCategoryUsecase>(
-    () => FilterFoodByCategoryUsecase(sl<FetchProductRepository>()),
-  );
+  // =============================
+  //  fetch by category registration
+  //================================
+
+  sl.registerLazySingleton<SelectByCategoryRepository>(() => SelectByCategoryImpl(sl<TopFoodRemoteDataSource>()));
+  sl.registerLazySingleton<Usecase>(() => FilterFoodByCategoryUsecase(sl<SelectByCategoryRepository>()));
 
   sl.registerFactory(
     () => HomeViewModel(

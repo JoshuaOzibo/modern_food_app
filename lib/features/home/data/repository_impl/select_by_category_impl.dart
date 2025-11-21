@@ -8,6 +8,7 @@ import 'package:modern_food_app/models/selected_section_ui_model.dart';
 
 class SelectByCategoryImpl implements SelectByCategoryRepository {
   final TopFoodRemoteDataSource _topFoodRemoteDataSource;
+
   SelectByCategoryImpl(this._topFoodRemoteDataSource);
   @override
   Future<Either<Failure, List<SelectedSectionUiModel>>> fetchByCategory({
