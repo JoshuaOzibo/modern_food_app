@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="assets/gif/modern_food_app_latest_update.gif" alt="Home Screen" width="200"/>
+    <img src="assets/gif/modern_food_app_latest_update.gif" alt="Home Screen" width="700" width="700"/>
 </p>
 
 
